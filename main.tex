@@ -1,0 +1,43 @@
+\documentclass[fleqn,10pt]{olplainarticle}
+% Use option lineno for line numbers 
+
+\title{Critical analysis of Lithium Battery State of Charge Estimation using Memory Mechanisms of Machine Learning}
+
+\author[1]{Mr Marat (Matt) Sadykov}
+\author[2]{Dr David Holmes}
+\affil[1]{Queensland University of Technology}
+%\affil[2]{Address of second author}
+
+\keywords{LSTM, Auto-Regression, SoC}
+
+\begin{abstract}
+    \textbf{Implementation of reliable algorithm for determening State of Charge (SoC) of Lithium Ion (Li-Ion) battery in Electrical Vehicle (EV) is one of the major tasks in the Battery Management System (BMS).
+    The article proposes a modefied version of a Long Short-Term Memory Recurrent Neural Network (LSTM-RNN) with Auto-regression mechanism.
+    The application for this mechanism defined in the feed-forwarding the output of the Machine Learning (ML) model back to itself as an input.
+    Initial value of State of Charge becomes another input feature, along with battery Voltage, Current and Temperature.} \\[1pc]
+    \textbf{Two dataset were taken from Center for Advanced Life Cycle Engineering (CALCE) for A123 Batteries.
+    They consist of Dynamic Stress Test (DST), Supplemential Federal Test Procedure-driving Schedule (US06) and Federal Urban Driving Schedule (FUDS).
+    Several combitation of those test on training and validation said acted as cross-validation mechanism as well as time for model to train and number of input samples.} \\[1pc]
+    \textbf{LSTM with Auto-Regression achives a root mean squared error of 0.0268 ** ** at early steps of training and improves to ** ** ** with every epoch.
+    The final goal is to bring the model to a state at which it can perform an online training on Small On-Chip Computers, by using only recently measured sensor data.}
+\end{abstract}
+
+\begin{document}
+
+\flushbottom
+\maketitle
+\thispagestyle{empty}
+%%% Introduction
+\input{./I_Introduction/Intro}
+%%% Body
+\input{./II_Body/feed-forward}
+\input{./II_Body/layer}
+\input{./II_Body/error}
+%%% Conclusion
+\input{./III_Conclussion/results}
+\input{./III_Conclussion/conclussion}
+\input{./III_Conclussion/acknowledgements}
+
+\bibliography{bibs}
+
+\end{document}
