@@ -28,6 +28,7 @@
 \RequirePackage{graphicx,xcolor}
 \RequirePackage{booktabs}
 \RequirePackage{authblk}
+\RequirePackage{svg}
 
 \RequirePackage[left=3cm,%
                 right=2cm,%
@@ -40,8 +41,8 @@
                 labelsep=period,%
                 justification=raggedright]{caption}
                 
-\RequirePackage{natbib}
-\bibliographystyle{apalike}
+% \RequirePackage{natbib}
+\bibliographystyle{IEEEtran}
          
 %
 % headers and footers

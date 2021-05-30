@@ -1,2 +1,96 @@
-\section{Results} \label{sec:results}
-\textit{Different comparison, plots. Relative timing and what mechnism in implementation with lists and tensors increased it. Accuracies.}
+\subsection{Accuracy comparison}
+    The newly proposed training technique was compared against a similar implementation without a modified training loop.
+    Both models were provided with ideal initial results, including the State of Charge.
+    
+    Every further prediction replaced the actual value of charge and used as an input in the following input set, along with actual Voltage, Current and Temperature.
+    Several plots on Figure~\ref{fig:init_time} outlines four stages of the testing scenarios, with different known initial charge sequences.
+    \begin{figure}[htbp]
+        \centering
+        % DST based tests
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharging.svg}
+            \caption{Charging process}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharged.svg}
+            \caption{Charged state}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarging.svg}
+            \caption{Discharging process}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarged.svg}
+            \caption{Discharged state}
+        \end{subfigure}
+        \caption{Different initial periods of model validation}
+        \label{fig:init_time}
+    \end{figure}
+    \begin{itemize}
+        \item To verify the efficiency, model also was compared against the two other profiles cycling profiles. \\
+        \item \textbf{model has tendency to put a lot of weight into the Voltage. This way. weights will fall into SoC instead to preserve longer dependency.} \\
+        \item \textit{Different comparison, plots. Relative timing and what mechanism in implementation with lists and tensors increased it. Accuracies.} \\
+        \item \textbf{Comaprison of different Windows size. Time it takes to compute that is too long. Need to overcome it, somehow.} \\
+    \end{itemize}
+    Plots above outline different initial starting points and show the convergence over time. \textcolor{red}{Stupid idea, that's not helpful}
+\subsection{Optimal output step size}
+    The optimal size of the output steps for better capturing the State of Charge was determined through experimental training.
+    The following table outlines the ten training iterations of each driving profiles until it reached accuracy below 2.5\%.
+    \begin{table}[htbp]
+        \centering
+        \caption{Percentage accuracy evaluation with increasing output step size}
+        \label{tab:out_steps}
+        \begin{tabular}{ p{1.5cm} || p{1.5cm} p{1.5cm} p{1.5cm} || p{1.5cm}  }
+            \hline
+            Steps & DST & US06 & FUDS & Epochs \\
+            \hline
+            10 & 2.94 & $\geq\sim 15$ & $\geq\sim 15$ & 8 \\
+            15 & 0.90 & 10.67  & 11.10  & 8 \\
+            20 & |    & 0.68   &  4.25  & 10 \\
+            25 & |    & |      &  3.48  & 25 \\
+            30 & |    & |      &  0.59  & 19 \\
+            \hline
+        \end{tabular}
+    \end{table}
+    
+    %
+    %
+    The Dynamic Stress Test (DST) has a stable trend of current consumption and regenerative process.
+    Therefore it did not take long to capture the behaviour of the charge.
+    A single cycle on subfigure~\ref{subfig:res_DST} provides an example of accurate feed-forward charge estimation with output steps between 10-15 samples.
+    The US06 and FUDS have the more aggressive current usage, leading to trendier voltage readings.
+    As per subfigures~\ref{subfig:res_US} and~\ref{subfig:res_FUDS}, it took twice more output sample to achieve similar accuracy to DST based model. 
+    Any further increase can capture even more complicated scenarios, leading to a longer training time.
+    However, the amount of epoch per training model to produce the best fit decreased with every added single step.
+    \begin{figure}[htbp]
+        \centering
+        % DST based tests
+        \begin{subfigure}[b]{0.325\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_best/DST-8.svg}
+            \caption{Best DST based model after 8 iterations with 15 steps}
+            \label{subfig:res_DST}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.325\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_best/US06-10.svg}
+            \caption{Best US06 based model after 10 iterations with 20 steps}
+            \label{subfig:res_US}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.325\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_best/FUDS-19.svg}
+            \caption{Best FUDS based model after 19 iterations with 30 steps}
+            \label{subfig:res_FUDS}
+        \end{subfigure}
+        \caption{Best training results over 3 different driving profiles}
+        \label{fig:Models_res}
+    \end{figure}
