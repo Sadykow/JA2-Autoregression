@@ -11,7 +11,7 @@ Instead of adjusting each input feature weights manually, the best approach towa
 Since the sigmoid function restrained the output, the first outputs from the model at the start of the training were random values within 50\% of the expected charge.
 Instead of always having perfect values, the auto-regression technique allowed models weight adjustment based on their initial error.
 As a result, the optimiser performed the model fit based on the array of model outputs over evenly spaced time samples.
-\textit{Despite that the modification introduced an $n_th$ degree computation based on the number of outputting steps, the actual prediction was performed only based on the latest sample.}
+\textit{Despite that the modification introduced an $n_{th}^{2}$ degree computation based on the number of outputting steps, the actual prediction was performed only based on the latest sample.}
 Therefore, the autoregressive model introduced no performance losses during actual utilisation. 
 
 \begin{itemize}
