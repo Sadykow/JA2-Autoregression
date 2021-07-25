@@ -1,4 +1,4 @@
-The rapid growth of the Electrical Vehicle (EV) market has led to the research of better energy storages.
+The rapid growth of the Electrical Vehicle (EV) market has led to the research of better energy storage.
 Lithium-Ion (Li-ion) batteries offer high energy and power density and a low self-discharge rate [Javid 1,2].
 Efficiency made them highly used in the EV application, on top of smartphones or other portable electronic devices.
 The misuse of those batteries may lead to rapid battery life degradation (aging) and damage to a device on a small scale or environmental catastrophes in big.
@@ -15,7 +15,7 @@ A simple battery model that accumulates the multiple ideal internal resistance a
 Due to battery aging over longer used, the internal resistance starts varying due to varying battery utilised temperature.
 Eventually, such a simple battery model becomes inefficient and only becomes a cause of failure [ref???].
 Working temperature, stored charge and maximum output current became different from a freshly manufactured cell.
-Therefore, failure to prevent overrated usage lead to battery damage and waisting cells potential earlier than anticipated by manufacturers.
+Therefore, failure to prevent overrated usage lead to battery damage and waisting cell potential earlier than anticipated by manufacturers.
 The solution is to use the State of Charge (SoC) as a battery state reference.
 
 %
@@ -32,11 +32,11 @@ The methods which will be closer explored in this work are based on statistical 
 %
 %
 In recent years, there have been few different approaches in Artificial Intelligence development for a battery charge estimation: Fuzzy logic, Support Vector Machine, Recurrent Neural Network (RNN).
-The RNNs are more commonly used due to their various usage applications, support from different developers, and widely tested by researchers.
+The RNNs are more commonly used due to their various usage applications, support from different developers, and being widely tested by researchers.
 There have been multiple publications around extensively used Time-Series models, such as Long short-term memory (LSTM) or Gated recurrent units (GRU), for battery state of charge prediction.
 A previously published paper of this research [Sadykov, 1] analysed multiple different implementations of RNN models to determine the State of Charge from sensory data like Voltage, Current and Temperature.
 The research results have concluded that sensory data in one behaviour of driving is efficient to estimate but may fall under another.
-The battery state became a matter of not the battery itself but the way it has been used.
+Thus, the battery state became a matter of not the battery itself but the way it has been used.
 Besides, under some scenarios, the SoC can fail under-voltage drop, although not as significant and only at certain rate conditions.
 The potential solution to the problem was to integrate SoC as one of the input features to a NN model.
 The limitation here is to be able to get the State of Charge in real-time.
@@ -51,9 +51,10 @@ It meant to force the model to consider the potential of having variations in St
 
 %
 %
-The rest of this paper organised as follows: a methodology for an RNN model discussed in Section 2.
-The details of how auto-regression has been utilised in Section 3. Subsection 4.1 and 4.2 separates points of model validation and process of parameters estimation.
-Section 5 concludes the research along with outlining several observations, which may require separate consideration.
+The rest of this paper is organised as follows: a methodology for an RNN model discussed in Section 2.
+The details of how auto-regression has been utilised in Section 3.
+Subsections 4.1 and 4.2 separates points of model validation and process of parameters estimation.
+Finally, section 5 concludes the research along with outlining several observations, which may require separate consideration.
 % Most were isolated to closed scenarios with provided data or from battery cycling machine.
 % The most promessing approches to improve a model and make it more universal is to increase complexity. While some introduced deeper layer newtwork, others added additional mechanisms to already used.
 \begin{landscape}
