@@ -43,7 +43,7 @@ The diagram in Figure~\ref{subfig:testing} illustrates regular training and test
         \centering
         % \includegraphics[width=\linewidth]{II_Body/images/IMG_20210524_133103.jpg}
         \includegraphics[width=\linewidth]{II_Body/images/Autoregression-Training.png}
-        \caption{PLACEHOLDER: regular training and  procedure}
+        \caption{Custom autoregressive training procedure}
         \label{subfig:testing}
     \end{subfigure}
     \hfill
@@ -51,7 +51,7 @@ The diagram in Figure~\ref{subfig:testing} illustrates regular training and test
         \centering
         % \includegraphics[width=\linewidth]{II_Body/images/IMG_20210524_133052.jpg}
         \includegraphics[width=\linewidth]{II_Body/images/Autoregression-Testing.png}
-        \caption{PLACEHOLDER:testing and validation procedure}
+        \caption{Regular testing and validation procedure}
         \label{subfig:training}
     \end{subfigure}
     \caption{Comparison between training and testing accuracy of a 4-featured based model with a default training and testing loop}
@@ -61,7 +61,7 @@ The diagram in Figure~\ref{subfig:testing} illustrates regular training and test
 %
 %
 The training procedure for the regular LSTM model must be modified to consider potential inaccuracy using the autoregression technique.
-\textcolor{red}{I do not feel comfortable referencing the documentation, but what choice do I have now.}
+%\textcolor{red}{I do not feel comfortable referencing the documentation, but what choice do I have now.}
 The diagram in figure~\ref{subfig:training} demonstrates the procedure for the model call using autoregression.
 Unlike regular LSTM, training and testing differentiate from each other.
 If the testing procedure remained unchanged, the training performs multiple calls during a single-window sample processing.

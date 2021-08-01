@@ -14,13 +14,13 @@ As a result, the optimiser performed the model fit based on the array of model o
 \textit{Despite that the modification introduced an $n_{th}^{2}$ degree computation based on the number of outputting steps, the actual prediction was performed only based on the latest sample.}
 Therefore, the autoregressive model introduced no performance losses during actual utilisation. 
 
-\begin{itemize}
-    \item \textit{The hypothesis has been proven on untrained driving profiles. In some scenarios, the charge had an offset since the mismatches with the actual charge.}
-    However, the prediction of the charging process or a moment of complete battery discharge always remained correct, which indicated an excellent verification method. \\
+% \begin{itemize}
+%     \item \textit{The hypothesis has been proven on untrained driving profiles. In some scenarios, the charge had an offset since the mismatches with the actual charge.}
+%     However, the prediction of the charging process or a moment of complete battery discharge always remained correct, which indicated an excellent verification method. \\
     
-    \item This method is a suitable replacement for the earlier discussed NN model based only on sensory data.
-    The autoregressive model implementation makes it either a solid replacement for any other SoC estimation methods like Kalman filter or an excellent addition to validating results from multiple other methods.
+%     \item This method is a suitable replacement for the earlier discussed NN model based only on sensory data.
+%     The autoregressive model implementation makes it either a solid replacement for any other SoC estimation methods like Kalman filter or an excellent addition to validating results from multiple other methods.
 
-    \item \textbf{FUDS dataset set has a good capture of unpredicted driving behavior. Even in the scenarios which does not have a full discharge and charge process, such model has a potential to be a good profile for any further ...}
+%     \item \textbf{FUDS dataset set has a good capture of unpredicted driving behavior. Even in the scenarios which does not have a full discharge and charge process, such model has a potential to be a good profile for any further ...}
 
-\end{itemize}
+% \end{itemize}
