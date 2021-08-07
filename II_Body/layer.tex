@@ -4,23 +4,23 @@ The cells inside the model act as memory units to preserve the dependence.
 Therefore, the output is closely dependant on the previously input samples.
 Unlike the normal RNN and the more modern version - GRU, LSTM has a more complicated structure constructed from several logical gates~\cite{LSTM_Hochreiter1997}.
 It is the most widely used type of model.
-Figure~\ref{fig:LSTM-cell} provides summary of the cell logic.
-It utilises 3 gates: forget $f_t$, input $i_t$ and output $o_t$, as per equation~\ref{eq:LSTM-gates}.
-The decisions based around sigmoid $\sigma$ function~\ref{eq:sigmoid}.
-With default $tanh$ as activation function, equation~\ref{eq:LSTM-output} describes the procedure for cell state update and further propogation.
+Figure~\ref{fig:LSTM-cell2} provides summary of the cell logic.
+It utilises 3 gates: forget $f_t$, input $i_t$ and output $o_t$, as per equation~\ref{eq:LSTM-gates2}.
+The decisions based around sigmoid $\sigma$ function~\ref{eq:sigmoid2}.
+With default $tanh$ as activation function, equation~\ref{eq:LSTM-output2} describes the procedure for cell state update and further propogation.
 $h_t$ and $c_t$ represent memory cell output and the cell state at timestamp $t$.
 
 %
 %
 \begin{equation}
     \sigma(x) = \frac{1}{1+e^{-x}}
-    \label{eq:sigmoid}
+    \label{eq:sigmoid2}
 \end{equation}
 \begin{figure}[ht]%[htbp]
     \centering
     \includegraphics[width=0.7\linewidth]{II_Body/LSTM/images/LSTM.jpg}
     \caption{Long Short-Term Memory Cell}
-    \label{fig:LSTM-cell}
+    \label{fig:LSTM-cell2}
 \end{figure}
 \begin{equation}
     \begin{split}
@@ -28,7 +28,7 @@ $h_t$ and $c_t$ represent memory cell output and the cell state at timestamp $t$
         i_t &= \sigma \left(W_i \left[h_{t-1}, x_t \right] + b_i \right) \\
         o_t &= \sigma \left(W_o \left[h_{t-1}, x_t \right] + b_o \right) \\    
     \end{split}
-    \label{eq:LSTM-gates}
+    \label{eq:LSTM-gates2}
 \end{equation}
 \begin{equation}
     \begin{split}
@@ -36,7 +36,7 @@ $h_t$ and $c_t$ represent memory cell output and the cell state at timestamp $t$
               c_t &= f_t c_{t-1}+i_t \hat{c_t} \\
               h_t &= o_t*tanh \left(c_t \right)
     \end{split}
-    \label{eq:LSTM-output}
+    \label{eq:LSTM-output2}
 \end{equation}
 The LSTM model has been used widely in stock-price prediction or weather forecasting.
 Unlike State of Charge estimation, which commonly uses $V$, $I$ and $T$ as inputs, those methods utilise the output feature as an input to the subsequent prediction to propagate results further and calculate the time before a critical event occurrence.
@@ -70,13 +70,13 @@ Use of a $\sigma$ function as an output justified by the charge normalisation be
     \label{tab:params}
     \begin{tabular}{ p{3.0cm} p{3.5cm} p{2.5cm}   }
         \hline
-        Input     & $shape=(1,500,4)$ & $batch=1 $  \\
+        Input     & $shape= \left( 1,500,4 \right)$ & $batch=1 $  \\
         \hline
         LSTM      & $activation= 'tanh'$ & $units=510$  \\
         \hline
         Dropout   & $0.0$ &   \\
         \hline
-        Output    & $activation= \sigma$ &   \\
+        Output    & $activation= \sigma\left(1\right)$ &   \\
         \hline
     \end{tabular}
 \end{table}
@@ -91,12 +91,12 @@ The ability to accurately capture both driving mechanisms with minor error acts 
 
 %
 %
-The optimisation algorithm for the fitting process has been defined by Adam algorithm with the following hyperparameter~\ref{tab:adam-params}. \\
+The optimisation algorithm for the fitting process has been defined by Adam algorithm with the following hyperparameter~\ref{tab:newM-params}. \\
 %\textcolor{red}{Try to use Robust Adam instead first, because why the hell not since I lost one month of my life to implement that cursed algorithm from Javids miss-typed notes. Complete this section with details as per Gareth Javid implementation if RoAdam will be able to produce a faster fitting.}
 \begin{table}[htbp]
     \centering
     \caption{Optimiser specific hyperparameters}
-    \label{tab:adam-params}
+    \label{tab:newM-params}
     \begin{tabular}{ p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm}  }
         \hline
         $\alpha$ & $\beta_1 $ & $\beta_2$ & $\epsilon$ \\

@@ -1,47 +1,88 @@
 \subsection{Accuracy comparison}
     The newly proposed training technique was compared against a similar implementation without a modified training loop.
     Both models were provided with ideal initial results, including the State of Charge.
-    
-    Every further prediction replaced the actual value of charge and used as an input in the following input set, along with actual Voltage, Current and Temperature.
-    Several plots on Figure~\ref{fig:init_time} outlines four stages of the testing scenarios, with different known initial charge sequences.
+    Every further prediction replaced the actual value of charge and was used as an input in the following input set, along with actual Voltage, Current and Temperature.
+    Several plots in Figure~\ref{fig:diff_prof_compare} outline demonstrates the process of model validation and testing.
+    The model has been trained and validated against FUDS-profile, subfigure~\ref{subfig:FUDS_diff_prof_compare}, and tested again DST on subfigure~\ref{subfig:DST_diff_prof_compare} and US06 on subfigure~\ref{subfig:US_diff_prof_compare}.
+    The plots are based on the latest output from the training loop.
+    The entire training process has been logged, and every model is saved as a separate checkpoint to determine the most efficient model in both validation and testing.
+    Figure~\ref{fig:res_performance} demonstrates selecting the best model, marking the iteration which produced the lowest error for all three profiles.
+    \textbf{This way, the selection process can be performed to determine the iteration at which model reached the most "optimal" (characterising, universal) case*.}
+
+    %
+    %
+    The offset in the validation can be explained by the amount of weight placed into the known State of charge, unlike in the 3-feature models, where the Voltage was acting characteristic.
+    This is because in the State of Charge estimation, the significant impact is affected by current, and since the State of charge is the function of current and time, the weight the properly applied to the correct feature over the training process.
+    Any other training process appeared to be unnecessary and may lead to overfitting.
+    Figure~\ref{fig:Models_res} demonstrates the best feed-forward prediction for all three profiles.
+    % \begin{figure}[htbp]
+    %     \centering
+    %     % DST based tests
+    %     \begin{subfigure}[b]{0.475\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharging.svg}
+    %         \caption{Charging process}
+    %     \end{subfigure}
+    %     \hfill
+    %     \begin{subfigure}[b]{0.475\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharged.svg}
+    %         \caption{Charged state}
+    %     \end{subfigure}
+    %     \hfill
+    %     \begin{subfigure}[b]{0.475\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarging.svg}
+    %         \caption{Discharging process}
+    %     \end{subfigure}
+    %     \begin{subfigure}[b]{0.475\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarged.svg}
+    %         \caption{Discharged state}
+    %     \end{subfigure}
+    %     \caption{Different initial periods of model validation}
+    %     \label{fig:init_time}
+    % \end{figure}
+    % Plots above outline different initial starting points and show the convergence over time. \textcolor{red}{Stupid idea, that's not helpful. How about I add some red line at very beginning, indicated where did I start initially and how far it plotted itself. Accumulate 500 initials steps and then plot them seperately on top to show the indication.}
     \begin{figure}[htbp]
         \centering
-        % DST based tests
-        \begin{subfigure}[b]{0.475\textwidth}
+        \begin{subfigure}[b]{0.325\textwidth}
             \centering
-            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharging.svg}
-            \caption{Charging process}
+            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
+            \caption{FUDS trained model}
+            \label{subfig:FUDS_diff_prof_compare}
         \end{subfigure}
         \hfill
-        \begin{subfigure}[b]{0.475\textwidth}
+        \begin{subfigure}[b]{0.325\textwidth}
             \centering
-            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharged.svg}
-            \caption{Charged state}
+            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test One-19.svg}
+            \caption{Testing against DST profile}
+            \label{subfig:DST_diff_prof_compare}
         \end{subfigure}
         \hfill
-        \begin{subfigure}[b]{0.475\textwidth}
+        \begin{subfigure}[b]{0.325\textwidth}
             \centering
-            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarging.svg}
-            \caption{Discharging process}
-        \end{subfigure}
-        \begin{subfigure}[b]{0.475\textwidth}
-            \centering
-            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarged.svg}
-            \caption{Discharged state}
+            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test Two-19.svg}
+            \caption{Testing against US06 profile}
+            \label{subfig:US_diff_prof_compare}
         \end{subfigure}
         \caption{Different initial periods of model validation}
-        \label{fig:init_time}
+        \label{fig:diff_prof_compare}
     \end{figure}
-    \begin{itemize}
-        \item To verify the efficiency, model also was compared against the two other profiles cycling profiles. \\
-        \item \textbf{model has tendency to put a lot of weight into the Voltage. This way. weights will fall into SoC instead to preserve longer dependency.} \\
-        \item \textit{Different comparison, plots. Relative timing and what mechanism in implementation with lists and tensors increased it. Accuracies.} \\
-        \item \textbf{Comaprison of different Windows size. Time it takes to compute that is too long. Need to overcome it, somehow.} \\
-    \end{itemize}
-    Plots above outline different initial starting points and show the convergence over time. \textcolor{red}{Stupid idea, that's not helpful. How about I add some red line at very beginning, indicated where did I start initially and how far it plotted itself. Accumulate 500 initials steps and then plot them seperately on top to show the indication.}
+    % \begin{itemize}
+    %     \item To verify the efficiency, model also was compared against the two other profiles cycling profiles. \\
+    %     \item \textbf{model has tendency to put a lot of weight into the Voltage. This way. weights will fall into SoC instead to preserve longer dependency.} \\
+    %     \item \textit{Different comparison, plots. Relative timing and what mechanism in implementation with lists and tensors increased it. Accuracies.} \\
+    %     \item \textbf{Comaprison of different Windows size. Time it takes to compute that is too long. Need to overcome it, somehow.} \\
+    % \end{itemize}
+    \begin{figure}
+        \centering
+        \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-performance.svg}
+        \caption{Accuracy evolution over training process for Mean Average Error (MAE) and Root Mean Squared Error (RMSE)}
+        \label{fig:res_performance}
+    \end{figure}
 \subsection{Optimal output step size}
-    The optimal size of the output steps for better capturing the State of Charge was determined through experimental training.
-    The following table outlines the ten training iterations of each driving profiles until it reached accuracy below 2.5\%.
+    The optimal size of the output steps for better capturing the State of Charge was determined through experimental training. Table~\ref{tab:out_steps} outlines the training iterations of each driving profile until it reached accuracy below 2.5\%.
     \begin{table}[htbp]
         \centering
         \caption{Percentage accuracy evaluation with increasing output step size}
@@ -65,29 +106,35 @@
     Therefore it did not take long to capture the behaviour of the charge.
     A single cycle on subfigure~\ref{subfig:res_DST} provides an example of accurate feed-forward charge estimation with output steps between 10-15 samples.
     The US06 and FUDS have the more aggressive current usage, leading to trendier voltage readings.
-    As per subfigures~\ref{subfig:res_US} and~\ref{subfig:res_FUDS}, it took twice more output sample to achieve similar accuracy to DST based model. 
+    As per subfigures~\ref{subfig:res_US} and~\ref{subfig:res_FUDS}, it took twice more output samples to achieve similar accuracy to DST based model.
     Any further increase can capture even more complicated scenarios, leading to a longer training time.
     However, the amount of epoch per training model to produce the best fit decreased with every added single step.
+    
+    %
+    %
+    The necessity of optimal step is required for running the training process on the entire dataset with all three profiles as inputs to prepare the model for deployment.
+    Therefore, all further results demonstrations will use 30 steps as the most optimal and report any other results based on that parameter.
     \begin{figure}[htbp]
         \centering
         % DST based tests
         \begin{subfigure}[b]{0.325\textwidth}
             \centering
-            \includesvg[width=\linewidth]{III_Conclussion/im_best/DST-8.svg}
+            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-15steps/DST-models/SMRDST-FF-8.svg}
             \caption{Best DST based model after 8 iterations with 15 steps}
             \label{subfig:res_DST}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.325\textwidth}
             \centering
-            \includesvg[width=\linewidth]{III_Conclussion/im_best/US06-10.svg}
+            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-20steps/US06-models/SMRUS06-FF-10.svg}
             \caption{Best US06 based model after 10 iterations with 20 steps}
             \label{subfig:res_US}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.325\textwidth}
             \centering
-            \includesvg[width=\linewidth]{III_Conclussion/im_best/FUDS-19.svg}
+            % \includesvg[width=\linewidth]{III_Conclussion/im_best/FUDS-19.svg}
+            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
             \caption{Best FUDS based model after 19 iterations with 30 steps}
             \label{subfig:res_FUDS}
         \end{subfigure}

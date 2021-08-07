@@ -5,14 +5,15 @@ If the trained model will have perfect input values, the output expected to be w
     % DST based tests
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/FUDS-val-48.svg}
+        % \includesvg[width=\linewidth]{III_Conclussion/im_compare/FUDS-val-48.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-val-9.svg}
         \caption{Regular training process snapshot}
         \label{subfig:regular_tr}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/Sadykov2020-Feed.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-FF-9.svg}
         \caption{Feed-Forward validation process snapshot}
         \label{subfig:regular_ts}
     \end{subfigure}
@@ -78,13 +79,13 @@ Even though the accuracy with tabled samples has decreased, its feed-forward pre
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/Sadykov2020-Normal.svg}
-        \caption{Modified training process snapshot}
+        \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
+        \caption{Modified training process}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharging.svg}
-        \caption{Feed-Forward validation process snapshot on modified model}
+        \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
+        \caption{Feed-Forward validation process}
     \end{subfigure}
     \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loop}
     \label{fig:modefied_tr}
