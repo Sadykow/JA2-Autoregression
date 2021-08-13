@@ -29,5 +29,9 @@ Although the method has proven effective on three different driving profiles, it
 Besides, the whole intention is to test the model actively during actual driving.
 On top of that, the effect of the initial start of the charge is still debatable.
 So far, few experiments with different starting points have shown accurate results, but the best way to validate the model is to observe active convergence over unseen data.
-Even if the model still will not correctly determine the middle area of the battery as with 3-feature based methods, the general trend of battery charge and discharge has to be followed, without spikes or falls.
-If this is confirmed, the model can become a solid replacement to any other model-based State of Charge estimation technique.
+Even if the model still will not correctly determine the middle area of the battery as with 3-feature based methods, the general trend of battery charge and discharge has to be followed without spikes or falls.
+If confirmed, the model can become a solid replacement to any other model-based State of Charge estimation technique.
+
+% \textit{The hypothesis has been proven on untrained driving profiles. In some scenarios, the charge had an offset since the mismatches with the actual charge.} However, the prediction of the charging process or a moment of complete battery discharge always remained correct, which indicated an excellent verification method.
+
+% This method is a suitable replacement for the earlier discussed NN model based only on sensory data. Furthermore, the autoregressive model implementation makes it either a solid replacement for other SoC estimation methods like Kalman filter or an excellent addition to validating results from multiple other methods.

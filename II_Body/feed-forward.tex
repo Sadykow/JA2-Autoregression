@@ -1,5 +1,5 @@
 The regular training procedure for a four feature model has a significant limitation. The model does not take into account the Feed-Forward application of the prediction output.
-If the trained model will have perfect input values, the output expected to be within~1 \% miss accuracy.
+If the trained model will have perfect input values, the output is expected to be within~1 \% miss accuracy.
 \begin{figure}[htbp]
     \centering
     % DST based tests
@@ -69,14 +69,14 @@ The diagram in figure~\ref{subfig:training} demonstrates the procedure for the m
 Unlike regular LSTM, training and testing differentiate from each other.
 If the testing procedure remained unchanged, the training performs multiple calls during a single-window sample processing.
 Every new call outputs the results and feeds again into the same model, with one sample from each sensor.
-Each output also contained a state of the model, containing the values stored in the cell, preserving dependency between model calls.
-State output used only for internal model processing.
+Each output also contained a model state, containing the values stored in the cell, preserving dependency between model calls.
+State output is used only for internal model processing.
 Every output of every step has been stored as an array.
 With a new approach, an optimiser will compare an array of predicted samples against the true values of the SoC.
 This way meant to increase the model fit process.
 The more output samples model returns during the training, the better the actual prediction against aggressive driving profiles.
 Figure~\ref{fig:modefied_tr} contains a similar test as without autoregression.
-Even though the accuracy with tabled samples has decreased, its feed-forward prediction accuracy has significant increase.
+Even though the accuracy with tabled samples has decreased, its feed-forward prediction accuracy has a significant increase.
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
