@@ -1,5 +1,5 @@
 Time-series prediction of the neural model relies on the input history of equally distributed samples.
-The LSTM model is a recurrent neural network that designs to solve the vanishing gradient problem by remembering/preserving the long dependencies [ref].
+The LSTM model is a recurrent neural network that designs to solve the vanishing gradient problem by remembering/preserving the long dependencies~\cite{rasifaghihi_predictive_2020}.
 The cells inside the model act as memory units to preserve the dependence.
 Therefore, the output is closely dependant on the previously input samples.
 Unlike the normal RNN and the more modern version - GRU, LSTM has a more complicated structure constructed from several logical gates~\cite{LSTM_Hochreiter1997}.
@@ -91,7 +91,7 @@ The ability to accurately capture both driving mechanisms with minor error acts 
 
 %
 %
-The optimisation algorithm for the fitting process has been defined by Adam algorithm with the following hyperparameter~\ref{tab:newM-params}. \\
+The optimisation algorithm for the fitting process has been defined by Adam, Algorithm~\ref{alg:Adam}, with the following hyperparameters, Table~\ref{tab:newM-params}. \\
 %\textcolor{red}{Try to use Robust Adam instead first, because why the hell not since I lost one month of my life to implement that cursed algorithm from Javids miss-typed notes. Complete this section with details as per Gareth Javid implementation if RoAdam will be able to produce a faster fitting.}
 \begin{table}[htbp]
     \centering

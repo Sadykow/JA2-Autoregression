@@ -1,18 +1,21 @@
 \subsection{Accuracy comparison}
     The newly proposed training technique was compared against a similar implementation without a modified training loop.
     Both models were provided with ideal initial results, including the State of Charge.
-    Every further prediction replaced the actual value of charge and was used as an input in the following input set, along with actual Voltage, Current and Temperature.
+    Every further prediction replaced the actual charge value and was used as an input in the following input set, along with actual Voltage, Current and Temperature.
+    
+    %
+    %
     Several plots in Figure~\ref{fig:diff_prof_compare} outline demonstrates the process of model validation and testing.
     The model has been trained and validated against FUDS-profile, subfigure~\ref{subfig:FUDS_diff_prof_compare}, and tested again DST on subfigure~\ref{subfig:DST_diff_prof_compare} and US06 on subfigure~\ref{subfig:US_diff_prof_compare}.
     The plots are based on the latest output from the training loop.
     The entire training process has been logged, and every model is saved as a separate checkpoint to determine the most efficient model in both validation and testing.
     Figure~\ref{fig:res_performance} demonstrates selecting the best model, marking the iteration which produced the lowest error for all three profiles.
-    \textbf{This way, the selection process can be performed to determine the iteration at which model reached the most "optimal" (characterising, universal) case*.}
+    This way, the selection process can determine the iteration at which the model reached the lowest error across all three profiles. 
 
     %
     %
-    The offset in the validation can be explained by the amount of weight placed into the known State of charge, unlike in the 3-feature models, where the Voltage was acting characteristic.
-    This is because in the State of Charge estimation, the significant impact is affected by current, and since the State of charge is the function of current and time, the weight the properly applied to the correct feature over the training process.
+    The offset in the validation can be explained by the amount of weight placed into the known SoC, unlike with 3-feature models, where voltages act as the primary characteristic.
+    In the State of Charge estimation, the significant impact is affected by current, and since the State of charge is the function of current and time, the weight the properly applied to the correct feature over the training process.
     Any other training process appeared to be unnecessary and may lead to overfitting.
     Figure~\ref{fig:Models_res} demonstrates the best feed-forward prediction for all three profiles.
     % \begin{figure}[htbp]
@@ -108,12 +111,12 @@
     The US06 and FUDS have the more aggressive current usage, leading to trendier voltage readings.
     As per subfigures~\ref{subfig:res_US} and~\ref{subfig:res_FUDS}, it took twice more output samples to achieve similar accuracy to DST based model.
     Any further increase can capture even more complicated scenarios, leading to a longer training time.
-    However, the amount of epoch per training model to produce the best fit decreased with every added single step.
+    However, the epoch per training model to produce the best fit decreased with every added step.
     
     %
     %
-    The necessity of optimal step is required for running the training process on the entire dataset with all three profiles as inputs to prepare the model for deployment.
-    Therefore, all further results demonstrations will use 30 steps as the most optimal and report any other results based on that parameter.
+    An optimal step is required for running the training process on the entire dataset with all three profiles as inputs to prepare the deployment model.
+    Therefore, all other results demonstrations will use 30 steps as the most optimal and report any other results based on that parameter.
     \begin{figure}[htbp]
         \centering
         % DST based tests

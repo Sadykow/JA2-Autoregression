@@ -32,11 +32,13 @@ If the trained model will have perfect input values, the output expected to be w
 %
 Two subplots in figure~\ref{fig:regular_tr} demonstrate the results of the prediction of a four feature-based trained model against a single battery cycle of DST driving.
 Subfigure~\ref{subfig:regular_tr} demonstrates the prediction based on the always known perfect State of Charge, opposite on subfigure~\ref{subfig:regular_ts} with only perfect initial, and every following sample gets fed-forward.
+The implementation of this prediction method is presented in Appendix~\ref{app:Feed-Forward}.
 It demonstrates how the appended charge output model accumulates the error with every dependant input in a single prediction.
 If that output will be used for further prediction and the model keeps preserving the dependency, the miss accuracy value rises non-linearly.
 The reason for that lies in the amount of weight the model places on the State of Charge input feature.
 For a better weights balance, the training procedure must be modified to consider the possibility of an inaccuracy in the input charge data.
 The diagram in Figure~\ref{subfig:testing} illustrates regular training and testing procedures for a model to produce output.
+For the detailed implementation using programming language, refer to Appendix~\ref{app:AutoFeedback}.
 \begin{figure}[htbp]
     \centering
     % DST based tests
