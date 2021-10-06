@@ -1,4 +1,4 @@
-This chapter intends to improve the state of charge prediction inside an Electronic Vehicle.
+This article intends to improve the state of charge prediction inside an Electronic Vehicle.
 The idea is to rely only on the sensory data and a single Neural Network-based battery model.
 The experiment has proven that State of Charge prediction models tends to put significant weight into the Voltage to describe the charging process during the model training process.
 Adding the charge as a feature has proven that the history of the charge had a higher weight on a system than sensory data.
@@ -13,8 +13,17 @@ Instead of always having perfect values, the auto-regression technique allowed m
 As a result, the optimiser performed the model fit based on the array of model outputs over evenly spaced time samples.
 Despite the modification introducing an $n_{th}^{2}$ degree computation based on the number of outputting steps, the actual prediction was performed only on the latest sample.
 Therefore, the autoregressive model added no performance losses during actual utilisation. 
+\begin{itemize}
+    \item \textit{The hypothesis has been proven on untrained driving profiles. In some scenarios, the charge had an offset since the mismatches with the actual charge.}
+    However, the prediction of the charging process or a moment of complete battery discharge always remained correct, which indicated an excellent verification method. \\
+    
+    \item This method is a suitable replacement for the earlier discussed NN model based only on sensory data.
+    The autoregressive model implementation makes it either a solid replacement for any other SoC estimation methods like Kalman filter or an excellent addition to validating results from multiple other methods.
 
-%
+    \item \textbf{FUDS dataset set has a good capture of unpredicted driving behavior. Even in the scenarios which does not have a full discharge and charge process, such model has a potential to be a good profile for any further ...}
+\end{itemize}
+
+%\textcolor{red}{Discuss the posibility of active identification of convergense in future work. Most likely topic is to run online prediction combinming both models. First sets accurate initial SoC, this one slowly convergese closely to the true one, but also keeps the right trend. (Something what lacks of time to do in Ch5 but worh mentioning the intension.)}
 %
 Although the method has proven effective on three different driving profiles, it is still a matter of experiments to validate against actual driving behaviour.
 Besides, the whole intention is to test the model actively during actual driving.
@@ -22,3 +31,7 @@ On top of that, the effect of the initial start of the charge is still debatable
 So far, few experiments with different starting points have shown accurate results, but the best way to validate the model is to observe active convergence over unseen data.
 Even if the model still will not correctly determine the middle area of the battery as with 3-feature based methods, the general trend of battery charge and discharge has to be followed without spikes or falls.
 If confirmed, the model can become a solid replacement to any other model-based State of Charge estimation technique.
+
+% \textit{The hypothesis has been proven on untrained driving profiles. In some scenarios, the charge had an offset since the mismatches with the actual charge.} However, the prediction of the charging process or a moment of complete battery discharge always remained correct, which indicated an excellent verification method.
+
+% This method is a suitable replacement for the earlier discussed NN model based only on sensory data. Furthermore, the autoregressive model implementation makes it either a solid replacement for other SoC estimation methods like Kalman filter or an excellent addition to validating results from multiple other methods.

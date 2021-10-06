@@ -11,6 +11,8 @@
     The entire training process has been logged, and every model is saved as a separate checkpoint to determine the most efficient model in both validation and testing.
     Figure~\ref{fig:res_performance} demonstrates selecting the best model, marking the iteration which produced the lowest error for all three profiles.
     This way, the selection process can determine the iteration at which the model reached the lowest error across all three profiles. 
+    As a result, after eight iterations, the model achieved the most optimal results, Figure~\ref{fig:diff_prof_best}.
+    Any further training increases the accuracy over one set but leads to loss of generalisation over the other two.
 
     %
     %
@@ -69,7 +71,7 @@
             \caption{Testing against US06 profile}
             \label{subfig:US_diff_prof_compare}
         \end{subfigure}
-        \caption{Different initial periods of model validation}
+        \caption{The result of prediction over DST and US06 at the latest iteration}
         \label{fig:diff_prof_compare}
     \end{figure}
     % \begin{itemize}
@@ -84,6 +86,31 @@
         \caption{Accuracy evolution over training process for Mean Average Error (MAE) and Root Mean Squared Error (RMSE)}
         \label{fig:res_performance}
     \end{figure}
+    \begin{figure}[htbp]
+        \centering
+        \begin{subfigure}[b]{0.325\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/FUDS-FF-8.svg}
+            \caption{FUDS trained model}
+            \label{subfig:FUDS_diff_prof_best}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.325\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test One-8.svg}
+            \caption{Testing against DST profile}
+            \label{subfig:DST_diff_prof_best}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.325\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test Two-8.svg}
+            \caption{Testing against US06 profile}
+            \label{subfig:US_diff_prof_best}
+        \end{subfigure}
+        \caption{The result of prediction over DST and US06 at the lowest training and validation iteration}
+        \label{fig:diff_prof_best}
+    \end{figure}
 \subsection{Optimal output step size}
     The optimal size of the output steps for better capturing the State of Charge was determined through experimental training. Table~\ref{tab:out_steps} outlines the training iterations of each driving profile until it reached accuracy below 2.5\%.
     \begin{table}[htbp]
@@ -95,10 +122,10 @@
             Steps & DST & US06 & FUDS & Epochs \\
             \hline
             10 & 2.94 & $\geq\sim 15$ & $\geq\sim 15$ & 8 \\
-            15 & 0.90 & 10.67  & 11.10  & 8 \\
-            20 & |    & 0.68   &  4.25  & 10 \\
-            25 & |    & |      &  3.48  & 25 \\
-            30 & |    & |      &  0.59  & 19 \\
+            15 & 0.90 & 10.67 & 11.10 & 8 \\
+            20 & $--$ & 0.68  &  4.25 & 10 \\
+            25 & $--$ & $--$  &  3.48 & 25 \\
+            30 & $--$ & $--$  &  0.59 & 19 \\
             \hline
         \end{tabular}
     \end{table}
