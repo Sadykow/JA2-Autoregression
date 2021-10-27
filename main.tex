@@ -1,8 +1,27 @@
-\documentclass[fleqn,12pt]{olplainarticle}
+\documentclass[journal, onecolumn, draftclsnofoot]{IEEEtranTIE}
+% \documentclass[journal]{IEEEtranTIE}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{picinpar}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{flushend}
+\usepackage[latin1]{inputenc}
+\usepackage{colortbl}
+\usepackage{soul}
+\usepackage{multirow}
+\usepackage{pifont}
+\usepackage{color}
+\usepackage{alltt}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumerate}
+\usepackage{siunitx}
+\usepackage{breakurl}
+\usepackage{epstopdf}
+\usepackage{pbox}
+
 % Adds SVG Support out of cls file
 \usepackage{svg}
-% Merge multiple references into 1
-\usepackage[noadjust]{cite}
 
 % Double line spacing
 % \usepackage{setspace}
@@ -10,7 +29,6 @@
 %\linespread{2pc}
 
 % Fancy table related trick
-\usepackage{multirow}
 \usepackage{tikz}
 \usepackage{makecell}
 \def\chk{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
@@ -24,12 +42,6 @@
 % Subfigures
 \usepackage{caption}
 \usepackage{subcaption}
-
-%New colors defined below
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 %Code listing style named "mystyle"
 \lstdefinestyle{mystyle}{
@@ -61,20 +73,42 @@
 \newboolean{thesis}
 \setboolean{thesis}{false}
 
+\begin{document}
 %\title{Lithium-Ion battery Feed-Forward State of Charge estimation using Time-Series Machine Learning prediction with Autoregressive models}
 \title{Feed-Forward State of Charge estimation using Time-Series Machine Learning prediction with Autoregressive models of Lithium-Ion batteries}
-\author[1]{Mr Marat (Matt) Sadykov}
-\author[2]{Asoc/Pr David Holmes}
-\author[3]{Asoc/Pr Geoff Walker}
-% \author[4]{\\Dr Mark Broadmeadow}
+\author{
+	\vskip 1em
+	
+	Marat (Matt) Sadykov, \emph{Student Membership},
+	Sam Haines, \emph{Student Membership},
+	\\ A/Prof David Holmes, \emph{Membership}
+  and A/Prof Geoff Walker, \emph{Membership}
 
-\affil[1]{Queensland University of Technology}
+	\thanks{
+	
+		Manuscript received Month xx, 2xxx; revised Month xx, xxxx; accepted Month x, xxxx.
+		This work was supported in part by the xxx Department of xxx under Grant  (sponsor and financial support acknowledgment goes here).
+		
+		(Authors' names and affiliation) First A. Author1 and Second B. Author2 are with the xxx Department, University of xxx, City, Zip code, Country, on leave from the National Institute for xxx, City, Zip code, Country (e-mail: author@domain.com). 
+		
+		Third C. Author3 is with the National Institute of xxx, City, Zip code, Country (corresponding author to provide phone: xxx-xxx-xxxx; fax: xxx-xxx-xxxx; e-mail: author@ domain.gov).
+	}
+}
+
+\maketitle
+
+\begin{abstract}
+  \textbf{
+  \input{I_Introduction/Abstract}
+  }
+\end{abstract}
+
 % IF
 \ifthenelse {\boolean{thesis}}
 %
 % THEN
 {
-\keywords{
+\begin{IEEEkeywords}
   Autoregression,
   Lithium-Ion battery (Li-Ion),
   Long Short-Term Memory (LSTM),
@@ -82,29 +116,32 @@
   State of Charge (SOC) estimation,
   TensorFlow (TF),
   Time-Series Machine Learning  
-}
+\end{IEEEkeywords}
 }
 %
 % ELSE
 {
-\keywords{
+\begin{IEEEkeywords}
   Autoregressive models,
   Recurrent Neural Networks (RNNs),
   Long Short-Term Memory (LSTM),
   State of Charge (SOC) estimation,
-  TensorFlow (TF)}
+  TensorFlow (TF)
+\end{IEEEkeywords}
 }
-\begin{abstract}
-  \textbf{
-  \input{I_Introduction/Abstract}
-  }
-\end{abstract}
 
-\begin{document}
+\markboth{IEEE TRANSACTIONS ON INDUSTRIAL ELECTRONICS}%
+{}
 
-\flushbottom
-\maketitle
-\thispagestyle{empty}
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{limegreen}{rgb}{0.2, 0.8, 0.2}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\definecolor{greenhtml}{rgb}{0.0, 0.5, 0.0}
+
 %%% Introduction
 \section{Introduction} \label{sec:Introduction}
 \input{./I_Introduction/Intro}
@@ -120,16 +157,25 @@
 \input{./III_Conclussion/conclussion}
 \input{./III_Conclussion/acknowledgements}
 
+\bibliographystyle{IEEEtranTIE}
 \bibliography{
   ../Ch3Analysis/I_Introduction/BibIntro,
   ../Ch3Analysis/II_Body/BibRNN,
   I_Introduction/BibIntro
 }
+%
+% IF
+\ifthenelse {\boolean{thesis}}
+%
+% THEN
+{
 \clearpage
-\appendix
+\appendices
 \section{Appendix A: Feed-Forward prediction}  \label{app:Feed-Forward}
 \input{../X-Appendix/AppendixE}
 \clearpage
 \section{Appendix B: Autoregression implementation}  \label{app:AutoFeedback}
 \input{../X-Appendix/AppendixF}
+}
+{}
 \end{document}
