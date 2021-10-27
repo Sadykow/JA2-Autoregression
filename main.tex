@@ -12,6 +12,7 @@
 % Fancy table related trick
 \usepackage{multirow}
 \usepackage{tikz}
+\usepackage{makecell}
 \def\chk{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
 % Python code
@@ -54,6 +55,12 @@
 
 % lscape.sty Produce landscape pages in a (mainly) portrait document.
 \usepackage{pdflscape}
+
+% Adding if execution to define between thesis and article
+\usepackage{ifthen}
+\newboolean{thesis}
+\setboolean{thesis}{false}
+
 %\title{Lithium-Ion battery Feed-Forward State of Charge estimation using Time-Series Machine Learning prediction with Autoregressive models}
 \title{Feed-Forward State of Charge estimation using Time-Series Machine Learning prediction with Autoregressive models of Lithium-Ion batteries}
 \author[1]{Mr Marat (Matt) Sadykov}
@@ -62,21 +69,34 @@
 % \author[4]{\\Dr Mark Broadmeadow}
 
 \affil[1]{Queensland University of Technology}
-\keywords{Lithium-Ion battery (Li-Ion), State of Charge (SOC), Time-Series Machine Learning, Recurrent Neural Networks (RNN), Long Short-Term Memory (LSTM), Autoregression, TensorFlow (TF)}
-
+% IF
+\ifthenelse {\boolean{thesis}}
+%
+% THEN
+{
+\keywords{
+  Autoregression,
+  Lithium-Ion battery (Li-Ion),
+  Long Short-Term Memory (LSTM),
+  Recurrent Neural Networks (RNN),
+  State of Charge (SOC) estimation,
+  TensorFlow (TF),
+  Time-Series Machine Learning  
+}
+}
+%
+% ELSE
+{
+\keywords{
+  Autoregressive models,
+  Recurrent Neural Networks (RNNs),
+  Long Short-Term Memory (LSTM),
+  State of Charge (SOC) estimation,
+  TensorFlow (TF)}
+}
 \begin{abstract}
   \textbf{
-Implementing a reliable algorithm for determining the State of Charge (SoC) of a battery in an electrical grid is one of the significant tasks in the Battery Management System (BMS), such as Lithium-Ion accumulators in an Electric Vehicle.
-There have been numerous methods to simulate battery behaviour to calculate the exact charge percentage and Remaining Useful Life (RUL).
-The Machine Learning (ML) battery models use statistical data of battery utilisation over long-term usage to predict SoC or estimate the number of remaining charge cycles.
-The most common 3-feature models are based on sensory data, such as Voltage Current and Temperature.
-In the present study, a novel approach of charge estimation has been proposed using the Feed-Forward technique with 4-feature Autoregressive Long Short-Term Memory Recurrent Neural Network (LSTM-RNN) model.
-The outputted SoC value becomes the 4th feature in the input matrix, along with Voltage, Current and Temperature.
-The usual RNN models tend to solve the vanishing gradient problem, but the Autoregressive modification of a training loop allows to decompress the training into individual time steps and fed each output back to the model.
-The technique is intended to accommodate the error in the possible prediction so that the feed-forward approach will not accumulate miss accuracy with every following output.
-The proposed technique is implemented on current Lithium-Ion battery cycling data and validated using the cross-validation technique on three different current profiles: Dynamic Stress Test (DST), Supplemental Federal Test Procedure-driving Schedule (US06) and Federal Urban Driving Schedule (FUDS).
-Unlike simple Feed-Forward prediction with high error due to accumulated  SoC offset, the Autoregressive modification lowered the training miss accuracy to 1-3\% of Mean Average Error (MAE).
-The implementation has been modified to fit low-power Chip-on-Board devices or used on TPU processors to be easily integrated into any electrical grid.
+  \input{I_Introduction/Abstract}
   }
 \end{abstract}
 
@@ -105,9 +125,11 @@ The implementation has been modified to fit low-power Chip-on-Board devices or u
   ../Ch3Analysis/II_Body/BibRNN,
   I_Introduction/BibIntro
 }
+\clearpage
 \appendix
 \section{Appendix A: Feed-Forward prediction}  \label{app:Feed-Forward}
 \input{../X-Appendix/AppendixE}
+\clearpage
 \section{Appendix B: Autoregression implementation}  \label{app:AutoFeedback}
 \input{../X-Appendix/AppendixF}
 \end{document}

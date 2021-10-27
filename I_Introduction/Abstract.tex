@@ -1,0 +1,25 @@
+%
+% IF
+\ifthenelse {\boolean{thesis}}
+%
+% THEN
+{
+Implementing a reliable algorithm for determining the State of Charge (SoC) of a battery in an electrical grid is one of the significant tasks in the Battery Management System (BMS), such as Lithium-Ion accumulators in an Electric Vehicle.
+There have been numerous methods to simulate battery behaviour to calculate the exact charge percentage and Remaining Useful Life (RUL).
+The Machine Learning (ML) battery models use statistical data of battery utilisation over long-term usage to predict SoC or estimate the number of remaining charge cycles.
+The most common 3-feature models are based on sensory data, such as Voltage Current and Temperature.
+In the present study, a novel approach of charge estimation has been proposed using the Feed-Forward technique with 4-feature Autoregressive Long Short-Term Memory Recurrent Neural Network (LSTM-RNN) model.
+The outputted SoC value becomes the 4th feature in the input matrix, along with Voltage, Current and Temperature.
+The usual RNN models tend to solve the vanishing gradient problem, but the Autoregressive modification of a training loop allows to decompress the training into individual time steps and fed each output back to the model.
+The technique is intended to accommodate the error in the possible prediction so that the feed-forward approach will not accumulate miss accuracy with every following output.
+The proposed technique is implemented on current Lithium-Ion battery cycling data and validated using the cross-validation technique on three different current profiles: Dynamic Stress Test (DST), Supplemental Federal Test Procedure-driving Schedule (US06) and Federal Urban Driving Schedule (FUDS).
+Unlike simple Feed-Forward prediction with high error due to accumulated  SoC offset, the Autoregressive modification lowered the training miss accuracy to 1-3\% of Mean Average Error (MAE).
+The implementation has been modified to fit low-power Chip-on-Board devices or used on TPU processors to be easily integrated into any electrical grid.
+}
+%
+% ELSE
+{
+ ... \\
+ (6) In the present paper, a RNN model with a new Autoregressive modification is proposed to improve upon earlt published ML-based methods.
+ (7) This method has advange over tradional 3-feature based models to be used in the Feed-forward form/technique to preserve SoC results for further estimation and minimise previos error influence.
+}
