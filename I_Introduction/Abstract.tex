@@ -1,9 +1,6 @@
 %
 % IF
-\ifthenelse {\boolean{thesis}}
-%
-% THEN
-{
+\ifthenelse {\boolean{thesis}} {
 Implementing a reliable algorithm for determining the State of Charge (SoC) of a battery in an electrical grid is one of the significant tasks in the Battery Management System (BMS), such as Lithium-Ion accumulators in an Electric Vehicle.
 There have been numerous methods to simulate battery behaviour to calculate the exact charge percentage and Remaining Useful Life (RUL).
 The Machine Learning (ML) battery models use statistical data of battery utilisation over long-term usage to predict SoC or estimate the number of remaining charge cycles.
@@ -15,11 +12,14 @@ The technique is intended to accommodate the error in the possible prediction so
 The proposed technique is implemented on current Lithium-Ion battery cycling data and validated using the cross-validation technique on three different current profiles: Dynamic Stress Test (DST), Supplemental Federal Test Procedure-driving Schedule (US06) and Federal Urban Driving Schedule (FUDS).
 Unlike simple Feed-Forward prediction with high error due to accumulated  SoC offset, the Autoregressive modification lowered the training miss accuracy to 1-3\% of Mean Average Error (MAE).
 The implementation has been modified to fit low-power Chip-on-Board devices or used on TPU processors to be easily integrated into any electrical grid.
-}
-%
-% ELSE
-{
- ... \\
- (6) In the present paper, a RNN model with a new Autoregressive modification is proposed to improve upon earlt published ML-based methods.
- (7) This method has advange over tradional 3-feature based models to be used in the Feed-forward form/technique to preserve SoC results for further estimation and minimise previos error influence.
+}{
+    Implementing a reliable algorithm for determining the State of Charge (SoC) of a battery in an electrical grid is one of the significant tasks in the Battery Management System (BMS).
+    Accurate and universal SoC estimation at different utilisation conditions helps assess the batteries' performance and improve overall usage.
+    The Computer Intelligence-based models tend to use statistical data rather than relying on battery modelling.
+    Therefore, its' advantage is the ability to determine the SoC of a battery from unknown initial charge percentage at any point of utilisation.
+    Due to the common non-linear characteristics of Lithium-Ion cells, the Neural Network based ML models have had better performance results in building the complicated multidimensional relationship between typical battery sensory data: Voltage, Current and Temperature.
+    In the present paper, a Recurrent Neural Network (RNN) model with a new Autoregressive modification has been proposed to improve upon early published ML-based methods to enhance the estimation accuracy further and make results less sensible to utilisation condition changes.
+    This method has an advantage over traditional 3-feature based models to be used in the Feed-forward way to preserve SoC results for further estimation and minimise accumulated error influence on the overall SoC prediction system.
+    % (?) It also difficult to determine SoC at a unknows initial conditions, which makes NN superior method... 
+    % Has a potential of predicting in future on how much remaining usefull charge can be used
 }

@@ -9,9 +9,6 @@ It utilises three gates: forget $f_t$, input $i_t$ and output $o_t$, \mbox{Equat
 The decisions are based around sigmoid $\sigma$ function~\ref{eq:sigmoid2}.
 With default $tanh$ as activation function, \mbox{Equation~\ref{eq:LSTM-output2}} describes the procedure for cell state update and further propagation.
 Output variables $h_t$ and $c_t$ represent memory cell output and the cell state at timestamp $t$.
-
-%
-%
 \begin{equation}
     \sigma(x) = \frac{1}{1+e^{-x}}
     \label{eq:sigmoid2}
@@ -37,6 +34,9 @@ Output variables $h_t$ and $c_t$ represent memory cell output and the cell state
     \end{split}
     \label{eq:LSTM-output2}
 \end{equation}
+
+%
+%
 The LSTM model has been used widely in stock-price prediction or weather forecasting.
 However, unlike State of Charge estimation, which commonly uses $V$, $I$ and $T$ as inputs, those methods utilise the output feature as an input to the subsequent prediction to propagate results further and calculate the time before a critical event occurrence.
 Besides, methods like weather forecasting a weak ahead are not limited by lacking output data. 
@@ -85,6 +85,7 @@ Use of a $\sigma$ function as an output justified by the charge normalisation be
 
 %
 %
+\textbf{Describe profiles in a bit more details}
 Data were taken from CALCE University, cycling temperatures of 20,25,30 degrees over three driving profiles.
 The FUDS driving scheduler acts as a training set, then the other two DST and US06 for testing.
 The choice of validation sets was due to differences in the current consumption.
