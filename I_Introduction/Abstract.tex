@@ -15,11 +15,11 @@ The implementation has been modified to fit low-power Chip-on-Board devices or u
 }{
     Implementing a reliable algorithm for determining the State of Charge (SoC) of a battery in an electrical grid is one of the significant tasks in the Battery Management System (BMS).
     Accurate and universal SoC estimation at different utilisation conditions helps assess the batteries' performance and improve overall usage.
-    The Computer Intelligence-based models tend to use statistical data rather than relying on battery modelling.
-    Therefore, its' advantage is the ability to determine the SoC of a battery from unknown initial charge percentage at any point of utilisation.
-    Due to the common non-linear characteristics of Lithium-Ion cells, the Neural Network based ML models have had better performance results in building the complicated multidimensional relationship between typical battery sensory data: Voltage, Current and Temperature.
-    In the present paper, a Recurrent Neural Network (RNN) model with a new Autoregressive modification has been proposed to improve upon early published ML-based methods to enhance the estimation accuracy further and make results less sensible to utilisation condition changes.
+    The Computer Intelligence-based models tend to use statistical data rather than battery modelling, which allows determining the SoC of a battery from unknown initial charge percentage at any point of utilisation.
+    Due to the common non-linear characteristics of Lithium-Ion cells, the Neural Network based ML models have had better performance results in building the complicated multidimensional relationship between typical battery sensory data: Voltage, Current and Temperature, yet fail to allocate weight across trendies features by themselves.
+    In the present paper, a Recurrent Neural Network (RNN) model with a new Autoregressive modification has been proposed to improve upon early published Machine Learning methods to enhance the estimation accuracy further and make results less sensible to utilisation condition changes.
     This method has an advantage over traditional 3-feature based models to be used in the Feed-forward way to preserve SoC results for further estimation and minimise accumulated error influence on the overall SoC prediction system.
+    As a result, the method could diverge with actual trained State of Charge values from any initial condition and accurately capture even the most complicated charge regions within 2-3\% error on the testing datasets.
     % (?) It also difficult to determine SoC at a unknows initial conditions, which makes NN superior method... 
     % Has a potential of predicting in future on how much remaining usefull charge can be used
 }

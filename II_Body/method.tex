@@ -1,0 +1,40 @@
+The battery cycling data were obtained from the Battery Research Group of the
+Center for Advanced Life Cycle Engineering (CALCE) Group
+at the University of Maryland~\cite{noauthor_calce_2017}.
+The temperatures of 20,25,30 degrees over three driving profiles were selected as training and testing groups.
+Each temperature was taken from three driving profiles: Dynamic Stress Test (DST), Highway driving US06 and Federal-Urban driving schedule (FUDS)
+The FUDS driving scheduler acts as a training set, then the other two DST and US06 for testing.
+The choice of validation sets was due to differences in the current consumption.
+If DST has a constant variation of the current amps over time, the US06 uses an aggressive mechanism, similar to the FUDS.
+The ability to accurately capture both driving mechanisms with minor error acts as a validation mechanism and justifies the value of the technique.
+
+%
+%
+Report resutls based on error degradation pver Mean Average Error and Root MEan Squared Errors.
+Choosing the most optimal will be the test subject.
+
+%
+%
+BEst one per each iteration will be summarised in a table and then compared against two acccuracy plots as per following example.
+
+%
+%
+Figure~\ref{fig:plot_demo} shows an example of accuracy evaluation, where actual State of Charge compared with prediction.
+The filled area below the plot captures the error Absolute Error Difference between two lines, as per the Equation~\ref{eq:abs-error}.
+For the purpose of comparioson, all Figures with two subplots were distiguished from each other by prediction line color, as per early Figure~\ref{fig:regular_tr}.
+The left subfigures~\textit{a} with red output line referes to the input taken directrly from the table, including the perfect SoC history.
+The right subfigures~\textit{b} with yellow prediction refers to Feed-Forward method, where only Voltage, Current and Temperature were taken from the table through the testing.
+Only the first windows of samples were taken from other sources and considered ideal, either due to be the initial fully charge or discharge state, or estimated with other methods.
+Everything following prediction is based on the early produced output of the same model.
+No $R^2$ has been produced on the Feed-forward prediction, since it is mathematically not feasible at current state due to the mix of multiple outputs.
+\begin{figure}[ht]
+    % RMSE equation: RMS = (tf.keras.backend.sqrt(tf.keras.backend.square(y_test_one[::,]-PRED)))
+    \centering
+    \includesvg[width=\columnwidth]{II_Body/images/plot-example.svg}
+    \caption{Accuracy plot demonstration.}
+    \label{fig:plot_demo}
+\end{figure}
+\begin{equation}
+    \textbf{ABS error}  = \sqrt{(Actual-Prediction)^2}
+    \label{eq:abs-error}
+\end{equation}

@@ -85,15 +85,6 @@ Use of a $\sigma$ function as an output justified by the charge normalisation be
 
 %
 %
-\textbf{Describe profiles in a bit more details}
-Data were taken from CALCE University, cycling temperatures of 20,25,30 degrees over three driving profiles.
-The FUDS driving scheduler acts as a training set, then the other two DST and US06 for testing.
-The choice of validation sets was due to differences in the current consumption.
-If DST has a constant variation of the current amps over time, the US06 uses an aggressive mechanism, similar to the FUDS.
-The ability to accurately capture both driving mechanisms with minor error acts as a validation mechanism and justifies the value of the technique.
-
-%
-%
 The optimisation algorithm for the fitting process has been defined by Adam, \mbox{Algorithm~\ref{alg:copyAdam}}, with the following hyperparameters, \mbox{Table~\ref{tab:newM-params}}.
 %\textcolor{red}{Try to use Robust Adam instead first, because why the hell not since I lost one month of my life to implement that cursed algorithm from Javids miss-typed notes. Complete this section with details as per Gareth Javid implementation if RoAdam will be able to produce a faster fitting.}
 \begin{algorithm}\captionsetup{labelfont={sc,bf}, labelsep=newline}

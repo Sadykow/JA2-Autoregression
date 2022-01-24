@@ -1,5 +1,5 @@
-\documentclass[journal, onecolumn, draftclsnofoot]{IEEEtranTIE}
-% \documentclass[journal]{IEEEtranTIE}
+% \documentclass[journal, onecolumn, draftclsnofoot]{IEEEtranTIE}
+\documentclass[journal]{IEEEtranTIE}
 \usepackage{graphicx}
 \usepackage{cite}
 \usepackage{picinpar}
@@ -109,13 +109,11 @@
 % THEN
 {
 \begin{IEEEkeywords}
-  Autoregression,
+  Autoregressive models,
   Lithium-Ion battery (Li-Ion),
-  Long Short-Term Memory (LSTM),
-  Recurrent Neural Networks (RNN),
+  Long Short-Term Memory Recurrent Neural Networks (LSTM-RNNs),
   State of Charge (SOC) estimation,
   TensorFlow (TF),
-  Time-Series Machine Learning  
 \end{IEEEkeywords}
 }
 %
@@ -146,10 +144,13 @@
 \section{Introduction} \label{sec:Introduction}
 \input{./I_Introduction/Intro}
 %%% Body
-\section{LSTM for SoC prediction} \label{sec:layer}
+\section{Method Development} \label{sec:layer}
+\subsection{LSTM estimation}
 \input{./II_Body/layer}
-\section{Feed-Forward prediction and Robust Auto-regressive training} \label{sec:feed}
+\subsection{Development of Feed-Forward Autoregressive model} \label{sec:feed}
 \input{./II_Body/feed-forward}
+\subsection{Testing methodology}
+\input{./II_Body/method}
 %%% Conclusion
 \section{Results} \label{sec:results}
 \input{./III_Conclussion/results}

@@ -1,9 +1,11 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{LSTM for SoC prediction}{}% 2
-\BOOKMARK [1][-]{section.3}{Feed-Forward prediction and Robust Auto-regressive training}{}% 3
-\BOOKMARK [1][-]{section.4}{Results}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{Accuracy comparison}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Optimal output step size}{section.4}% 6
-\BOOKMARK [1][-]{section.5}{Conclusion}{}% 7
-\BOOKMARK [1][-]{section.6}{Acknowledgements}{}% 8
-\BOOKMARK [1][-]{section*.13}{References}{}% 9
+\BOOKMARK [1][-]{section.2}{Method Development}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{LSTM estimation}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Development of Feed-Forward Autoregressive model}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Testing methodology}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Results}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Accuracy comparison}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Optimal output step size}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Conclusion}{}% 9
+\BOOKMARK [1][-]{section.5}{Acknowledgements}{}% 10
+\BOOKMARK [1][-]{section*.14}{References}{}% 11
