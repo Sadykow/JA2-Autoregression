@@ -12,10 +12,112 @@ The ability to accurately capture both driving mechanisms with minor error acts 
 %
 Report resutls based on error degradation pver Mean Average Error and Root MEan Squared Errors.
 Choosing the most optimal will be the test subject.
-
+\begin{table}[htbp]
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Accuracy result summary for entire training datasets.}
+    \centering
+    \label{tab:acc-results2}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{ c| l| c c c| c c c |c c c}
+    \hline\hline \\[-4mm]
+% Columns setup
+    \multirow{3}{1em}{\#} &
+    \multirow{3}{3em}{Trained} &
+    \multicolumn{9}{c}{Tested} \\
+    \cline{3-11}
+    & & 
+    \multicolumn{3}{c|}{DST} &
+    \multicolumn{3}{c|}{US06} &
+    \multicolumn{3}{c}{FUDS} \\
+    \cline{3-11}
+     & & MSE(\%) & RMSE(\%) & $R^{2}$(\%) & MSE(\%) & RMSE(\%) & $R^{2}$(\%) & MSE(\%) & RMSE(\%) & $R^{2}$(\%) \\
+    \hline
+    % Content
+    %Chemali2017
+      & DST & 2.77 & 3.52 & 98.71 & 2.86 & 3.93 & 98.34 & 3.28 & 4.62 & 97.66 \\ 
+    1 & US06 & 5.97 & 7.97 & 93.39 & 3.37 & 4.14 & 98.15 & 5.38 & 6.93 & 94.73 \\ 
+      & FUDS & 5.03 & 7.26 & 94.51 & 4.02 & 6.07 & 96.04 & 1.95 & 2.85 & 99.11 \\ 
+    \hline
+      & DST & 2.86 & 3.60 & 98.65 & 2.91 & 3.79 & 98.46 & 3.73 & 5.18 & 97.06 \\ 
+    3 & US06 & 5.98 & 8.26 & 92.90 & 3.35 & 4.11 & 98.19 & 5.27 & 6.84 & 94.87 \\ 
+      & FUDS & 5.33 & 7.25 & 94.53 & 3.61 & 5.53 & 96.71 & 1.82 & 2.51 & 99.31 \\ 
+    % GelarehJavid2020
+    % \hline
+    %   & DST & 2.89 & 3.61 & 98.65 & 3.82 & 5.38 & 96.88 & 4.11 & 5.51 & 96.67 \\ 
+    % 4 & US06 & 6.19 & 8.57 & 92.35 & 3.30 & 4.12 & 98.17 & 5.42 & 6.82 & 94.91 \\ 
+    %   & FUDS & 5.74 & 7.49 & 94.16 & 4.03 & 5.75 & 96.44 & 1.58 & 2.28 & 99.43 \\ 
+    \hline
+      & DST & 0.81 & 1.10 & 99.87 & 1.92 & 2.71 & 99.21 & 1.77 & 2.35 & 99.40  \\
+    6  & US06 & 1.49 & 2.02 & 99.57 & 0.89 & 1.06 & 99.88 & 1.28 & 1.94 & 99.59  \\
+      & FUDS & 2.10 & 2.94 & 99.10 & 1.28 & 1.87 & 99.62 & 0.50 & 0.68 & 99.95  \\
+    \hline\hline
+\end{tabular}
+}
+\end{table}
 %
 %
 BEst one per each iteration will be summarised in a table and then compared against two acccuracy plots as per following example.
+\begin{figure*}[htbp]
+    \centering
+    %%%%%%%%%%%%%%%%% DST based tests %%%%%%%%%%%%%%%%%
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/M6-history-DST-mae.svg}
+        \caption{Average training and testing MAE history average of 10 attempts}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/DST-6-train.svg}
+        \caption{Validation on a single cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/DST-6-test.svg}
+        \caption{Testing on two cycles of US06 and FUDS profiles average of 10 attempts}
+        \label{subfig:Model-1res-DSTvsFUDS}
+    \end{subfigure}
+    %%%%%%%%%%%%%%%%% US06 based tests %%%%%%%%%%%%%%%%%
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/M6-history-US06-mae.svg}
+        \caption{Average training and testing MAE history average of 10 attempts}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/US06-6-train.svg}
+        \caption{Validation on a single cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/US06-6-test.svg}
+        \caption{Testing on two cycles of US06 and FUDS profiles average of 10 attempts}
+    \end{subfigure}
+    % %%%%%%%%%%%%%%%%% FUDS based tests %%%%%%%%%%%%%%%%%
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/M6-history-FUDS-mae.svg}
+        \caption{Average training and testing MAE history average of 10 attempts}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/FUDS-6-train.svg}
+        \caption{Validation on a single cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/FUDS-6-test.svg}
+        \caption{Testing on two cycles of DST and US06 profiles average of 10 attempts}
+    \end{subfigure}
+    \caption{Model 6: Stateless LSTM with 30 steps of Autoregression.}
+    \label{fig:Model-6res}
+\end{figure*}
+\clearpage
 
 %
 %

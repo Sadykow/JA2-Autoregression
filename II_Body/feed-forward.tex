@@ -1,19 +1,19 @@
 The regular training procedure for a 4-feature model has a significant limitation. The model does not take into account the Feed-Forward application of the prediction output.
-If the trained model has excellent input values, the output is expected to be within~1 \% miss accuracy.
+In the case of excellent input values, the output is expected to be within~1 \% miss accuracy, since from 500 of ideal SoC values estimation of 501 is a trivial task, not requiring a Neural Network to perform.
 \begin{figure*}[htbp]
     \centering
     % DST based tests
     \begin{subfigure}[b]{\columnwidth}
         \centering
-        % \includesvg[width=\linewidth]{III_Conclussion/im_compare/FUDS-val-48.svg}
-        \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-val-9.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/im_compare/FUDS-val-48.svg}
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-val-9.svg}
         \caption{Regular training process snapshot}
         \label{subfig:regular_tr}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{\columnwidth}
         \centering
-        \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-FF-9.svg}
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-FF-9.svg}
         \caption{Feed-Forward validation process snapshot}
         \label{subfig:regular_ts}
     \end{subfigure}
@@ -82,16 +82,16 @@ The more output samples model returns during the training, the better the real-t
 Even though the accuracy with tabled samples has decreased, its feed-forward prediction accuracy has significantly increased.
 \begin{figure*}[htbp]
     \centering
-    \begin{subfigure}[b]{\columnwidth}
-        \centering
-        \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
-        \caption{Modified training process}
-    \end{subfigure}
-    \begin{subfigure}[b]{\columnwidth}
-        \centering
-        \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
-        \caption{Feed-Forward validation process}
-    \end{subfigure}
+    % \begin{subfigure}[b]{\columnwidth}
+    %     \centering
+    %     \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
+    %     \caption{Modified training process}
+    % \end{subfigure}
+    % \begin{subfigure}[b]{\columnwidth}
+    %     \centering
+    %     \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
+    %     \caption{Feed-Forward validation process}
+    % \end{subfigure}
     \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loop}
     \label{fig:modefied_tr}
 \end{figure*}

@@ -1,9 +1,14 @@
 Time-series prediction of a neural model relies on the input history of equally distributed samples.
 The LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering/preserving the long dependencies~\cite{rasifaghihi_predictive_2020}.
 The cells inside the model act as memory units to preserve the dependence.
-Therefore, the output is closely dependant on the previously input samples.
+Therefore, the output is closely dependent on the previous input samples.
 Unlike the normal RNN and the more modern version - GRU, LSTM has a more complicated structure constructed from several logical gates~\cite{LSTM_Hochreiter1997}.
 It is the most widely used type of model.
+\ifthenelse {\boolean{thesis}}
+{
+Chapter~\ref{} at section~\ref{} and \mbox{Figure~\ref{}} provide a summary of the LSTM cell logic.
+} 
+{
 \mbox{Figure~\ref{fig:LSTM-cell2}} provides a summary of the cell logic.
 It utilises three gates: forget $f_t$, input $i_t$ and output $o_t$, \mbox{Equation~\ref{eq:LSTM-gates2}}.
 The decisions are based around sigmoid $\sigma$ function~\ref{eq:sigmoid2}.
@@ -34,13 +39,15 @@ Output variables $h_t$ and $c_t$ represent memory cell output and the cell state
     \end{split}
     \label{eq:LSTM-output2}
 \end{equation}
+}
 
 %
 %
 The LSTM model has been used widely in stock-price prediction or weather forecasting.
 However, unlike State of Charge estimation, which commonly uses $V$, $I$ and $T$ as inputs, those methods utilise the output feature as an input to the subsequent prediction to propagate results further and calculate the time before a critical event occurrence.
-Besides, methods like weather forecasting a weak ahead are not limited by lacking output data. 
-Contrarily, a True State of Charge of a battery cannot be determined and verified against previously made predictions without additional battery modelling techniques.
+Besides, methods like weather forecasting a weak ahead are not limited by lacking output data, since the searched criteria is always known or will be known.
+Contrarily, a True State of Charge of a battery cannot be determined and verified against previously made predictions without additional battery modelling techniques. (not to mention of having it integrated into Electric Vehicle.)
+(As oppose to the SoC estimate, where getting true values require battery cycler capable with set of ) 
 %%%%%%%%%%%
 %Unlike the charge estimation, which can only output a single value based on a history of samples, they are not limited to... Therefore does not require the output as input since the truth will become known in due time.
 
@@ -50,10 +57,18 @@ The best way to utilise the performance of the stateless LSTM model is through t
 The NN model will receive a fixed set of equally distributed time samples at each time prediction.
 Every next forecast will shift the time window by a constant step $s$, until all possible combinations of time slices go through the model.
 That approach is referred to as a stateless model, which sees dependencies over input samples only, rather than preserving every received input, like in stateful implementations.
-It also allows the order of the windows to be shuffled to avoid overfitting since no dropout technique is used in model initialisation.
+It also allows the order of the windows to be shuffled to avoid overfitting
+Since no dropout was applied before models output a set of strategies strategies has been applied to vary learning rate and rollback before early stopping to assist the fitting process.
+\ifthenelse {\boolean{thesis}}
+{
+Chapter~\ref{} at sections~\ref{}and~\ref{} provide an explanation to those two methods, which already proven to be useful at training SoC models.
+} 
+{
+    \textbf{TODO: EIther import that content from previos article, reference it, or redo entirely}
+}
 As a result, a NN model will learn dependency between a fixed amount of equally distributed time samples $n$ and yet independent from the order of the inputs.
-\mbox{Figure~\ref{fig:Windowing}} demonstrates how the input dataset is constructed and ordered into a 3-dimensional dataset.
-Due to the size of the windows of 500 samples, which is equivalent to 5 minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
+\mbox{Figure~\ref{fig:Windowing}} demonstrates how the input dataset is constructed and ordered into a 3-dimensional dataset, with 4 features, 500 timestamps and around 110k* samples to fit on.
+Due to the size of the windows, equivalent to 8 and quoter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
 
 
 %
@@ -85,8 +100,14 @@ Use of a $\sigma$ function as an output justified by the charge normalisation be
 
 %
 %
+\ifthenelse {\boolean{thesis}}
+{
+The optimisation algorithm for the fitting process has been defined by regular Adam from the previous chapter, \mbox{Algorithm~\ref{}}, with the corresponding hyperparameters, \mbox{Table~\ref{}}.
+
+}
+{
 The optimisation algorithm for the fitting process has been defined by Adam, \mbox{Algorithm~\ref{alg:copyAdam}}, with the following hyperparameters, \mbox{Table~\ref{tab:newM-params}}.
-%\textcolor{red}{Try to use Robust Adam instead first, because why the hell not since I lost one month of my life to implement that cursed algorithm from Javids miss-typed notes. Complete this section with details as per Gareth Javid implementation if RoAdam will be able to produce a faster fitting.}
+%\textcolor{red}{Try to use Robust Adam instead, because why the hell not since I lost one month of my life to implement that cursed algorithm from Javids miss-typed notes? Complete this section with details as per Gareth Javid's implementation if RoAdam will be able to produce a faster fitting.}
 \begin{algorithm}\captionsetup{labelfont={sc,bf}, labelsep=newline}
     \caption{Adaptive Moment Estimation (Adam) optimisation}
     \begin{algorithmic}[1]
@@ -125,3 +146,4 @@ The optimisation algorithm for the fitting process has been defined by Adam, \mb
     \end{tabular}
     }
 \end{table}
+}
