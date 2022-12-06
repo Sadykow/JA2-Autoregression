@@ -1,8 +1,105 @@
 \textbf{TODO: Section introduction}
 \subsection{Accuracy comparison}
-    The newly proposed training technique was compared against a similar implementation without a modified training loop.
-    Both models were provided with ideal initial results, including the State of Charge.
-    Every further prediction replaced the actual charge value and was used as an input in the following input set, along with actual Voltage, Current and Temperature.
+With cross-training and testing over ten attempts average to minimise the stochastic nature of the Machine Learning, Figure~\ref{fig:Model-6res} has been produced to demonstrate the resulting predictions.
+%
+%
+%
+%
+%%
+%
+\ifthenelse {\boolean{thesis}}
+{
+\begin{table}[htbp]
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Accuracy result summary for entire training datasets.}
+    \centering
+    \label{tab:acc-results2}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ c| l| c c c| c c c |c c c}
+    \hline\hline \\[-4mm]
+% Columns setup
+    \multirow{3}{1em}{\#} &
+    \multirow{3}{3em}{Trained} &
+    \multicolumn{9}{c}{Tested} \\
+    \cline{3-11}
+    & & 
+    \multicolumn{3}{c|}{DST} &
+    \multicolumn{3}{c|}{US06} &
+    \multicolumn{3}{c}{FUDS} \\
+    \cline{3-11}
+     & & MSE(\%) & RMSE(\%) & $R^{2}$(\%) & MSE(\%) & RMSE(\%) & $R^{2}$(\%) & MSE(\%) & RMSE(\%) & $R^{2}$(\%) \\
+    \hline
+    % Content
+    %Chemali2017
+      & DST & 2.77 & 3.52 & 98.71 & 2.86 & 3.93 & 98.34 & 3.28 & 4.62 & 97.66 \\ 
+    1 & US06 & 5.97 & 7.97 & 93.39 & 3.37 & 4.14 & 98.15 & 5.38 & 6.93 & 94.73 \\ 
+      & FUDS & 5.03 & 7.26 & 94.51 & 4.02 & 6.07 & 96.04 & 1.95 & 2.85 & 99.11 \\ 
+    \hline
+      & DST & 2.86 & 3.60 & 98.65 & 2.91 & 3.79 & 98.46 & 3.73 & 5.18 & 97.06 \\ 
+    3 & US06 & 5.98 & 8.26 & 92.90 & 3.35 & 4.11 & 98.19 & 5.27 & 6.84 & 94.87 \\ 
+      & FUDS & 5.33 & 7.25 & 94.53 & 3.61 & 5.53 & 96.71 & 1.82 & 2.51 & 99.31 \\ 
+    % GelarehJavid2020
+    % \hline
+    %   & DST & 2.89 & 3.61 & 98.65 & 3.82 & 5.38 & 96.88 & 4.11 & 5.51 & 96.67 \\ 
+    % 4 & US06 & 6.19 & 8.57 & 92.35 & 3.30 & 4.12 & 98.17 & 5.42 & 6.82 & 94.91 \\ 
+    %   & FUDS & 5.74 & 7.49 & 94.16 & 4.03 & 5.75 & 96.44 & 1.58 & 2.28 & 99.43 \\ 
+    \hline
+      & DST & 0.81 & 1.10 & 99.87 & 1.92 & 2.71 & 99.21 & 1.77 & 2.35 & 99.40  \\
+    6  & US06 & 1.49 & 2.02 & 99.57 & 0.89 & 1.06 & 99.88 & 1.28 & 1.94 & 99.59  \\
+      & FUDS & 2.10 & 2.94 & 99.10 & 1.28 & 1.87 & 99.62 & 0.50 & 0.68 & 99.95  \\
+    \hline\hline
+\end{tabular}
+}
+\end{table}
+} {
+\begin{table*}[htbp]
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Accuracy result summary for entire training datasets.}
+    \centering
+    \label{tab:acc-results2}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ c| l| c c c| c c c |c c c}
+    \hline\hline \\[-4mm]
+% Columns setup
+    \multirow{3}{1em}{\#} &
+    \multirow{3}{3em}{Trained} &
+    \multicolumn{9}{c}{Tested} \\
+    \cline{3-11}
+    & & 
+    \multicolumn{3}{c|}{DST} &
+    \multicolumn{3}{c|}{US06} &
+    \multicolumn{3}{c}{FUDS} \\
+    \cline{3-11}
+        & & MSE(\%) & RMSE(\%) & $R^{2}$(\%) & MSE(\%) & RMSE(\%) & $R^{2}$(\%) & MSE(\%) & RMSE(\%) & $R^{2}$(\%) \\
+    \hline
+    % Content
+    %Chemali2017
+        & DST & 2.77 & 3.52 & 98.71 & 2.86 & 3.93 & 98.34 & 3.28 & 4.62 & 97.66 \\ 
+    1 & US06 & 5.97 & 7.97 & 93.39 & 3.37 & 4.14 & 98.15 & 5.38 & 6.93 & 94.73 \\ 
+        & FUDS & 5.03 & 7.26 & 94.51 & 4.02 & 6.07 & 96.04 & 1.95 & 2.85 & 99.11 \\ 
+    \hline
+        & DST & 2.86 & 3.60 & 98.65 & 2.91 & 3.79 & 98.46 & 3.73 & 5.18 & 97.06 \\ 
+    3 & US06 & 5.98 & 8.26 & 92.90 & 3.35 & 4.11 & 98.19 & 5.27 & 6.84 & 94.87 \\ 
+        & FUDS & 5.33 & 7.25 & 94.53 & 3.61 & 5.53 & 96.71 & 1.82 & 2.51 & 99.31 \\ 
+    % GelarehJavid2020
+    % \hline
+    %   & DST & 2.89 & 3.61 & 98.65 & 3.82 & 5.38 & 96.88 & 4.11 & 5.51 & 96.67 \\ 
+    % 4 & US06 & 6.19 & 8.57 & 92.35 & 3.30 & 4.12 & 98.17 & 5.42 & 6.82 & 94.91 \\ 
+    %   & FUDS & 5.74 & 7.49 & 94.16 & 4.03 & 5.75 & 96.44 & 1.58 & 2.28 & 99.43 \\ 
+    \hline
+        & DST & 0.81 & 1.10 & 99.87 & 1.92 & 2.71 & 99.21 & 1.77 & 2.35 & 99.40  \\
+    6  & US06 & 1.49 & 2.02 & 99.57 & 0.89 & 1.06 & 99.88 & 1.28 & 1.94 & 99.59  \\
+        & FUDS & 2.10 & 2.94 & 99.10 & 1.28 & 1.87 & 99.62 & 0.50 & 0.68 & 99.95  \\
+    \hline\hline
+\end{tabular}
+}
+\end{table*}
+}
+\textbf{Even though a 3 layer model were proven to be superior than a single one in the previos article, the same amount of neurons in one layer but with autoregression has shown better average results than any previosly reported variations.}
+
+The newly proposed training technique was compared against a similar implementation without a modified training loop.
+Both models were provided with ideal initial results, including the State of Charge.
+Every further prediction replaced the actual charge value and was used as an input in the following input set, along with actual Voltage, Current and Temperature.
     
     %
     %
@@ -21,97 +118,100 @@
     In the State of Charge estimation, the significant impact is affected by current, and since the State of charge is the function of current and time, the weight the properly applied to the correct feature over the training process.
     Any other training process appeared to be unnecessary and may lead to overfitting.
     \mbox{Figure~\ref{fig:Models_res}} demonstrates the best feed-forward prediction for all three profiles.
-    % \begin{figure}[htbp]
-    %     \centering
-    %     % DST based tests
-    %     \begin{subfigure}[b]{0.475\textwidth}
-    %         \centering
-    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharging.svg}
-    %         \caption{Charging process}
-    %     \end{subfigure}
-    %     \hfill
-    %     \begin{subfigure}[b]{0.475\textwidth}
-    %         \centering
-    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharged.svg}
-    %         \caption{Charged state}
-    %     \end{subfigure}
-    %     \hfill
-    %     \begin{subfigure}[b]{0.475\textwidth}
-    %         \centering
-    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarging.svg}
-    %         \caption{Discharging process}
-    %     \end{subfigure}
-    %     \begin{subfigure}[b]{0.475\textwidth}
-    %         \centering
-    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarged.svg}
-    %         \caption{Discharged state}
-    %     \end{subfigure}
-    %     \caption{Different initial periods of model validation}
-    %     \label{fig:init_time}
-    % \end{figure}
-    % Plots above outline different initial starting points and show the convergence over time. \textcolor{red}{Stupid idea, that's not helpful. How about I add some red line at very beginning, indicated where did I start initially and how far it plotted itself. Accumulate 500 initials steps and then plot them seperately on top to show the indication.}
+\ifthenelse {\boolean{thesis}}
+{
     \begin{figure*}[htbp]
         \centering
-        \begin{subfigure}[b]{0.325\textwidth}
+        % DST based tests
+        \begin{subfigure}[b]{0.475\textwidth}
             \centering
-            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
-            \caption{FUDS trained model}
-            \label{subfig:FUDS_diff_prof_compare}
+            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharging.svg}
+            \caption{Charging process}
         \end{subfigure}
         \hfill
-        \begin{subfigure}[b]{0.325\textwidth}
+        \begin{subfigure}[b]{0.475\textwidth}
             \centering
-            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test One-19.svg}
-            \caption{Testing against DST profile}
-            \label{subfig:DST_diff_prof_compare}
+            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharged.svg}
+            \caption{Charged state}
         \end{subfigure}
         \hfill
-        \begin{subfigure}[b]{0.325\textwidth}
+        \begin{subfigure}[b]{0.475\textwidth}
             \centering
-            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test Two-19.svg}
-            \caption{Testing against US06 profile}
-            \label{subfig:US_diff_prof_compare}
+            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarging.svg}
+            \caption{Discharging process}
         \end{subfigure}
-        \caption{The result of prediction over DST and US06 at the latest iteration}
-        \label{fig:diff_prof_compare}
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarged.svg}
+            \caption{Discharged state}
+        \end{subfigure}
+        \caption{Different initial periods of model validation}
+        \label{fig:init_time}
     \end{figure*}
+} { }
+    % Plots above outline different initial starting points and show the convergence over time. \textcolor{red}{Stupid idea, that's not helpful. How about I add some red line at very beginning, indicated where did I start initially and how far it plotted itself. Accumulate 500 initials steps and then plot them seperately on top to show the indication.}
+    % \begin{figure*}[htbp]
+    %     \centering
+    %     \begin{subfigure}[b]{0.325\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
+    %         \caption{FUDS trained model}
+    %         \label{subfig:FUDS_diff_prof_compare}
+    %     \end{subfigure}
+    %     \hfill
+    %     \begin{subfigure}[b]{0.325\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test One-19.svg}
+    %         \caption{Testing against DST profile}
+    %         \label{subfig:DST_diff_prof_compare}
+    %     \end{subfigure}
+    %     \hfill
+    %     \begin{subfigure}[b]{0.325\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test Two-19.svg}
+    %         \caption{Testing against US06 profile}
+    %         \label{subfig:US_diff_prof_compare}
+    %     \end{subfigure}
+    %     \caption{The result of prediction over DST and US06 at the latest iteration}
+    %     \label{fig:diff_prof_compare}
+    % \end{figure*}
     % \begin{itemize}
     %     \item To verify the efficiency, model also was compared against the two other profiles cycling profiles. \\
     %     \item \textbf{model has tendency to put a lot of weight into the Voltage. This way. weights will fall into SoC instead to preserve longer dependency.} \\
     %     \item \textit{Different comparison, plots. Relative timing and what mechanism in implementation with lists and tensors increased it. Accuracies.} \\
     %     \item \textbf{Comaprison of different Windows size. Time it takes to compute that is too long. Need to overcome it, somehow.} \\
     % \end{itemize}
-    \begin{figure*}
-        \centering
-        \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-performance.svg}
-        \caption{Accuracy evolution over training process for Mean Average Error (MAE) and Root Mean Squared Error (RMSE)}
-        \label{fig:res_performance}
-    \end{figure*}
-    \begin{figure*}[htbp]
-        \centering
-        \begin{subfigure}[b]{0.325\textwidth}
-            \centering
-            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/FUDS-FF-8.svg}
-            \caption{FUDS trained model}
-            \label{subfig:FUDS_diff_prof_best}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{0.325\textwidth}
-            \centering
-            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test One-8.svg}
-            \caption{Testing against DST profile}
-            \label{subfig:DST_diff_prof_best}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{0.325\textwidth}
-            \centering
-            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test Two-8.svg}
-            \caption{Testing against US06 profile}
-            \label{subfig:US_diff_prof_best}
-        \end{subfigure}
-        \caption{The result of prediction over DST and US06 at the lowest training and validation iteration}
-        \label{fig:diff_prof_best}
-    \end{figure*}
+    % \begin{figure*}
+    %     \centering
+    %     \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-performance.svg}
+    %     \caption{Accuracy evolution over training process for Mean Average Error (MAE) and Root Mean Squared Error (RMSE)}
+    %     \label{fig:res_performance}
+    % \end{figure*}
+    % \begin{figure*}[htbp]
+    %     \centering
+    %     \begin{subfigure}[b]{0.325\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/FUDS-FF-8.svg}
+    %         \caption{FUDS trained model}
+    %         \label{subfig:FUDS_diff_prof_best}
+    %     \end{subfigure}
+    %     \hfill
+    %     \begin{subfigure}[b]{0.325\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test One-8.svg}
+    %         \caption{Testing against DST profile}
+    %         \label{subfig:DST_diff_prof_best}
+    %     \end{subfigure}
+    %     \hfill
+    %     \begin{subfigure}[b]{0.325\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-Test Two-8.svg}
+    %         \caption{Testing against US06 profile}
+    %         \label{subfig:US_diff_prof_best}
+    %     \end{subfigure}
+    %     \caption{The result of prediction over DST and US06 at the lowest training and validation iteration}
+    %     \label{fig:diff_prof_best}
+    % \end{figure*}
 \subsection{Optimal output step size}
     The optimal size of the output steps for better capturing the State of Charge was determined through experimental training. \mbox{Table~\ref{tab:out_steps}} outlines the training iterations of each driving profile until it reached accuracy below 2.5\%.
     \begin{table}[htbp]
@@ -148,30 +248,92 @@
     %
     An optimal step is required for running the training process on the entire dataset with all three profiles as inputs to prepare the deployment model.
     Therefore, all other results demonstrations will use 30 steps as the most optimal and report any other results based on that parameter.
-    \begin{figure*}[htbp]
+    % \begin{figure*}[htbp]
+    %     \centering
+    %     % DST based tests
+    %     \begin{subfigure}[b]{0.325\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-15steps/DST-models/SMRDST-FF-8.svg}
+    %         \caption{Best DST based model after 8 iterations with 15 steps}
+    %         \label{subfig:res_DST}
+    %     \end{subfigure}
+    %     \hfill
+    %     \begin{subfigure}[b]{0.325\textwidth}
+    %         \centering
+    %         \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-20steps/US06-models/SMRUS06-FF-10.svg}
+    %         \caption{Best US06 based model after 10 iterations with 20 steps}
+    %         \label{subfig:res_US}
+    %     \end{subfigure}
+    %     \hfill
+    %     \begin{subfigure}[b]{0.325\textwidth}
+    %         \centering
+    %         % \includesvg[width=\linewidth]{III_Conclussion/im_best/FUDS-19.svg}
+    %         \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
+    %         \caption{Best FUDS based model after 19 iterations with 30 steps}
+    %         \label{subfig:res_FUDS}
+    %     \end{subfigure}
+    %     \caption{Best training results over 3 different driving profiles}
+    %     \label{fig:Models_res}
+    % \end{figure*}
+
+\begin{figure*}[htbp]
+    \centering
+    %%%%%%%%%%%%%%%%% DST based tests %%%%%%%%%%%%%%%%%
+    \begin{subfigure}[b]{0.325\textwidth}
         \centering
-        % DST based tests
-        \begin{subfigure}[b]{0.325\textwidth}
-            \centering
-            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-15steps/DST-models/SMRDST-FF-8.svg}
-            \caption{Best DST based model after 8 iterations with 15 steps}
-            \label{subfig:res_DST}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{0.325\textwidth}
-            \centering
-            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-20steps/US06-models/SMRUS06-FF-10.svg}
-            \caption{Best US06 based model after 10 iterations with 20 steps}
-            \label{subfig:res_US}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{0.325\textwidth}
-            \centering
-            % \includesvg[width=\linewidth]{III_Conclussion/im_best/FUDS-19.svg}
-            \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
-            \caption{Best FUDS based model after 19 iterations with 30 steps}
-            \label{subfig:res_FUDS}
-        \end{subfigure}
-        \caption{Best training results over 3 different driving profiles}
-        \label{fig:Models_res}
-    \end{figure*}
+        \includesvg[width=\linewidth]{II_Body/images/M6-history-DST-mae.svg}
+        \caption{Average training and testing MAE history average of 10 attempts}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/DST-6-train.svg}
+        \caption{Validation on a single cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/DST-6-test.svg}
+        \caption{Testing on two cycles of US06 and FUDS profiles average of 10 attempts}
+        \label{subfig:Model-1res-DSTvsFUDS}
+    \end{subfigure}
+    %%%%%%%%%%%%%%%%% US06 based tests %%%%%%%%%%%%%%%%%
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/M6-history-US06-mae.svg}
+        \caption{Average training and testing MAE history average of 10 attempts}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/US06-6-train.svg}
+        \caption{Validation on a single cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/US06-6-test.svg}
+        \caption{Testing on two cycles of US06 and FUDS profiles average of 10 attempts}
+    \end{subfigure}
+    % %%%%%%%%%%%%%%%%% FUDS based tests %%%%%%%%%%%%%%%%%
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/M6-history-FUDS-mae.svg}
+        \caption{Average training and testing MAE history average of 10 attempts}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/FUDS-6-train.svg}
+        \caption{Validation on a single cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/FUDS-6-test.svg}
+        \caption{Testing on two cycles of DST and US06 profiles average of 10 attempts}
+    \end{subfigure}
+    \caption{Model 6: Stateless LSTM with 30 steps of Autoregression.}
+    \label{fig:Model-6res}
+\end{figure*}
+\clearpage

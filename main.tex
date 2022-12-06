@@ -75,23 +75,24 @@
 
 \begin{document}
 %\title{Lithium-Ion battery Feed-Forward State of Charge estimation using Time-Series Machine Learning prediction with Autoregressive models}
-\title{Feed-Forward State of Charge estimation using Time-Series Machine Learning prediction with Autoregressive models of Lithium-Ion batteries}
+\title{Feed-Forward State of Charge estimation using Time-Series Machine Learning prediction with Autoregressive models on Lithium-Ion batteries}
 \author{
 	\vskip 1em
 	
-	Marat (Matt) Sadykov, \emph{Student Membership},
-	Sam Haines, \emph{Student Membership},
-	\\ A/Prof David Holmes, \emph{Membership}
-  and A/Prof Geoff Walker, \emph{Membership}
+	Marat Sadykov, % \emph{Student Membership},
+	Sam Haines,% \emph{Student Membership},
+  \\ Dr Mark Broadmeadow, %\emph{Techinical Supervisor}
+  \\ A/Prof Geoff Walker, %\emph{Associate Research Supervisor} and
+	\\ A/Prof David Holmes, %\emph{Principal Research Supervisor},
 
 	\thanks{
 	
-		Manuscript received Month xx, 2xxx; revised Month xx, xxxx; accepted Month x, xxxx.
-		This work was supported in part by the xxx Department of xxx under Grant  (sponsor and financial support acknowledgment goes here).
+		Manuscript received Month xx, 2xxx; revised Month xx, XXXX; accepted Month x, XXXX.
+		This work was supported in part by the Government of Australia under Automotive Engineering Graduate Program (AEGP) Grant.
 		
-		(Authors' names and affiliation) First A. Author1 and Second B. Author2 are with the xxx Department, University of xxx, City, Zip code, Country, on leave from the National Institute for xxx, City, Zip code, Country (e-mail: author@domain.com). 
+		Marat Sadykov, Sam Haines and A/Prof David Holmes are with the School of Mech., Medical \& Process Engineering,  Queensland University of Technology (QUT), Brisbane, QLD, 4000, Australia. (e-mail: d.holmes@qut.edu.au). 
 		
-		Third C. Author3 is with the National Institute of xxx, City, Zip code, Country (corresponding author to provide phone: xxx-xxx-xxxx; fax: xxx-xxx-xxxx; e-mail: author@ domain.gov).
+		Dr Mark Broadmeadow and A/Prof Geoff Walker are with the School of Electrical Engineering \& Robotics,  Queensland University of Technology (QUT), Brisbane, QLD, 4000, Australia. %(e-mail: mark.broadmeadow@qut.edu.au, geoffrey.walker@qut.edu.au)
 	}
 }
 
@@ -147,13 +148,21 @@
 \section{Method Development} \label{sec:layer}
 \subsection{LSTM estimation}
 \input{./II_Body/layer}
+\begin{landscape}
+  \begin{figure}[ht]
+      \centering
+      \includegraphics[width=\linewidth]{II_Body/images/Windowing4f-A3.jpg}
+      \caption{Data Windowing scheme at 1Hz sampling rate. For visualisation purposes, the $s$-step has been used as 250 seconds, which is different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, around zero.}
+      \label{fig:Windowing}
+  \end{figure}
+\end{landscape}
 \subsection{Development of Feed-Forward Autoregressive model} \label{sec:feed}
 \input{./II_Body/feed-forward}
 \subsection{Testing methodology}
 \input{./II_Body/method}
 %%% Conclusion
 \section{Results} \label{sec:results}
-% \input{./III_Conclussion/results}
+\input{./III_Conclussion/results}
 \section{Conclusion} \label{sec:conclussion}
 \input{./III_Conclussion/conclussion}
 \input{./III_Conclussion/acknowledgements}
@@ -162,6 +171,8 @@
 \bibliography{
   ../Ch3Analysis/I_Introduction/BibIntro,
   ../Ch3Analysis/II_Body/BibRNN,
+  ../Ch3Analysis/II_Body/GRU/BibGRU,
+  ../Ch3Analysis/II_Body/LSTM/BibLSTM,
   I_Introduction/BibIntro
 }
 %
