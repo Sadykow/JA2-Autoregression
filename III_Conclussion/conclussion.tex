@@ -6,14 +6,14 @@
 The idea is to rely only on the sensory data and a single Neural Network-based battery model.
 The experiment has proven that State of Charge prediction models tends to put significant weight into the Voltage to describe the charging process during the model training process.
 Adding the charge as a feature has proven that the history of the charge had a higher weight on a system than sensory data.
-As a result, it decreases accuracy since the model is anticipated to have an absolute perfect history of the charge from a table.
-Every next prediction, which had a small percentage of miss accuracy, only accumulated the error in every following charge estimation, leading to even worse results than pure sensory data usage.
+As a result, it decreases error since the model is anticipated to have a perfect history of the charge from a table.
+Every next prediction, which had a small percentage of miss accuracy, only accumulated errors in every following charge estimation, leading to worse results than pure sensory data usage.
 
 %
 %
-Instead of adjusting each input features weight manually, the best approach towards minimising the effect of the charge into an overall system is to use the autoregression training technique. 
+Instead of manually adjusting each input feature's weight, the best approach to minimising the charge's effect on an overall system is to use the autoregression training technique. 
 Since the sigmoid function restrained the output, the first results from the model at the start of the training were random values within 50\% of the expected charge.
-Instead of always having perfect values, the auto-regression technique allowed models weight adjustment based on their initial error.
+Instead of always having perfect values, the auto-regression technique allowed models to weight adjustments based on their initial error.
 As a result, the optimiser performed the model fit based on the array of model outputs over evenly spaced time samples.
 Despite the modification introducing an $n_{th}^{2}$ degree computation based on the number of outputting steps, the actual prediction was performed only on the latest sample.
 Therefore, the autoregressive model added no performance losses during actual utilisation. 
@@ -21,8 +21,8 @@ Therefore, the autoregressive model added no performance losses during actual ut
 %
 %
 Although the method has proven effective on three different driving profiles, it is still a matter of experiments to validate against actual driving behaviour.
-Besides, the whole intention is to test the model actively during actual driving.
+Besides, the intention is to test the model during actual driving actively.
 On top of that, the effect of the initial start of the charge is still debatable.
 So far, few experiments with different starting points have shown accurate results, but the best way to validate the model is to observe active convergence over unseen data.
-Even if the model still will not correctly determine the middle area of the battery as with 3-feature based methods, the general trend of battery charge and discharge has to be followed without spikes or falls.
-If confirmed, the model can become a solid replacement to any other model-based State of Charge estimation technique.
+Even if the model still will not correctly determine the middle area of the battery as with 3-feature-based methods, the general trend of battery charge and discharge has to be followed without spikes or falls.
+If confirmed, the model can replace any other model-based State of Charge estimation technique.
