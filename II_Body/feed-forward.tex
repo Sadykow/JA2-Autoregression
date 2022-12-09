@@ -1,25 +1,49 @@
 The regular training procedure for a 4-feature model has a significant limitation. The model does not consider the Feed-Forward application of the prediction output.
 In the case of excellent input values, the output is expected to be within~1 \% miss accuracy, since from 500 of ideal SoC values estimation of 501 is a trivial task, not requiring a Neural Network to perform.
-\begin{figure}[htbp]
-    \centering
-    % DST based tests
-    \begin{subfigure}[b]{\columnwidth}
+\ifthenelse{\boolean{thesis}}{
+    \begin{figure*}[htbp]
         \centering
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/FUDS-val-48.svg}
-        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-val-9.svg}
-        \caption{Regular training process snapshot}
-        \label{subfig:regular_tr}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{\columnwidth}
+        % DST based tests
+        \begin{subfigure}[b]{0.485\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_compare/FUDS-val-48.svg}
+            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-val-9.svg}
+            \caption{Regular training process snapshot}
+            \label{subfig:regular_tr}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.485\textwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMFUDS-FF-9.svg}
+            \caption{Feed-Forward validation process snapshot}
+            \label{subfig:regular_ts}
+        \end{subfigure}
+        \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop}
+        \label{fig:regular_tr}
+    \end{figure*}
+} {
+    \begin{figure}[htbp]
         \centering
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMFUDS-FF-9.svg}
-        \caption{Feed-Forward validation process snapshot}
-        \label{subfig:regular_ts}
-    \end{subfigure}
-    \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop}
-    \label{fig:regular_tr}
-\end{figure}
+        % DST based tests
+        \begin{subfigure}[b]{\columnwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_compare/FUDS-val-48.svg}
+            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-val-9.svg}
+            \caption{Regular training process snapshot}
+            \label{subfig:regular_tr}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{\columnwidth}
+            \centering
+            \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMFUDS-FF-9.svg}
+            \caption{Feed-Forward validation process snapshot}
+            \label{subfig:regular_ts}
+        \end{subfigure}
+        \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop}
+        \label{fig:regular_tr}
+    \end{figure}
+
+}
 % \begin{figure}[ht]%[htbp]
 %     \centering
 %     \includegraphics[width=0.7\linewidth]{II_Body/images/multistep_autoregressive.png}
@@ -31,7 +55,7 @@ In the case of excellent input values, the output is expected to be within~1 \% 
 %
 Two subplots, \mbox{Figure~\ref{fig:regular_tr}}, demonstrate the prediction results of a four-feature-based trained simple LSTM model against a single battery cycle of DST driving.
 \mbox{Subfigure~\ref{subfig:regular_tr}} demonstrates the prediction based on the always known perfect State of Charge, opposite on \mbox{subfigure~\ref{subfig:regular_ts}} with only perfect initial, and every following sample gets fed-forward.
-The loss axis has been dropped from plotting due to high inaccuracy.
+The green error axis has been dropped from plotting due to high inaccuracy.
 \ifthenelse{\boolean{thesis}}{
     The implementation of this prediction method is presented in \mbox{Appendix~\ref{app:Feed-Forward}}.
 }{}
@@ -41,15 +65,16 @@ The reason for that lies in the weights the model places on the State of Charge 
 For a better weight balance, the training procedure must be modified to consider the possibility of an inaccuracy in the input charge data.
 The diagram in \mbox{Figure~\ref{subfig:testing}} illustrates regular training and testing procedures for a model to produce output.
 The implementation has been based on contributions from the original framework developers ~\cite{time_2020}.
-\begin{figure}[htbp]
+\ifthenelse{\boolean{thesis}}{
+\begin{figure*}[htbp]
     \centering
-    \begin{subfigure}[b]{\columnwidth}
+    \begin{subfigure}[b]{0.485\textwidth}
         \centering
         % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
         \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}
         \caption{Modified training process}
     \end{subfigure}
-    \begin{subfigure}[b]{\columnwidth}
+    \begin{subfigure}[b]{0.485\textwidth}
         \centering
         % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
         \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}
@@ -57,8 +82,26 @@ The implementation has been based on contributions from the original framework d
     \end{subfigure}
     \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops}
     \label{fig:modefied_tr}
-\end{figure}
-
+\end{figure*}
+} {
+    \begin{figure}[htbp]
+        \centering
+        \begin{subfigure}[b]{\columnwidth}
+            \centering
+            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
+            \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}
+            \caption{Modified training process}
+        \end{subfigure}
+        \begin{subfigure}[b]{\columnwidth}
+            \centering
+            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
+            \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}
+            \caption{Feed-Forward validation process}
+        \end{subfigure}
+        \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops}
+        \label{fig:modefied_tr}
+    \end{figure}
+}
 %
 %
 The training procedure for the regular LSTM model must be modified to consider potential inaccuracy using the autoregression technique.

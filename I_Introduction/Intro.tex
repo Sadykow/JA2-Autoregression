@@ -44,7 +44,7 @@ There have been multiple publications around extensively used Time-Series models
 \ifthenelse {\boolean{thesis}}
 {
     The Chapter~\ref{cha:Analysis} has analysed and discussed multiple implementations of RNN models to determine the State of Charge from sensory data like Voltage, Current and Temperature.
-    The research results have concluded that sensory data in one driving behaviour effectively predicts that specific driving behaviour but is poor at extrapolating to others by doubled error at best.
+    The research results have concluded that sensory data in one driving scenario effectively predicts that specific driving behaviour but is poor at extrapolating to others by doubled error at best.
     Thus, the battery state became a matter of not the battery itself but the accuracy and usage of the measurements.
     Besides, the internal resistance of batteries creates voltage drops during the current drain.
     The ability to accommodate such loss and still keep track of the State of Charge defines the quality of the ML model.
@@ -53,7 +53,7 @@ There have been multiple publications around extensively used Time-Series models
     There are two approaches to that: Charge estimation from other means, CC or three feature-based NN methods, or the Feed-Forward method to propagate the output value of the charge as an input into the next prediction.
 } {
     \textcolor{red}{A previously published paper of this research [Sadykov, 1] analysed multiple different implementations of RNN models to determine the State of Charge from sensory data like Voltage, Current and Temperature.}
-    The research results have concluded that sensory data in one driving behaviour effectively predicts that specific driving behaviour but is poor at extrapolating to others by doubled error at best.
+    The research results have concluded that sensory data in one driving scenario effectively predicts that specific driving behaviour but is poor at extrapolating to others by doubled error at best.
     Thus, the battery state became a matter of not the battery itself but the accuracy and usage of the measurements.
     Besides, the SoC can fall or rise below/high under/over-voltage limit under instantaneous high current spikes, although not as significant to trigger an alarm and only at the end of discharge/charge cycles due to batteries' ageing internal resistance.
     The potential solution to the problem was integrating SoC as one of the input features to a NN model.
@@ -69,7 +69,7 @@ There have been multiple publications around extensively used Time-Series models
     The correction of the limitations identified in Chapter~\ref{cha:Analysis}, such as a training cross-accurate model and minimisation of resistance influence, will require implementing a new 4-feature-based method.
     In this chapter, the Long short-term memory model will be developed, with a history of approximately 8 minutes and 20 seconds usage (500 samples at 1Hz), to predict the current State of Charge and propagate the result further into the next prediction.
     A novel method of the training loop model will be proposed to eliminate the possibility of accumulating error along with the value of a charge, utilising the Autoregressive technique to introduce an adaptive and robust solution to training output inaccuracy over time.
-    It utilises the Autoregressive technique to introduce an adaptive and robust solution to training with some training output inaccuracy over time.
+    % It utilises the Autoregressive technique to introduce an adaptive and robust solution to training with some training output inaccuracy over time.
     Furthermore, it forces the model to consider the potential of having variations in the State of Charge history and not fail the prediction in the following outputs.
 } {
     In this paper, the Long short-term memory model will implement a 4-feature estimator, with a history of 8 minutes and 20 seconds usage (500 samples at 1Hz), to predict the current State of Charge and propagate the result further.
