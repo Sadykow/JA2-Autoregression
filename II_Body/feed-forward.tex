@@ -54,10 +54,10 @@ In the case of excellent input values, the output is expected to be within~1 \% 
 %
 %
 Two subplots, \mbox{Figure~\ref{fig:regular_tr}}, demonstrate the prediction results of a four-feature-based trained simple LSTM model against a single battery cycle of DST driving.
-\mbox{Subfigure~\ref{subfig:regular_tr}} demonstrates the prediction based on the always known perfect State of Charge, opposite on \mbox{subfigure~\ref{subfig:regular_ts}} with only perfect initial, and every following sample gets fed-forward.
+\mbox{Subfigure~\ref{subfig:regular_tr}} demonstrates the prediction based on the always-known perfect State of Charge, opposite on \mbox{subfigure~\ref{subfig:regular_ts}} with only perfect initial, and every following sample gets fed-forward.
 The green error axis has been dropped from plotting due to high inaccuracy.
 \ifthenelse{\boolean{thesis}}{
-    The implementation of this prediction method is presented in \mbox{Appendix~\ref{app:Feed-Forward}}.
+The implementation of this prediction method is presented in \mbox{Appendix~\ref{app:Feed-Forward}}.
 }{}
 It demonstrates how the appended charge output model accumulates the error with every dependent input in a single prediction.
 If that output is used for further prediction and the model keeps preserving the dependency, the miss accuracy value rises non-linearly.
@@ -84,23 +84,23 @@ The implementation has been based on contributions from the original framework d
     \label{fig:modefied_tr}
 \end{figure*}
 } {
-    \begin{figure}[htbp]
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{\columnwidth}
         \centering
-        \begin{subfigure}[b]{\columnwidth}
-            \centering
-            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
-            \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}
-            \caption{Modified training process}
-        \end{subfigure}
-        \begin{subfigure}[b]{\columnwidth}
-            \centering
-            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
-            \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}
-            \caption{Feed-Forward validation process}
-        \end{subfigure}
-        \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops}
-        \label{fig:modefied_tr}
-    \end{figure}
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}
+        \caption{Modified training process}
+    \end{subfigure}
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}
+        \caption{Feed-Forward validation process}
+    \end{subfigure}
+    \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops}
+    \label{fig:modefied_tr}
+\end{figure}
 }
 %
 %
@@ -117,9 +117,9 @@ Each output also contained a model state, containing the values stored in the ce
 State output is used only for internal model processing.
 Every output of every step has been stored as an array.
 With a new approach, an optimiser will compare an array of predicted samples against the true values of the SoC.
-This way meant to increase the model fit process.
+This was meant to increase the model fit process.
 The more output samples the model returns during the training, the better the real-time prediction against aggressive driving profiles.
-\mbox{Figure~\ref{fig:modefied_tr}} contains a similar test as without autoregression.
+\mbox{Figure~\ref{fig:modefied_tr}} contains a similar test, but without autoregression.
 Even though the accuracy with tabled samples has decreased, its feed-forward prediction accuracy has significantly increased.
 \begin{figure*}[htbp]
     \centering

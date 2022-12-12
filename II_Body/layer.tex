@@ -1,8 +1,8 @@
 Time-series prediction of a neural model relies on the input history of equally distributed samples.
-The LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering/preserving the long dependencies~\cite{rasifaghihi_predictive_2020}.
+The LSTM model is a recurrent neural network, designed to solve the vanishing gradient problem by remembering/preserving the long dependencies~\cite{rasifaghihi_predictive_2020}.
 The cells inside the model act as memory units to preserve the dependence.
 Therefore, the output is closely dependent on the previous input samples.
-Unlike the normal RNN and the more modern version - GRU, LSTM has a more complicated structure constructed from several logical gates~\cite{LSTM_Hochreiter1997}.
+Unlike the normal RNN, and the more modern version GRU, LSTM has a more complicated structure constructed from several logical gates~\cite{LSTM_Hochreiter1997}.
 It is the most widely used type of model.
 \ifthenelse {\boolean{thesis}}
 {
@@ -43,11 +43,12 @@ Output variables $h_t$ and $c_t$ represent memory cell output and the cell state
 
 %
 %
-The LSTM model has been used widely in stock-price prediction or weather forecasting.
-However, unlike State of Charge estimation, which commonly uses $V$, $I$ and $T$ as inputs, those methods utilise the output feature as an input to the subsequent prediction to propagate results further and calculate the time before a critical event occurrence.
-Besides, methods like weather forecasting a week are not limited by lacking output data since the searched criteria are always known or will be known once they happen, allowing updates and improvements of follow-up predictions.
-Contrarily, a battery's actual State of Charge cannot be determined and verified against previously made predictions without additional battery modelling techniques, not to mention having it integrated into an Electric Vehicles accumulator.
-It would require a proper battery cycler, which will perform a set of pulse tests, utilising a battery and affecting its' charge and remaining life.
+The LSTM model has been used widely in stock-price prediction or weather forecasting. 
+%? add references if I feel to it
+However, unlike State of Charge estimation, which commonly uses $V$, $I$, and $T$ as inputs, those methods utilise the output feature as an input to the subsequent prediction to propagate results further and calculate the time before a critical event occurrence.
+Besides, methods like weather forecasting for a week are not limited by lacking output data, since the searched criteria are always known or will be known once they happen, allowing updates and improvements of follow-up predictions.
+Contrarily, a battery's actual State of Charge cannot be determined and verified against previously-made predictions without additional battery modelling techniques, not to mention having it integrated into an Electric Vehicle's accumulator.
+It would require a proper battery cycler, which will perform a set of pulse tests, utilising a battery and affecting its charge and remaining life.
 % (As opposed to the SoC estimate, where getting actual values to require a battery cycler capable ... ) 
 %%%%%%%%%%%
 %Unlike the charge estimation, which can only output a single value based on a history of samples, they are not limited to ... . Therefore, it does not require the output as input since the truth will become known in due time.
@@ -55,40 +56,56 @@ It would require a proper battery cycler, which will perform a set of pulse test
 %
 %
 The best way to use the performance of the stateless LSTM model is through training with a data windowing technique.
-The NN model will receive a fixed set of equally distributed time samples at each time prediction.
+The NN model will receive a fixed set of equally-distributed time samples at each time prediction.
 Every next forecast will shift the time window by a constant step $s$, until all possible combinations of time slices go through the model.
 That approach is referred to as a stateless model, which only sees dependencies over input samples rather than preserving every received input, like in stateful implementations.
-It also allows the order of the windows to be shuffled to avoid overfitting
+It also allows the order of the windows to be shuffled to avoid overfitting.
 Since no dropout was applied before the model's output, a set of strategies has been applied to update the learning rate and rollback before early stopping to assist the fitting process.
 \ifthenelse {\boolean{thesis}}
 {
-    Chapter~\ref{cha:Analysis} at subsections~\ref{subsec:l-rate}and~\ref{subsec:t_model} explain those two methods, which have already proven to be effective at training SoC models.
+Chapter~\ref{cha:Analysis} at subsections~\ref{subsec:l-rate}and~\ref{subsec:t_model} explain those two methods, which have already proven to be effective at training SoC models.
 } 
 {
-    Early research on published methods has already utilised those two methods to assist in the models' training process [Sadykov, 1].
-    It involved a scheduled learning rate value update with every passing epoch for as long as the accuracy kept improving with every passing iteration, as well as assisting the models' recovery in the event of overfitting by double reduction of the value either until the models' return to the same minimal optimisation or finalising the optimum result reach.
+Early research on published methods has already utilised those two methods to assist in the models' training process [Sadykov, 1].
+It involved a scheduled learning rate value update with every passing epoch for as long as the accuracy kept improving with every passing iteration, as well as assisting the models' recovery in the event of overfitting by double reduction of the value either until the models' return to the same minimal optimisation or finalising the optimum result reach.
 }
 As a result, a NN model will learn dependency between a fixed amount of equally distributed time samples $n$ and yet independent from the order of the inputs.
 \mbox{Figure~\ref{fig:Windowing}} demonstrates how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features, 500 timestamps and around a hundred thousand samples to fit on.
-Due to the size of the windows, equivalent to 8 and quoter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
+Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
 
 
 %
 %
 The mean and standard deviation has normalised all data to speed up the training process.
 The normalisation constant from training input samples must be used for validation and testing sets to ensure the right trends.
-The state of charge will be narrowed between 0 and 1 to represent the percentage charge in 2 decimal numbers.
+The state of charge will be narrowed between 0 and 1 to represent the percentage charge to two decimals.
 \mbox{Table~\ref{tab:params}} highlights the parameters required to define the initial model, where $s$ defines output step size.
 A $\sigma$ function as an output justifies the charge normalisation between 0 and 1.
 \ifthenelse {\boolean{thesis}}
 {
-    The number of neurons has been selected based on the results made in Chapter~\ref{cha:Analysis}, Section~\ref{sec:AN:Results}.
-    Even though the number of neurons was kept as per the performance result table, only one layer has been utilised due to manual implementation of the model and the inability to validate the multilayer implementation correctness against some published or already used models.
-    It was decided to stick to known approaches to validate the efficiency of the newly proposed technique.
+The number of neurons has been selected based on the results made in Chapter~\ref{cha:Analysis}, Section~\ref{sec:AN:Results}.
+Even though the number of neurons was kept as per the performance result table, only one layer has been utilised due to manual implementation of the model and the inability to validate the multilayer implementation correctness against some published or already-used models.
+It was decided to stick to known approaches to validate the efficiency of the newly-proposed technique.
+\begin{table}[ht]
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Model structure and parameters}
+    \centering
+    \label{tab:params}
+    \begin{tabular}{ l l l }
+        \hline\hline \\[-4mm]
+        Input     & $shape= \left( 1,500,4 \right)$ & $batch=1 $  \\
+        \hline
+        LSTM      & $activation= 'tanh'$ & $units=131$  \\
+        \hline
+        Dropout   & $0.0$ &   \\
+        \hline
+        Output    & $activation= \sigma\left(s, 1 \right)$ &   \\
+        \hline\hline
+    \end{tabular}
+\end{table}
 } {
-    The number of neurons has been selected based on the results made based on earlier discoveries of the most optimal hyperparameters set [Sadykov, 1].
-    Results were adapted to the new custom-implemented model to validate the technique's efficiency in a comparable way with already tested approaches.
-}
+The number of neurons has been selected based on the results made based on earlier discoveries of the most optimal hyperparameters set [Sadykov, 1].
+Results were adapted to the new custom-implemented model to validate the technique's efficiency in a comparable way with already-tested approaches.
 \begin{table}[ht]
     \renewcommand{\arraystretch}{1.3}
     \caption{Model structure and parameters}
@@ -108,55 +125,56 @@ A $\sigma$ function as an output justifies the charge normalisation between 0 an
     \end{tabular}
     }
 \end{table}
+}
 
 %
 %
 \ifthenelse {\boolean{thesis}}
 {
-    The optimisation algorithm for the fitting process has been defined by regular Adam, which was highlighted in Chapter~\ref{cha:Analysis}, \mbox{Algorithm~\ref{alg:Adam}}, with the corresponding hyperparameters, \mbox{Table~\ref{tab:uni-hyperparams}}.
-    Even though that RoAdam has proven to be superior, the selection of this optimiser is defined by the opportunity of comparing two early created LSTM-based models, which used the same optimser.
+The optimisation algorithm for the fitting process has been defined by regular Adam, which was highlighted in Chapter~\ref{cha:Analysis}, \mbox{Algorithm~\ref{alg:Adam}}, with the corresponding hyperparameters, \mbox{Table~\ref{tab:uni-hyperparams}}.
+Even though the RoAdam has proven to be superior, the selection of this optimiser is defined by the opportunity of comparing two early-created LSTM-based models, which used the same optimiser.
 }
 {
-    The optimisation algorithm for the fitting process has been defined by Adam, \mbox{Algorithm~\ref{alg:copyAdam}}, with the corresponding hyperparameters on \mbox{Table~\ref{tab:newM-params}}.
-    %\textcolor{red}{Try to use Robust Adam instead, because why the hell not since I lost one month of my life to implement that cursed algorithm from Javids miss-typed notes? Complete this section with details as per Gareth Javid's implementation if RoAdam will be able to produce a faster fitting.}
-    \begin{algorithm}\captionsetup{labelfont={sc,bf}, labelsep=newline}
-        \caption{Adaptive Moment Estimation (Adam) optimisation}
-        \begin{algorithmic}[1]
-            \STATE \textbf{Number of input samples} \\ $N\gets length(\textit{input data})$\\
-            \STATE \textbf{Size of windows} \\ $S\gets length(V_{i..n})$\\
-            \STATE \textbf{Output steps} \\ $O\gets length(V_{i..n})$\\
-            \STATE Input: $x_n = [V_{i..n}, I_{i..n}, T_{i..n}, SoC_{(i-1)..(n-1))}]$ \\
-            - Shape: $X = (N, S, 4)$
-            \STATE Output:$y_n = [SoC_{(n-o)..n}] - $Shape:$Y = (N, O, 1)$
-            \STATE Define Loss function: $L$ \\
-                    Get hyperparameters: $\alpha, \beta_1, \beta_2, \epsilon$
-            \WHILE{$W_t \text{ not converge}$}
-            \STATE $t \gets t+1$
-            \STATE $g_t \gets \nabla_W L_t (W_{t-1})$ \COMMENT{Obtain gradient}
-            \STATE $m_t \gets \beta_1 m_{t-1}+(1-\beta_1) g_t $ \COMMENT{$1_{st}$ moment calculation}
-            \STATE $\upsilon_t \gets \beta_2 \upsilon_{t-1}+ \left(1-\beta_2 \right)g^2_t $ \COMMENT{$2_{nd}$ moment calculation \label{alg:Adam-Line-2Moment}}
-            \STATE $\hat{m_t} \gets \frac{m_t}{1-\beta^t_1}$ \COMMENT{Corrected $\hat{m_t}$}
-            \STATE $\hat{\upsilon_t} \gets \frac{\upsilon_t}{1-\beta^t_2} $ \COMMENT{Corrected $\hat{\upsilon_t}$}
-            \STATE $W_t \gets W_{t-1}- \alpha \frac{\hat{m_t}}{\sqrt{\hat{\upsilon_t}}+\epsilon} $ \COMMENT{Update parameters}
-            \ENDWHILE
-        \end{algorithmic}
-        \label{alg:copyAdam}
-    \end{algorithm}
-    \begin{table}[htbp]
-        \renewcommand{\arraystretch}{1.3}
-        \caption{Optimiser Hyper-Parameters}
-        \centering
-        \label{tab:newM-params}
-        \resizebox{\columnwidth}{!}{
-        \begin{tabular}{ l l l l l l }
-            \hline\hline \\[-3mm]
-            $\alpha$ & $\beta_1 $ & $\beta_2$ & $\beta_3$ &  $\epsilon$ \\
-            \hline
-            Linear         &  &  &  & \\% 0.0000001
-            Scheduler      & $0.9$ & $0.999$ & $0.999$ &$10^{-8}$ \\% 0.0000001
-            (0.001-0.0001) &  &  &  & \\% 0.0000001
-            \hline\hline
-        \end{tabular}
-        }
-    \end{table}
+The optimisation algorithm for the fitting process has been defined by Adam, \mbox{Algorithm~\ref{alg:copyAdam}}, with the corresponding hyperparameters on \mbox{Table~\ref{tab:newM-params}}.
+%\textcolor{red}{Try to use Robust Adam instead, because why the hell not since I lost one month of my life to implement that cursed algorithm from Javids miss-typed notes? Complete this section with details as per Gareth Javid's implementation if RoAdam will be able to produce a faster fitting.}
+\begin{algorithm}\captionsetup{labelfont={sc,bf}, labelsep=newline}
+    \caption{Adaptive Moment Estimation (Adam) optimisation}
+    \begin{algorithmic}[1]
+        \STATE \textbf{Number of input samples} \\ $N\gets length(\textit{input data})$\\
+        \STATE \textbf{Size of windows} \\ $S\gets length(V_{i..n})$\\
+        \STATE \textbf{Output steps} \\ $O\gets length(V_{i..n})$\\
+        \STATE Input: $x_n = [V_{i..n}, I_{i..n}, T_{i..n}, SoC_{(i-1)..(n-1))}]$ \\
+        - Shape: $X = (N, S, 4)$
+        \STATE Output:$y_n = [SoC_{(n-o)..n}] - $Shape:$Y = (N, O, 1)$
+        \STATE Define Loss function: $L$ \\
+                Get hyperparameters: $\alpha, \beta_1, \beta_2, \epsilon$
+        \WHILE{$W_t \text{ not converge}$}
+        \STATE $t \gets t+1$
+        \STATE $g_t \gets \nabla_W L_t (W_{t-1})$ \COMMENT{Obtain gradient}
+        \STATE $m_t \gets \beta_1 m_{t-1}+(1-\beta_1) g_t $ \COMMENT{$1_{st}$ moment calculation}
+        \STATE $\upsilon_t \gets \beta_2 \upsilon_{t-1}+ \left(1-\beta_2 \right)g^2_t $ \COMMENT{$2_{nd}$ moment calculation \label{alg:Adam-Line-2Moment}}
+        \STATE $\hat{m_t} \gets \frac{m_t}{1-\beta^t_1}$ \COMMENT{Corrected $\hat{m_t}$}
+        \STATE $\hat{\upsilon_t} \gets \frac{\upsilon_t}{1-\beta^t_2} $ \COMMENT{Corrected $\hat{\upsilon_t}$}
+        \STATE $W_t \gets W_{t-1}- \alpha \frac{\hat{m_t}}{\sqrt{\hat{\upsilon_t}}+\epsilon} $ \COMMENT{Update parameters}
+        \ENDWHILE
+    \end{algorithmic}
+    \label{alg:copyAdam}
+\end{algorithm}
+\begin{table}[htbp]
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Optimiser Hyper-Parameters}
+    \centering
+    \label{tab:newM-params}
+    \resizebox{\columnwidth}{!}{
+    \begin{tabular}{ l l l l l l }
+        \hline\hline \\[-3mm]
+        $\alpha$ & $\beta_1 $ & $\beta_2$ & $\beta_3$ &  $\epsilon$ \\
+        \hline
+        Linear         &  &  &  & \\% 0.0000001
+        Scheduler      & $0.9$ & $0.999$ & $0.999$ &$10^{-8}$ \\% 0.0000001
+        (0.001-0.0001) &  &  &  & \\% 0.0000001
+        \hline\hline
+    \end{tabular}
+    }
+\end{table}
 }

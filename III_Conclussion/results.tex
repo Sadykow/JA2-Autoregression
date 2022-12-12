@@ -1,10 +1,10 @@
 \ifthenelse{\boolean{thesis}}{
-    An optimal set of hyperparameters has been obtained based on early results in Chapter~\ref{cha:Analysis}, section~\ref{sec:AN:Results}.
+An optimal set of hyperparameters has been obtained based on early results in Chapter~\ref{cha:Analysis}, Section~\ref{sec:AN:Results}.
 } {
-    An optimal set of hyperparameters has been obtained based on early results in previous work [Sadykov, 1].
+An optimal set of hyperparameters has been obtained based on early results in previous work [Sadykov, 1].
 }
 However, the number of outputs from a model, referred to as output steps, had to be experimentally tested and compared prior to the primary training procedure.
-After that, ten models of a single layer with 131 neurons LSTM with Autoregression were trained on all provided temperature ranges ten times and validated against 25 \textdegree{}C of its' profile and tested against 25 \& 30\textdegree{}C of the other two profiles.
+After that, ten models of a single layer with 131 neurons LSTM with Autoregression were trained on all provided temperature ranges ten times, validated against 25\textdegree{}C of its' profile, and tested against 25 \& 30\textdegree{}C of the other two profiles.
 An average of all ten results were plotted and later tested against entire training sets to measure the performance.
 
 \subsection{Optimal output step size}
@@ -12,6 +12,25 @@ An average of all ten results were plotted and later tested against entire train
     \mbox{Table~\ref{tab:out_steps}} outlines the training iterations of each driving profile until it reaches accuracy below 2.5\%.
     The training continued for as long as there was no overfitting determined.
     Profiles which already reached an error below the predetermined error were excluded from the followed up experiments.
+    \ifthenelse{\boolean{thesis}}{
+    \begin{table}[htbp]
+        \renewcommand{\arraystretch}{1.3}
+        \caption{Percentage accuracy evaluation with increasing output step size}
+        \centering
+        \label{tab:out_steps}
+        \begin{tabular}{ l | c c c | r }
+            \hline\hline \\[-4mm]
+            Steps & DST & US06 & FUDS & Epochs \\
+            \hline
+            10 & 2.94 & $\geq\sim 15$ & $\geq\sim 15$ & 8 \\
+            15 & 0.90 & 10.67 & 11.10 & 8 \\
+            20 & -- & 0.68  &  4.25 & 10 \\
+            25 & -- & --  &  3.48 & 25 \\
+            30 & -- & --  &  0.59 & 19 \\
+            \hline\hline
+        \end{tabular}
+    \end{table}
+    }{
     \begin{table}[htbp]
         \renewcommand{\arraystretch}{1.3}
         \caption{Percentage accuracy evaluation with increasing output step size}
@@ -31,79 +50,84 @@ An average of all ten results were plotted and later tested against entire train
         \end{tabular}
         }
     \end{table}
+    }
     
-    %
-    %
+%
+%
 \ifthenelse{\boolean{thesis}}{
-    The Dynamic Stress Test (DST) has a stable trend of current consumption and regenerative process.
-    Therefore it did not take long to capture the behaviour of the charge.
-    A single cycle on \mbox{subfigure~\ref{subfig:res_DST}} provides an example of accurate feed-forward charge estimation with output steps between 10-15 samples.
-    The US06 and FUDS have more aggressive current usage, leading to trendier voltage readings.
-    As per \mbox{subfigures~\ref{subfig:res_US} and~\ref{subfig:res_FUDS}}, it took twice more output samples to achieve similar accuracy to the DST-based model.
-    Any further increase can capture even more complicated scenarios, leading to a longer training time.
-    However, every added step decreased the epoch per training model to produce the best fit.
-    \begin{figure}[htbp]
+The Dynamic Stress Test (DST) has a stable trend of current consumption and regenerative process.
+Therefore it did not take long to capture the behaviour of the charge.
+A single cycle on \mbox{subfigure~\ref{subfig:res_DST}} provides an example of accurate feed-forward charge estimation with output steps between 10-15 samples.
+The US06 and FUDS have more aggressive current usage, leading to trendier voltage readings.
+As per \mbox{subfigures~\ref{subfig:res_US} and~\ref{subfig:res_FUDS}}, it took twice as many output samples to achieve similar accuracy to the DST-based model.
+Any further increase can capture even more complicated scenarios, leading to a longer training time.
+However, every added step decreased the epoch per training model to produce the best fit.
+\begin{figure}[htbp]
+    \centering
+    % DST based tests
+    \begin{subfigure}[b]{0.325\textwidth}
         \centering
-        % DST based tests
-        \begin{subfigure}[b]{0.325\textwidth}
-            \centering
-            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-15steps/DST-models/SMRDST-FF-8.svg}
-            \includesvg[width=\linewidth]{III_Conclussion/im_steps/SMRDST-FF-8.svg}
-            \caption{Best DST based model after 8 iterations with 15 steps}
-            \label{subfig:res_DST}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{0.325\textwidth}
-            \centering
-            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-20steps/US06-models/SMRUS06-FF-10.svg}
-            \includesvg[width=\linewidth]{III_Conclussion/im_steps/SMRUS06-FF-10.svg}
-            \caption{Best US06 based model after 10 iterations with 20 steps}
-            \label{subfig:res_US}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{0.325\textwidth}
-            \centering
-            % \includesvg[width=\linewidth]{III_Conclussion/im_best/FUDS-19.svg}
-            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
-            \includesvg[width=\linewidth]{III_Conclussion/im_steps/SMRFUDS-FF-19.svg}
-            \caption{Best FUDS based model after 19 iterations with 30 steps}
-            \label{subfig:res_FUDS}
-        \end{subfigure}
-        \caption{Best training results over 3 different driving profiles}
-        \label{fig:Models_res}
-    \end{figure}
-    %
-    %
-    An optimal step is required for running the training process on the entire dataset with all three profiles as inputs to prepare for future deployment on hardware.
-    Therefore, all other results demonstrations will use 30 steps as the most optimal and report any other results based on that parameter.
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-15steps/DST-models/SMRDST-FF-8.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/im_steps/SMRDST-FF-8.svg}
+        \caption{Best DST based model after 8 iterations with 15 steps}
+        \label{subfig:res_DST}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-20steps/US06-models/SMRUS06-FF-10.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/im_steps/SMRUS06-FF-10.svg}
+        \caption{Best US06 based model after 10 iterations with 20 steps}
+        \label{subfig:res_US}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        % \includesvg[width=\linewidth]{III_Conclussion/im_best/FUDS-19.svg}
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/im_steps/SMRFUDS-FF-19.svg}
+        \caption{Best FUDS based model after 19 iterations with 30 steps}
+        \label{subfig:res_FUDS}
+    \end{subfigure}
+    \caption{Best training results over 3 different driving profiles}
+    \label{fig:Models_res}
+\end{figure}
+%
+%
+An optimal step is required for running the training process on the entire dataset with all three profiles as inputs to prepare for future deployment on hardware.
+Therefore, all other results demonstrations will use 30 steps as the most optimal and report any other results based on that parameter.
 } { 
-    An optimal step of 30 output chargers will be used for all further models.
-    Despite making the training process slow compared to other steps due to concurrent looping through 30 outputs and feed-forward, the time for producing a single sample at the output is the same.
+An optimal step of 30 output chargers will be used for all further models.
+Despite making the training process slow compared to other steps due to concurrent looping through 30 outputs and feed-forward, the time for producing a single sample at the output is the same.
 }
 
 \subsection{Accuracy comparison}
-With cross-training and testing over ten attempts average to minimise the stochastic nature of the Machine Learning, Figure~\ref{fig:Model-6res} has been produced to demonstrate the resulting predictions.
+With cross-training and testing over ten attempts average (to minimise the stochastic nature of the Machine Learning), Figure~\ref{fig:Model-6res} has been produced to demonstrate the resulting predictions.
 The total errors for each model are summarised in Table~\ref{tab:acc-results2}.
-In total, 30 models were produced, averaged and compared for the best usage in an electric vehicle.
+In total, 30 models were produced, averaged, and compared for the best usage in an Electric Vehicle.
 
 %
 %
-Based on plot observation, all profiles achieved an error of around 1\% at the training, which can be observed on feed-forward plots on validation set.
-Most inaccuracies come from small regions of charge, which could be interpreted as a side effect of involving high temperatures in training, causing little offsets between idle and high intensive consumption.
-The testing plot of all three profiles showed similar results to validation with a slight error increase.
-Yet, the results do not deviate from validation as much as other similar models,  which experiment compared with.
+Based on plot observation, all profiles achieved an error of around 1\% at the training, which can be observed on feed-forward plots on the validation set.
+Most inaccuracies come from small regions of charge, which could be interpreted as a side effect of involving high temperatures in training, causing little offsets between idle and high-intensive consumption.
+The testing plot of all three profiles showed similar results to validation, with a slight error increase.
+Yet, the results do not deviate from validation as much as other similar models,  which the experiment compared with.
 
 
 %
 %
-In addition to the results of the currently researched model, Table~\ref{tab:acc-results2} brings down the results from an earlier experiment on LSTM models, which are considered as two best models for charge-discharge SoC estimation on other profiles.
-Even though a three-layer model was proven superior to a single one in the previous article, the same amount of neurons in one layer but with autoregression has shown better average results than any previously reported variations.
+In addition to the results of the currently-researched model, Table~\ref{tab:acc-results2} brings down the results from an earlier experiment on LSTM models, which are considered as the two best models for charge-discharge SoC estimation on other profiles.
+\ifthenelse{\boolean{thesis}}{
+Even though a three-layer model was proven superior to a single one in the previous chapter, the same amount of neurons in one layer but with autoregression has shown better average results than any previously-reported variations.
+} {        
+Even though a three-layer model was proven superior to a single one in the previous article, the same amount of neurons in one layer but with autoregression has shown better average results than any previously-reported variations.
+}
 Compared to the same trained and test profiles, the new method triple reduced the error compared to LSTM (Model \#1) and LSTM with Attention (Model \#3).
-Besides, it also managed to double reduce testing errors against other profiles.
-The FUDS model still remaines as the best model for capturing complex driving behaviours.
+In addition, it also managed to double reduce testing errors against other profiles.
+The FUDS model still remains as the best model for capturing complex driving behaviours.
 However, earlier, DST was considered the best model to capture the behaviour of other models.
-The newly proposed model produced better capture of the US06 dataset instead.
-Such results confirm that weight priority has been switched from the voltage curve on Model \#1 and \#3 to either current or most likely known SoC features.
+The newly-proposed model produced better capture of the US06 dataset instead.
+Such results confirm that weight priority has been switched from the voltage curve on Model \#1 and \#3 to either current or most-likely-known SoC features.
 Therefore, since the SoC is a function of current over time, the charge of US06 makes a good generalisation between chaotic urban driving and the most straightforward discharge pulse test profiles.
 \ifthenelse {\boolean{thesis}}
 {
@@ -194,7 +218,7 @@ Therefore, since the SoC is a function of current over time, the charge of US06 
 \end{table*}
 }
 
-The newly proposed training technique was compared against a similar implementation without a modified training loop.
+The newly-proposed training technique was compared against a similar implementation without a modified training loop.
 Both models were provided with ideal initial results, including the State of Charge.
 Every further prediction replaced the actual charge value and was used as an input in the following input set, along with actual Voltage, Current and Temperature.
 \ifthenelse {\boolean{thesis}}
