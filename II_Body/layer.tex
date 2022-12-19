@@ -1,15 +1,12 @@
 Time-series prediction of a neural model relies on the input history of equally distributed samples.
-The LSTM model is a recurrent neural network, designed to solve the vanishing gradient problem by remembering/preserving the long dependencies~\cite{rasifaghihi_predictive_2020}.
+\ifthenelse {\boolean{thesis}}{As discussed in earlier chapters, the LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering (preserving) the long dependencies \cite{rasifaghihi_predictive_2020}.}
+{The LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering (preserving) the long dependencies~\cite{rasifaghihi_predictive_2020}.}
 The cells inside the model act as memory units to preserve the dependence.
 Therefore, the output is closely dependent on the previous input samples.
 Unlike the normal RNN, and the more modern version GRU, LSTM has a more complicated structure constructed from several logical gates~\cite{LSTM_Hochreiter1997}.
 It is the most widely used type of model.
-\ifthenelse {\boolean{thesis}}
-{
-Chapter~\ref{cha:Analysis} at Subsection~\ref{subsub:lstm} and \mbox{Figure~\ref{fig:LSTM-cell}} provide a summary of the LSTM cell logic, with corresponding equations explaining the gates logic in detail.
-} 
-{
-\mbox{Figure~\ref{fig:LSTM-cell2}} provides a summary of the cell logic.
+\ifthenelse {\boolean{thesis}}{Chapter~\ref{cha:Analysis} provides a summary of the LSTM cell logic, with corresponding equations explaining the gates logic in detail.} 
+{\mbox{Figure~\ref{fig:LSTM-cell2}} provides a summary of the cell logic.
 It utilises three gates: forget $f_t$, input $i_t$ and output $o_t$, \mbox{Equation~\ref{eq:LSTM-gates2}}.
 The decisions are based around sigmoid $\sigma$ function~\ref{eq:sigmoid2}.
 With default $tanh$ as activation function, \mbox{Equation~\ref{eq:LSTM-output2}} describes the procedure for cell state update and further propagation.
@@ -61,29 +58,23 @@ Every next forecast will shift the time window by a constant step $s$, until all
 That approach is referred to as a stateless model, which only sees dependencies over input samples rather than preserving every received input, like in stateful implementations.
 It also allows the order of the windows to be shuffled to avoid overfitting.
 Since no dropout was applied before the model's output, a set of strategies has been applied to update the learning rate and rollback before early stopping to assist the fitting process.
-\ifthenelse {\boolean{thesis}}
-{
-Chapter~\ref{cha:Analysis} at subsections~\ref{subsec:l-rate}and~\ref{subsec:t_model} explain those two methods, which have already proven to be effective at training SoC models.
-} 
-{
-Early research on published methods has already utilised those two methods to assist in the models' training process [Sadykov, 1].
-It involved a scheduled learning rate value update with every passing epoch for as long as the accuracy kept improving with every passing iteration, as well as assisting the models' recovery in the event of overfitting by double reduction of the value either until the models' return to the same minimal optimisation or finalising the optimum result reach.
-}
+\ifthenelse {\boolean{thesis}}{Chapter~\ref{cha:Analysis} at subsections~\ref{subsec:l-rate} and~\ref{subsec:t_model} explain those two methods, which have already proven to be effective at training SoC models.} 
+{Early research on published methods has already utilised those two methods to assist in the models' training process [Sadykov, 1].
+It involved a scheduled learning rate value update with every passing epoch for as long as the accuracy kept improving with every passing iteration, as well as assisting the models' recovery in the event of overfitting by double reduction of the value either until the models' return to the same minimal optimisation or finalising the optimum result reach.}
 As a result, a NN model will learn dependency between a fixed amount of equally distributed time samples $n$ and yet independent from the order of the inputs.
-\mbox{Figure~\ref{fig:Windowing}} demonstrates how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features, 500 timestamps and around a hundred thousand samples to fit on.
+\ifthenelse {\boolean{thesis}}{\mbox{Figure~\ref{fig:Windowing}} adapts the earlier Figure~\ref{fig:Windowing3f}, demonstrating how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features (Voltage, Current, Temperature and added initial SoC), 500 timestamps and around a hundred thousand samples to fit on.}
+{\mbox{Figure~\ref{fig:Windowing}} demonstrates how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features, 500 timestamps and around a hundred thousand samples to fit on.}
 Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
 
-
 %
 %
-The mean and standard deviation has normalised all data to speed up the training process.
-The normalisation constant from training input samples must be used for validation and testing sets to ensure the right trends.
-The state of charge will be narrowed between 0 and 1 to represent the percentage charge to two decimals.
-\mbox{Table~\ref{tab:params}} highlights the parameters required to define the initial model, where $s$ defines output step size.
+\ifthenelse {\boolean{thesis}}{Similar to Chapter~\ref{cha:Analysis}, the mean and standard deviation has been used to normalise all data to speed up the training process.}
+{The mean and standard deviation has been used to normalise all data to speed up the training process.}
+The normalisation constant from training input samples has been used for all further validation and testing sets to ensure the right trends.
+The state of charge narrowed between 0 and 1 to represent the percentage charge to two decimals.
+\mbox{Table~\ref{tab:params}} highlights the parameters required to define the initial model, where $s$ defines output step size, which will be justified later in Section~\ref{sec:feed}.
 A $\sigma$ function as an output justifies the charge normalisation between 0 and 1.
-\ifthenelse {\boolean{thesis}}
-{
-The number of neurons has been selected based on the results made in Chapter~\ref{cha:Analysis}, Section~\ref{sec:AN:Results}.
+\ifthenelse {\boolean{thesis}}{The number of neurons has been selected based on the results made in Chapter~\ref{cha:Analysis}, Section~\ref{sec:AN:Results}.
 Even though the number of neurons was kept as per the performance result table, only one layer has been utilised due to manual implementation of the model and the inability to validate the multilayer implementation correctness against some published or already-used models.
 It was decided to stick to known approaches to validate the efficiency of the newly-proposed technique.
 \begin{table}[ht]
@@ -103,8 +94,8 @@ It was decided to stick to known approaches to validate the efficiency of the ne
         \hline\hline
     \end{tabular}
 \end{table}
-} {
-The number of neurons has been selected based on the results made based on earlier discoveries of the most optimal hyperparameters set [Sadykov, 1].
+}
+{The number of neurons has been selected based on the results made based on earlier discoveries of the most optimal hyperparameters set [Sadykov, 1].
 Results were adapted to the new custom-implemented model to validate the technique's efficiency in a comparable way with already-tested approaches.
 \begin{table}[ht]
     \renewcommand{\arraystretch}{1.3}
@@ -131,8 +122,8 @@ Results were adapted to the new custom-implemented model to validate the techniq
 %
 \ifthenelse {\boolean{thesis}}
 {
-The optimisation algorithm for the fitting process has been defined by regular Adam, which was highlighted in Chapter~\ref{cha:Analysis}, \mbox{Algorithm~\ref{alg:Adam}}, with the corresponding hyperparameters, \mbox{Table~\ref{tab:uni-hyperparams}}.
-Even though the RoAdam has proven to be superior, the selection of this optimiser is defined by the opportunity of comparing two early-created LSTM-based models, which used the same optimiser.
+The optimisation algorithm for the fitting process has been selected as the regular Adam method, which was highlighted in Chapter~\ref{cha:Analysis}, \mbox{Algorithm~\ref{alg:Adam}}, with the corresponding hyperparameters, \mbox{Table~\ref{tab:uni-hyperparams}}.
+The selection of this optimiser is made to allow comparison to two early-created LSTM-based models which use the same optimiser in Chapter~\ref{cha:Analysis}.
 }
 {
 The optimisation algorithm for the fitting process has been defined by Adam, \mbox{Algorithm~\ref{alg:copyAdam}}, with the corresponding hyperparameters on \mbox{Table~\ref{tab:newM-params}}.

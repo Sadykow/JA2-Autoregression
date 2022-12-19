@@ -64,33 +64,16 @@ There are three approaches to that: Charge estimation from other means, CC or th
 
 %
 % Papers purpose
-\ifthenelse {\boolean{thesis}}
-{
-The correction of the limitations identified in Chapter~\ref{cha:Analysis}, such as a training cross-accurate model and minimisation of resistance influence, will require implementing a new 4-feature-based method.
-In this chapter, the Long short-term memory model will be developed, with a history of approximately 8 minutes and 20 seconds usage (500 samples at 1Hz), to predict the current State of Charge and propagate the result further into the next prediction.
-A novel method of the training loop model will be proposed, to eliminate the possibility of accumulating error along with the value of a charge, utilising the Autoregressive technique to introduce an adaptive and robust solution to training output inaccuracy over time.
-% It utilises the Autoregressive technique to introduce an adaptive and robust solution to training with some training output inaccuracy over time.
-Furthermore, it forces the model to consider the potential of having variations in the State of Charge history and not fail the prediction in the following outputs.
-} {
 In this paper, the Long short-term memory model will implement a 4-feature estimator, with a history of 8 minutes and 20 seconds usage (500 samples at 1Hz), to predict the current State of Charge and propagate the result further.
 A novel method of the training loop model will be proposed, to eliminate the possibility of accumulating error along with the value of a charge, utilising the Autoregressive technique to introduce an adaptive and robust solution to training output inaccuracy over time.
 Furthermore, the model is forced to consider a miss accuracy of its State of Charge prediction before loss calculation.
-}
 
 %
 %
-\ifthenelse {\boolean{thesis}}
-{
-This chapter is organised as follows: a methodology for an RNN model is discussed in Section~\ref{sec:layer}.
-The details of how auto-regression has been utilised are in Section~\ref{sec:feed}.
-Section~\ref{sec:AU:Results} summarises the investigation results in a comparable manner similar to earlier mentioned work, and compares the degree of improvement over traditional RNN methods.
-Finally, Section~\ref{sec:AU:Conclussion} concludes the research by outlining several observations, which may require separate consideration.
-} {
-This paper is organised as follows: a methodology for an RNN model is discussed in Section~\ref{sec:layer}.
+The rest of this paper is organised as follows: a methodology for an RNN model is discussed in Section~\ref{sec:layer}.
 The details of how auto-regression has been utilised are in Section~\ref{sec:feed}.
 % Subsections 4.1 and 4.2 separate model validation points and parameter estimation processes.
 Section~\ref{sec:results} summarises the investigation results in a comparable manner similar to earlier mentioned work and compares the degree of improvement over traditional RNN methods.
 Finally, Section~\ref{sec:conclussion} concludes the research by outlining several observations, which may require separate consideration.
-}
 % Most were isolated to closed scenarios with provided data or from battery cycling machines.
 % The most promising approach to improve a model and make it more universal is to increase complexity. While some introduced deeper layer newtwork, others added additional mechanisms to already used.

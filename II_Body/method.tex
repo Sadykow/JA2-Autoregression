@@ -1,10 +1,9 @@
 %
 %
-The battery cycling data were obtained from the Battery Research Group of the
-Center for Advanced Life Cycle Engineering (CALCE) Group
-at the University of Maryland~\cite{noauthor_calce_2017}.
+\ifthenelse{\boolean{thesis}}{Again, the battery cycling data were obtained from the Battery Research Group of the Center for Advanced Life Cycle Engineering (CALCE) Group at the University of Maryland~\cite{noauthor_calce_2017}, as per methodology of Chapter~\ref{cha:Analysis}.}
+{The battery cycling data were obtained from the Battery Research Group of the Center for Advanced Life Cycle Engineering (CALCE) Group at the University of Maryland~\cite{noauthor_calce_2017}.}
 The temperatures of 20, 25, 30, 40 and 50\textdegree{}C over three driving profiles were selected as training and testing groups.
-Each temperature was taken from three driving profiles: Dynamic Stress Test (DST), Highway driving (US06) and Federal-Urban driving schedule (FUDS)
+Each temperature was taken from three driving profiles: Dynamic Stress Test (DST), Highway driving (US06) and Federal-Urban driving schedule (FUDS).
 % The FUDS driving scheduler acts as a training set, then the other two DST and US06 for testing.
 % The choice of validation sets was due to differences in the current consumption.
 % If DST has a constant variation of the current amps over time, the US06 uses an aggressive mechanism similar to the FUDS.
@@ -13,9 +12,8 @@ The charge cycles were resampled to equalise with a discharge rate of 1 Hz, and 
 
 %
 %
-\ifthenelse{\boolean{thesis}}{
-The accuracy calculation is similar to what Chapter~\ref{cha:Analysis}, Subsection~\ref{subsec:t_model} and Figure~\ref{fig:plot_demo} demonstrated.
-The difference is that dotted prediction lines are distinguished by red and yellow colours, where red indicates a typical prediction at any time, and yellow is the continuous feed-forward where only an initial 500 were provided.
+\ifthenelse{\boolean{thesis}}{The accuracy calculation is similar to what Chapter~\ref{cha:Analysis}, Subsection~\ref{subsec:t_model} and Figure~\ref{fig:plot_demo} demonstrated.
+% The difference is that dotted prediction lines are distinguished by red and yellow colours, where red indicates a typical prediction at any time, and yellow is the continuous feed-forward where only an initial 500 were provided.
 } {
 \begin{figure}[ht]
     % RMSE equation: RMS = (tf.keras.backend.sqrt(tf.keras.backend.square(y_test_one[::,]-PRED)))
@@ -37,8 +35,10 @@ Everything follow-up prediction is based on the early produced output of the sam
     \label{eq:abs-error}
 \end{equation}
 }
-Overall, the results were reported on six average of ten attempts subplots, three per profile, where the first would outline training and testing history over training time and the other two predictions on a single 25\textdegree{}C trained cycle, and two from 25 and 30\textdegree{}C testing cycles of other two profiles.
+\ifthenelse{\boolean{thesis}}{Overall, the result reporting is conducted the same way as it was in Chapter~\ref{cha:Analysis} on the average of 10 attempts with cross-testing on three profiles.}
+{Overall, the results were reported on nine averages of ten attempts subplots, three per profile, where the first would outline training and testing history over training time and the other two predictions on a single 25\textdegree{}C trained cycle, and two from 25 and 30\textdegree{}C testing cycles of other two profiles.}
 % Report resutls based on error degradation pver Mean Average Error and Root MEan Squared Errors.
 % Choosing the most optimal will be the test subject.
-In the end, to compute overall performance comparable results, each model was tested against the entire training set of all three profiles and summarised in a single table.
+\ifthenelse{\boolean{thesis}}{In the end, to compute overall performance comparable results, each model was tested against the entire training set of all three profiles and summarised in a single table, compared with two LSTM models from previous Chapter~\ref{cha:Analysis}.}
+{In the end, to compute overall performance comparable results, each model was tested against the entire training set of all three profiles and summarised in a single table, compared with two LSTM models from articles Chem and Mamo \ref{}.}
 % BEst one per each iteration will be summarised in a table and then compared against two acccuracy plots as per following example.

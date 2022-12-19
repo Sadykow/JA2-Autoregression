@@ -1,13 +1,30 @@
 The regular training procedure for a 4-feature model has a significant limitation. The model does not consider the Feed-Forward application of the prediction output.
-In the case of excellent input values, the output is expected to be within~1 \% miss accuracy, since from 500 of ideal SoC values estimation of 501 is a trivial task, not requiring a Neural Network to perform.
+In the case of excellent input values, the output is expected to be within~1 \% miss accuracy, since from 500 ideal SoC values, estimation of value 501 is a trivial task.
+
+%
+%
+Two subplots, \mbox{Figure~\ref{fig:regular_tr}}, demonstrate the prediction results of a four-feature-based FUDS-trained simple LSTM model against a single battery cycle of DST driving.
+\mbox{Subfigure~\ref{subfig:regular_tr}} demonstrates the prediction based on the always-known perfect State of Charge, at any random point in time, marked with a red dotted line.
+On the other hand, the \mbox{Subfigure~\ref{subfig:regular_ts}} uses the feedforward approach, where only the first sample window has the actual SoC.
+Every upcoming prediction replaces the known value with a prediction and therefore has a strict order of samples from start to end, marked as a yellow dotted line.
+The same colour annotation will be used for all the remaining plots to distinguish the input schemes.
+
+%
+%
+%
+The green error axis has been dropped from \mbox{subfigure~\ref{subfig:regular_ts}} due to high inaccuracy, which covers half of the plot area.
+\ifthenelse{\boolean{thesis}}{The implementation of this prediction method is presented in \mbox{Appendix~\ref{app:Feed-Forward}}.}{}
+It demonstrates how the appended charge output model accumulates the error with every dependent input in a single prediction.
+If that output is used for further prediction and the model keeps preserving the dependency, the miss accuracy value rises non-linearly.
+This is a good justification for why there has been no evidence in the publication of utilising a feed-forward approach to the SoC estimation.
 \ifthenelse{\boolean{thesis}}{
-    \begin{figure*}[htbp]
+    \begin{figure}[htbp]
         \centering
         % DST based tests
         \begin{subfigure}[b]{0.485\textwidth}
             \centering
-            \includesvg[width=\linewidth]{III_Conclussion/im_compare/FUDS-val-48.svg}
-            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-val-9.svg}
+            % \includesvg[width=\linewidth]{III_Conclussion/im_compare/FUDS-val-48.svg}
+            \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMFUDS-val-9.svg}
             \caption{Regular training process snapshot}
             \label{subfig:regular_tr}
         \end{subfigure}
@@ -20,7 +37,7 @@ In the case of excellent input values, the output is expected to be within~1 \% 
         \end{subfigure}
         \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop}
         \label{fig:regular_tr}
-    \end{figure*}
+    \end{figure}
 } {
     \begin{figure}[htbp]
         \centering
@@ -42,86 +59,48 @@ In the case of excellent input values, the output is expected to be within~1 \% 
         \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop}
         \label{fig:regular_tr}
     \end{figure}
-
 }
-% \begin{figure}[ht]%[htbp]
-%     \centering
-%     \includegraphics[width=0.7\linewidth]{II_Body/images/multistep_autoregressive.png}
-%     \caption{documented way}
-%     \label{fig:autoregressive}
-% \end{figure}
 
 %
 %
-Two subplots, \mbox{Figure~\ref{fig:regular_tr}}, demonstrate the prediction results of a four-feature-based trained simple LSTM model against a single battery cycle of DST driving.
-\mbox{Subfigure~\ref{subfig:regular_tr}} demonstrates the prediction based on the always-known perfect State of Charge, opposite on \mbox{subfigure~\ref{subfig:regular_ts}} with only perfect initial, and every following sample gets fed-forward.
-The green error axis has been dropped from plotting due to high inaccuracy.
-\ifthenelse{\boolean{thesis}}{
-The implementation of this prediction method is presented in \mbox{Appendix~\ref{app:Feed-Forward}}.
-}{}
-It demonstrates how the appended charge output model accumulates the error with every dependent input in a single prediction.
-If that output is used for further prediction and the model keeps preserving the dependency, the miss accuracy value rises non-linearly.
 The reason for that lies in the weights the model places on the State of Charge input feature.
 For a better weight balance, the training procedure must be modified to consider the possibility of an inaccuracy in the input charge data.
-The diagram in \mbox{Figure~\ref{subfig:testing}} illustrates regular training and testing procedures for a model to produce output.
-The implementation has been based on contributions from the original framework developers ~\cite{time_2020}.
-\ifthenelse{\boolean{thesis}}{
-\begin{figure*}[htbp]
+One example of a modified training loop is Autoregressive models~\cite{time_2020}.
+The implementation can be applied to any early-created model, referring to regressive implementation.
+However, this is an example of the earlier mentioned stateful data management, where the model was explicitly programmed to run internally automatically and remains of stateless type.
+The state will be produced and used internally but is not present in the outputs.
+\mbox{Figure~\ref{fig:autoregressive}} demonstrate how a trained model internally uses produced prediction to produce more than a single output ahead of time.
+For example, from a given input of sensory data of 23 days, a weather prediction model estimates a further three weeks ahead.
+However, this case produces the exact number of output features, matching the input to make the prediction work properly.
+Besides, once the 24 day comes, the same model can be updated with new actual information, adjusting the follow-up for three weeks.
+In the case of the State of Charge prediction model, such an approach cannot be used by itself since the SoC can not be determined like sensory data.
+\begin{figure}[htbp]%[htbp]
     \centering
-    \begin{subfigure}[b]{0.485\textwidth}
-        \centering
-        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}
-        \caption{Modified training process}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.485\textwidth}
-        \centering
-        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}
-        \caption{Feed-Forward validation process}
-    \end{subfigure}
-    \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops}
-    \label{fig:modefied_tr}
-\end{figure*}
-} {
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}[b]{\columnwidth}
-        \centering
-        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}
-        \caption{Modified training process}
-    \end{subfigure}
-    \begin{subfigure}[b]{\columnwidth}
-        \centering
-        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}
-        \caption{Feed-Forward validation process}
-    \end{subfigure}
-    \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops}
-    \label{fig:modefied_tr}
+    \includegraphics[width=0.7\linewidth]{II_Body/images/multistep_autoregressive.png}
+    \caption{Autoregressive model input and output demonstration from time-series tutorial~\cite{time_2020}}
+    \label{fig:autoregressive}
 \end{figure}
-}
+
 %
 %
-The training procedure for the regular LSTM model must be modified to consider potential inaccuracy using the autoregression technique.
-%\textcolor{red}{I do not feel comfortable referencing the documentation, but what choice do I have now?}
-The diagram in \mbox{Subfigure~\ref{subfig:training}} demonstrates the procedure for the model call using autoregression.
-\ifthenelse{\boolean{thesis}}{
-    Details have been attached to Appendix~\ref{app:AutoFeedback}.
-}{}
-Unlike regular LSTM, training and testing differ from each other.
+The SoC estimation model may still benefit from multiple outputs by adapting the Autoregression to the accumulator utilisation scenario.
+Therefore, the training procedure for the regular LSTM model has been modified to consider potential inaccuracy in the known data rather than the future outputs.
+The diagram in Figure~\ref{fig:training_testing} illustrates how the technique has been adapted to the current research.
+Unlike Figure~\ref{fig:autoregressive}, the training and testing procedures were separated from each other on two separate subfigures.
+% The diagram in \mbox{Figure~\ref{subfig:testing}} illustrates regular training and testing procedures for a model to produce output.
+The diagram in \mbox{Subfigure~\ref{subfig:training}} demonstrates the procedure for the model call using autoregression during the training, whereas Figure~\ref{subfig:testing} only shows as a comparison to the regular usage and during the actual application or testing.
+\ifthenelse{\boolean{thesis}}{Code-based detailed implementation have been attached in Appendix~\ref{app:AutoFeedback}.}{}
+% Unlike regular LSTM, training and testing differ from each other.
 If the testing procedure remains unchanged, the training performs multiple calls during a single-window sample processing.
 Every new call outputs the results and feeds again into the same model, with one sample from each sensor.
-Each output also contained a model state, containing the values stored in the cell, preserving dependency between model calls.
-State output is used only for internal model processing.
-Every output of every step has been stored as an array.
-With a new approach, an optimiser will compare an array of predicted samples against the true values of the SoC.
-This was meant to increase the model fit process.
-The more output samples the model returns during the training, the better the real-time prediction against aggressive driving profiles.
-\mbox{Figure~\ref{fig:modefied_tr}} contains a similar test, but without autoregression.
-Even though the accuracy with tabled samples has decreased, its feed-forward prediction accuracy has significantly increased.
-\begin{figure*}[htbp]
+Each output also contained a model state, containing the values stored in the cells, preserving dependency between model calls.
+% State output is used only for internal model processing.
+Every output of every step has been stored in the returned array for the optimiser to adjust weights.
+With a new approach, it will compare an array of predicted samples against the actual values of the SoC, making the adjustments based on the inaccuracies present in the dependencies and considering them as part of the system.
+Unlike testing, the training is not feed-forward based; therefore, all actual SoC data and known SoC inputs are considered true, except the last $s$, which matches the number of outputs.
+% This was meant to increase the model fit process.
+The more output samples the model returns during the training (Returned training array), the better the real-time prediction against aggressive driving profiles.
+\begin{figure}[htbp]
     \centering
     % DST based tests
     \begin{subfigure}[b]{0.85\textwidth}
@@ -141,4 +120,51 @@ Even though the accuracy with tabled samples has decreased, its feed-forward pre
     \end{subfigure}
     \caption{Block diagram demonstration of training and testing working procedures for 4-featured-based models.}
     \label{fig:training_testing}
-\end{figure*}
+\end{figure}
+
+%
+%
+Now, with modified training procedure and optimiser usage of the 30 output samples (29 known and one predicted) as an example, \mbox{Figure~\ref{fig:modefied_tr}} contains a similar test, as without autoregression on earlier Figure~\ref{fig:regular_tr}.
+Even though the accuracy with tabled samples has decreased between subfigures~\ref{subfig:regular_tr} and~\ref{subfig:modefied_tr}, its feed-forward prediction accuracy has significantly increased and does not lose the trend, subfigures~\ref{subfig:regular_ts} and~\ref{subfig:modefied_ts}.
+The implementation has been based on contributions from the original framework developers~\cite{time_2020} and written based on corresponding original documentation~\cite{tensorflow2015-whitepaper}.
+\ifthenelse{\boolean{thesis}}{
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.485\textwidth}
+        \centering
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}
+        \caption{Modified training process}
+        \label{subfig:modefied_tr}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.485\textwidth}
+        \centering
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}
+        \caption{Feed-Forward validation process}
+        \label{subfig:modefied_ts}
+    \end{subfigure}
+    \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops}
+    \label{fig:modefied_tr}
+\end{figure}
+} {
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}
+        \caption{Modified training process}
+        \label{subfig:modefied_tr}
+    \end{subfigure}
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
+        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}
+        \caption{Feed-Forward validation process}
+        \label{subfig:modefied_ts}
+    \end{subfigure}
+    \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops}
+    \label{fig:modefied_tr}
+\end{figure}
+}

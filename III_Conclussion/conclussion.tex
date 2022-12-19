@@ -1,19 +1,16 @@
-\ifthenelse{\boolean{thesis}}{
-This chapter intends to improve the state of charge prediction inside an Electric Vehicle.    
-}{
-This work intends to improve the state of charge prediction inside an Electric Vehicle.
-}
-The idea is to rely only on the sensory data and a single Neural Network-based battery model.
-The experiment has proven that State of Charge prediction models tends to put significant weight into the Voltage to describe the charging process during the model training process.
-Adding the charge as a feature has proven that the history of the charge had a higher weight on a system than sensory data.
-As a result it decreases error, since the model is anticipated to have a perfect history of the charge from a table.
+\ifthenelse{\boolean{thesis}}{ The objective of this chapter was to improve the state of charge prediction inside an Electric Vehicle.}
+{The objective of this work was to improve the state of charge prediction inside an Electric Vehicle.}
+% The idea is to rely only on the sensory data and a single Neural Network-based battery model.
+The experiment has proven that State of Charge prediction models tends to put significant weight into the Voltage to describe the charging process during the model training process, making DST the best model to train on early.
+Adding the charge as a feature has proven that the history of the SoC had a higher weight on a system than sensory data.
+As a result, it decreases error since the model is anticipated to have a perfect charge history from tabled data.
 Every next prediction, which had a small percentage of miss accuracy, only accumulated errors in every following charge estimation, leading to worse results than pure sensory data usage.
 
 %
 %
 Instead of manually adjusting each input feature's weight, the best approach to minimising the charge's effect on an overall system is to use the autoregression training technique. 
 Since the sigmoid function restrained the output, the first results from the model at the start of the training were random values within 50\% of the expected charge.
-Instead of always having perfect values, the auto-regression technique allowed models to weight adjustments based on their initial error.
+Instead of always having perfect values, the auto-regression technique allowed model weights adjustments based on their initial error.
 As a result, the optimiser performed the model fit based on the array of model outputs over evenly-spaced time samples.
 Despite the modification introducing an $n_{th}^{2}$ degree computation based on the number of outputting steps, the actual prediction was performed only on the latest sample.
 Therefore, the autoregressive model added no performance losses during actual utilisation. 

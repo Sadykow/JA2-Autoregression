@@ -6,11 +6,26 @@
 %     \item Verify the model against another cell with the same profile.
 %     \item Validate the performance against the other two profiles, DST and US06.
 % \end{itemize}
+The previos chapter has concluded that all researched model do not meet the same accuracy or implementation, which match time-series model in onther scenarios, like weather forecasting.
+The likely couse of it was the weight distribution across three input feature, then training process puts higher impact on the voltage curve.
+Besides, a huge range in temperatures add discrepancy in the predictions, due to the impact of higher power dissapation in hotter state.
+Since the state of charge is actually a function of current over time, this chapter is intended to research a way to improve that accuracy through modification of the training process.
+
 
 %
 %
 %There have been several attempts to determine the most effective strategy for model training.
 %Both LSTM and Gradient Recurrent Unit are effective, and there is no noticeable difference in the impact between speed and outputted accuracy.
+The correction of the limitations identified in Chapter~\ref{cha:Analysis}, such as training a cross-accurate model and minimisation of internal resistance influence or higher temperatures, will require an implemention of a new 4-feature-based method.
+This time a state of charge will become a part of the training, assuming that initial state of the battery has either being known due to being fully charge or completely depleted, or using other methods of estimation
+For example, same models, which were researched early, have an ability to estimate SoC at any point in the cycle using only sensory readings.
+
+%
+%
+In this chapter, the Long short-term memory model will be developed, with a history of approximately 8 minutes and 20 seconds usage (500 samples at 1Hz), to predict the current State of Charge and propagate the result further into the next prediction.
+A novel method of the training loop model will be proposed, to eliminate the possibility of accumulating error along with the value of a charge, utilising the Autoregressive technique to introduce an adaptive and robust solution to training output inaccuracy over time.
+% It utilises the Autoregressive technique to introduce an adaptive and robust solution to training with some training output inaccuracy over time.
+Furthermore, it forces the model to consider the potential of having variations in the State of Charge history and not fail the prediction in the following outputs.
 
 
 %
@@ -18,10 +33,11 @@
 
 %
 %
-% The rest of this paper is organised as follows: a methodology for an RNN model discussed in Section 2.
-% The details of how auto-regression has been utilised are in Section 3.
-% Subsections 4.1 and 4.2 separate points of model validation and process of parameter estimation.
-% Finally, section 5 concludes the research by outlining several observations, which may require separate consideration.
+The rest of this chapter is organised as follows: a methodology for an RNN model is discussed in Section~\ref{sec:layer}.
+The details of how auto-regression has been utilised are in Section~\ref{sec:feed}.
+% Subsections 4.1 and 4.2 separate model validation points and parameter estimation processes.
+Section~\ref{sec:AU:Results} summarises the investigation results in a comparable manner similar to the earlier mentioned work and compares the degree of improvement over traditional RNN methods.
+Finally, Section~\ref{sec:AU:Conclussion} concludes the research by outlining several observations, which may require separate consideration.
 % Most were isolated to closed scenarios with provided data or from battery cycling machines.
 % The most promising approach to improve a model and make it more universal is to increase complexity. While some introduced deeper layer networks, others added additional mechanisms to those already used.
 % \begin{landscape}

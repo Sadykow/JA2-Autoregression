@@ -8,8 +8,8 @@ After that, ten models of a single layer with 131 neurons LSTM with Autoregressi
 An average of all ten results were plotted and later tested against entire training sets to measure the performance.
 
 \subsection{Optimal output step size}
-    The optimal size of the output steps for better capturing the State of Charge was determined through experimental training.
-    \mbox{Table~\ref{tab:out_steps}} outlines the training iterations of each driving profile until it reaches accuracy below 2.5\%.
+    The optimal size of the output steps $s$ for better capturing the State of Charge was determined through experimental training.
+    \mbox{Table~\ref{tab:out_steps}} outlines the training iterations of each driving profile until it reaches accuracy below 2.5\%, and Figure~\ref{fig:Models_res} plots the final best results on a feed-forward test.
     The training continued for as long as there was no overfitting determined.
     Profiles which already reached an error below the predetermined error were excluded from the followed up experiments.
     \ifthenelse{\boolean{thesis}}{
@@ -58,7 +58,7 @@ An average of all ten results were plotted and later tested against entire train
 The Dynamic Stress Test (DST) has a stable trend of current consumption and regenerative process.
 Therefore it did not take long to capture the behaviour of the charge.
 A single cycle on \mbox{subfigure~\ref{subfig:res_DST}} provides an example of accurate feed-forward charge estimation with output steps between 10-15 samples.
-The US06 and FUDS have more aggressive current usage, leading to trendier voltage readings.
+The US06 and FUDS have more aggressive current usage, leading to a higher step $s$ number.
 As per \mbox{subfigures~\ref{subfig:res_US} and~\ref{subfig:res_FUDS}}, it took twice as many output samples to achieve similar accuracy to the DST-based model.
 Any further increase can capture even more complicated scenarios, leading to a longer training time.
 However, every added step decreased the epoch per training model to produce the best fit.
@@ -105,6 +105,66 @@ Despite making the training process slow compared to other steps due to concurre
 With cross-training and testing over ten attempts average (to minimise the stochastic nature of the Machine Learning), Figure~\ref{fig:Model-6res} has been produced to demonstrate the resulting predictions.
 The total errors for each model are summarised in Table~\ref{tab:acc-results2}.
 In total, 30 models were produced, averaged, and compared for the best usage in an Electric Vehicle.
+\begin{figure*}[htbp]
+    \centering
+    %%%%%%%%%%%%%%%%% DST based tests %%%%%%%%%%%%%%%%%
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/M6-history-DST-mae.svg}
+        \caption{Average training and testing MAE history average of 10 attempts}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/DST-6-train.svg}
+        \caption{Validation on a single DST cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/DST-6-test.svg}
+        \caption{Testing on two cycles of US06 and FUDS profiles average of 10 attempts}
+        \label{subfig:Model-6res-DSTvsFUDS}
+    \end{subfigure}
+    %%%%%%%%%%%%%%%%% US06 based tests %%%%%%%%%%%%%%%%%
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/M6-history-US06-mae.svg}
+        \caption{Average training and testing MAE history average of 10 attempts}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/US06-6-train.svg}
+        \caption{Validation on a single US06 cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/US06-6-test.svg}
+        \caption{Testing on two cycles of DST and FUDS profiles average of 10 attempts}
+    \end{subfigure}
+    % %%%%%%%%%%%%%%%%% FUDS based tests %%%%%%%%%%%%%%%%%
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/M6-history-FUDS-mae.svg}
+        \caption{Average training and testing MAE history average of 10 attempts}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/FUDS-6-train.svg}
+        \caption{Validation on a single FUDS cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{II_Body/images/FUDS-6-test.svg}
+        \caption{Testing on two cycles of DST and US06 profiles average of 10 attempts}
+    \end{subfigure}
+    \caption{Model 6: Stateless LSTM with 30 steps of Autoregression.}
+    \label{fig:Model-6res}
+\end{figure*}
 
 %
 %
@@ -116,24 +176,21 @@ Yet, the results do not deviate from validation as much as other similar models,
 
 %
 %
-In addition to the results of the currently-researched model, Table~\ref{tab:acc-results2} brings down the results from an earlier experiment on LSTM models, which are considered as the two best models for charge-discharge SoC estimation on other profiles.
-\ifthenelse{\boolean{thesis}}{
-Even though a three-layer model was proven superior to a single one in the previous chapter, the same amount of neurons in one layer but with autoregression has shown better average results than any previously-reported variations.
-} {        
-Even though a three-layer model was proven superior to a single one in the previous article, the same amount of neurons in one layer but with autoregression has shown better average results than any previously-reported variations.
-}
-Compared to the same trained and test profiles, the new method triple reduced the error compared to LSTM (Model \#1) and LSTM with Attention (Model \#3).
-In addition, it also managed to double reduce testing errors against other profiles.
-The FUDS model still remains as the best model for capturing complex driving behaviours.
-However, earlier, DST was considered the best model to capture the behaviour of other models.
-The newly-proposed model produced better capture of the US06 dataset instead.
-Such results confirm that weight priority has been switched from the voltage curve on Model \#1 and \#3 to either current or most-likely-known SoC features.
+In addition to the results of the currently-researched model, Table~\ref{tab:acc-results2} includes the best results from Chapter~\ref{cha:Analysis} LSTM models, which are considered as the two best models for charge- discharge SoC estimation on other profiles.
+\ifthenelse{\boolean{thesis}}{Even though a three-layer model was proven superior to a single one in the previous chapter, the same amount of neurons in one layer but with autoregression has shown better average results than any previously-reported variations.}
+{Even though a three-layer model was proven superior to a single one in the earlier works~\ref{}, the same amount of neurons in one layer but with autoregression has shown better average results than any previously-reported variations.}
+Compared to the same trained and test profiles, the new method reduced the error compared to LSTM (Model \#1) and LSTM with Attention (Model \#3) by a factor of 3.
+In addition, it also managed to reduce testing errors by a factor of 2 against other profiles.
+FUDS is the best model to train on and capture complex driving behaviours for the new model.
+This is different to the testing earlier, where DST was considered the best model to train on and capture the behaviour of other models.
+The newly-proposed model produced better capture of the US06 dataset.
+Such results confirm that weight priority has been switched from the voltage curve on Model \#1 and \#3 to either current or most likely-known SoC features.
 Therefore, since the SoC is a function of current over time, the charge of US06 makes a good generalisation between chaotic urban driving and the most straightforward discharge pulse test profiles.
 \ifthenelse {\boolean{thesis}}
 {
 \begin{table}[htbp]
     \renewcommand{\arraystretch}{1.3}
-    \caption{Accuracy result summary for entire training datasets.}
+    \caption{Accuracy result summary for entire training datasets between best existing models from Chapter~\ref{cha:Analysis} and novel method.}
     \centering
     \label{tab:acc-results2}
 \resizebox{\textwidth}{!}{
@@ -166,9 +223,9 @@ Therefore, since the SoC is a function of current over time, the charge of US06 
     % 4 & US06 & 6.19 & 8.57 & 92.35 & 3.30 & 4.12 & 98.17 & 5.42 & 6.82 & 94.91 \\ 
     %   & FUDS & 5.74 & 7.49 & 94.16 & 4.03 & 5.75 & 96.44 & 1.58 & 2.28 & 99.43 \\ 
     \hline
-      & DST & 0.81 & 1.10 & 99.87 & 1.92 & 2.71 & 99.21 & 1.77 & 2.35 & 99.40  \\
-    6  & US06 & 1.49 & 2.02 & 99.57 & 0.89 & 1.06 & 99.88 & 1.28 & 1.94 & 99.59  \\
-      & FUDS & 2.10 & 2.94 & 99.10 & 1.28 & 1.87 & 99.62 & 0.50 & 0.68 & 99.95  \\
+    \textbf{New} & \textbf{DST} & \textbf{0.81} & \textbf{1.10} & \textbf{99.87} & \textbf{1.92} & \textbf{2.71} & \textbf{99.21} & \textbf{1.77} & \textbf{2.35} & \textbf{99.40}  \\
+    \textbf{Met-}& \textbf{US06} & \textbf{1.49} & \textbf{2.02} & \textbf{99.57} & \textbf{0.89} & \textbf{1.06} & \textbf{99.88} & \textbf{1.28} & \textbf{1.94} & \textbf{99.59}  \\
+    \textbf{hod} & \textbf{FUDS} & \textbf{2.10} & \textbf{2.94} & \textbf{99.10} & \textbf{1.28} & \textbf{1.87} & \textbf{99.62} & \textbf{0.50} & \textbf{0.68} & \textbf{99.95}  \\
     \hline\hline
 \end{tabular}
 }
@@ -209,22 +266,59 @@ Therefore, since the SoC is a function of current over time, the charge of US06 
     % 4 & US06 & 6.19 & 8.57 & 92.35 & 3.30 & 4.12 & 98.17 & 5.42 & 6.82 & 94.91 \\ 
     %   & FUDS & 5.74 & 7.49 & 94.16 & 4.03 & 5.75 & 96.44 & 1.58 & 2.28 & 99.43 \\ 
     \hline
-        & DST & 0.81 & 1.10 & 99.87 & 1.92 & 2.71 & 99.21 & 1.77 & 2.35 & 99.40  \\
-    6  & US06 & 1.49 & 2.02 & 99.57 & 0.89 & 1.06 & 99.88 & 1.28 & 1.94 & 99.59  \\
-        & FUDS & 2.10 & 2.94 & 99.10 & 1.28 & 1.87 & 99.62 & 0.50 & 0.68 & 99.95  \\
+    New & DST & 0.81 & 1.10 & 99.87 & 1.92 & 2.71 & 99.21 & 1.77 & 2.35 & 99.40  \\
+    Met-& US06 & 1.49 & 2.02 & 99.57 & 0.89 & 1.06 & 99.88 & 1.28 & 1.94 & 99.59  \\
+    hod & FUDS & 2.10 & 2.94 & 99.10 & 1.28 & 1.87 & 99.62 & 0.50 & 0.68 & 99.95  \\
     \hline\hline
 \end{tabular}
 }
 \end{table*}
 }
 
-The newly-proposed training technique was compared against a similar implementation without a modified training loop.
-Both models were provided with ideal initial results, including the State of Charge.
-Every further prediction replaced the actual charge value and was used as an input in the following input set, along with actual Voltage, Current and Temperature.
+% The newly-proposed training technique was compared against a similar implementation without a modified training loop.
+% Both models were provided with ideal initial results, including the State of Charge.
+% Every further prediction replaced the actual charge value and was used as an input in the following input set, along with actual Voltage, Current and Temperature.
 \ifthenelse {\boolean{thesis}}
 {    
-    % %
-    % %
+Since electric vehicles may not always start with the initial full capacity of the batteries, several additional plots on Figure~\ref{fig:init_time} were produced to validate models' adaptivity.
+Assuming that the initial known SoC has either been recorded from the previous car state or determined by other means, like 3-feature-based models from Chapter~\ref{cha:Analysis}, the new method has little issue with starting condition.
+\begin{figure*}[htbp]
+    \centering
+    % DST based tests
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharging.svg}
+        \caption{Half-way through charging process}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharged.svg}
+        \caption{Fully charged state \\ \ \ \ }
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.325\textwidth}
+        \centering
+        \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarging.svg}
+        \caption{Half-way through discharging process}
+    \end{subfigure}
+    % \begin{subfigure}[b]{0.475\textwidth}
+    %     \centering
+    %     \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarged.svg}
+    %     \caption{Completely discharged state}
+    % \end{subfigure}
+    \caption{Different initial periods of model validation}
+    \label{fig:init_time}
+\end{figure*}
+} { }
+    %
+    %
+    % The offset in the validation can be explained by the amount of weight placed into the known SoC, unlike with 3-feature models, where voltages act as the primary characteristic.
+    % In the State of Charge estimation, the significant impact is affected by current, and since the State of charge is the function of current and time, the weight the properly applied to the correct feature over the training process.
+    % Any other training process appeared to be unnecessary and may lead to overfitting.
+    % \mbox{Figure~\ref{fig:Models_res}} demonstrates the best feed-forward prediction for all three profiles.
+    %
+    %
     % Several plots in \mbox{Figure~\ref{fig:diff_prof_compare}} outline demonstrates the process of model validation and testing.
     % The model has been trained and validated against FUDS-profile, \mbox{subfigure~\ref{subfig:FUDS_diff_prof_compare}}, and tested again DST on \mbox{subfigure~\ref{subfig:DST_diff_prof_compare}} and US06 on \mbox{subfigure~\ref{subfig:US_diff_prof_compare}}.
     % The plots are based on the latest output from the training loop.
@@ -233,43 +327,6 @@ Every further prediction replaced the actual charge value and was used as an inp
     % This way, the selection process can determine the iteration at which the model reached the lowest error across all three profiles. 
     % As a result, after eight iterations, the model achieved the most optimal results, \mbox{Figure~\ref{fig:diff_prof_best}}.
     % Any further training increases the accuracy over one set but leads to loss of generalisation over the other two.
-
-    % %
-    % %
-    % The offset in the validation can be explained by the amount of weight placed into the known SoC, unlike with 3-feature models, where voltages act as the primary characteristic.
-    % In the State of Charge estimation, the significant impact is affected by current, and since the State of charge is the function of current and time, the weight the properly applied to the correct feature over the training process.
-    % Any other training process appeared to be unnecessary and may lead to overfitting.
-    % \mbox{Figure~\ref{fig:Models_res}} demonstrates the best feed-forward prediction for all three profiles.
-
-    % \begin{figure*}[htbp]
-    %     \centering
-    %     % DST based tests
-    %     \begin{subfigure}[b]{0.475\textwidth}
-    %         \centering
-    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharging.svg}
-    %         \caption{Charging process}
-    %     \end{subfigure}
-    %     \hfill
-    %     \begin{subfigure}[b]{0.475\textwidth}
-    %         \centering
-    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iCharged.svg}
-    %         \caption{Charged state}
-    %     \end{subfigure}
-    %     \hfill
-    %     \begin{subfigure}[b]{0.475\textwidth}
-    %         \centering
-    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarging.svg}
-    %         \caption{Discharging process}
-    %     \end{subfigure}
-    %     \begin{subfigure}[b]{0.475\textwidth}
-    %         \centering
-    %         \includesvg[width=\linewidth]{III_Conclussion/im_time/train-iDischarged.svg}
-    %         \caption{Discharged state}
-    %     \end{subfigure}
-    %     \caption{Different initial periods of model validation}
-    %     \label{fig:init_time}
-    % \end{figure*}
-} { }
     % Plots above outline different initial starting points and show the convergence over time. \textcolor{red}{Stupid idea, that's not helpful. How about I add some red line at very beginning, indicated where did I start initially and how far it plotted itself. Accumulate 500 initials steps and then plot them seperately on top to show the indication.}
     % \begin{figure*}[htbp]
     %     \centering
@@ -333,64 +390,4 @@ Every further prediction replaced the actual charge value and was used as an inp
     %     \caption{The result of prediction over DST and US06 at the lowest training and validation iteration}
     %     \label{fig:diff_prof_best}
     % \end{figure*}
-\begin{figure*}[htbp]
-    \centering
-    %%%%%%%%%%%%%%%%% DST based tests %%%%%%%%%%%%%%%%%
-    \begin{subfigure}[b]{0.325\textwidth}
-        \centering
-        \includesvg[width=\linewidth]{II_Body/images/M6-history-DST-mae.svg}
-        \caption{Average training and testing MAE history average of 10 attempts}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.325\textwidth}
-        \centering
-        \includesvg[width=\linewidth]{II_Body/images/DST-6-train.svg}
-        \caption{Validation on a single cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.325\textwidth}
-        \centering
-        \includesvg[width=\linewidth]{II_Body/images/DST-6-test.svg}
-        \caption{Testing on two cycles of US06 and FUDS profiles average of 10 attempts}
-        \label{subfig:Model-1res-DSTvsFUDS}
-    \end{subfigure}
-    %%%%%%%%%%%%%%%%% US06 based tests %%%%%%%%%%%%%%%%%
-    \begin{subfigure}[b]{0.325\textwidth}
-        \centering
-        \includesvg[width=\linewidth]{II_Body/images/M6-history-US06-mae.svg}
-        \caption{Average training and testing MAE history average of 10 attempts}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.325\textwidth}
-        \centering
-        \includesvg[width=\linewidth]{II_Body/images/US06-6-train.svg}
-        \caption{Validation on a single cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.325\textwidth}
-        \centering
-        \includesvg[width=\linewidth]{II_Body/images/US06-6-test.svg}
-        \caption{Testing on two cycles of US06 and FUDS profiles average of 10 attempts}
-    \end{subfigure}
-    % %%%%%%%%%%%%%%%%% FUDS based tests %%%%%%%%%%%%%%%%%
-    \begin{subfigure}[b]{0.325\textwidth}
-        \centering
-        \includesvg[width=\linewidth]{II_Body/images/M6-history-FUDS-mae.svg}
-        \caption{Average training and testing MAE history average of 10 attempts}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.325\textwidth}
-        \centering
-        \includesvg[width=\linewidth]{II_Body/images/FUDS-6-train.svg}
-        \caption{Validation on a single cycle of SoC estimation average of 10 attempts at 25\textdegree{}C}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.325\textwidth}
-        \centering
-        \includesvg[width=\linewidth]{II_Body/images/FUDS-6-test.svg}
-        \caption{Testing on two cycles of DST and US06 profiles average of 10 attempts}
-    \end{subfigure}
-    \caption{Model 6: Stateless LSTM with 30 steps of Autoregression.}
-    \label{fig:Model-6res}
-\end{figure*}
-\clearpage
+
