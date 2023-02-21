@@ -8,12 +8,14 @@ Every next prediction, which had a small percentage of miss accuracy, only accum
 
 %
 %
-Instead of manually adjusting each input feature's weight, the best approach to minimising the charge's effect on an overall system is to use the autoregression training technique. 
+Instead of manually adjusting each input feature's weight, the best approach to minimising the charge's effect on an overall system is to use the Autoregression training technique. 
 Since the sigmoid function restrained the output, the first results from the model at the start of the training were random values within 50\% of the expected charge.
 Instead of always having perfect values, the auto-regression technique allowed model weights adjustments based on their initial error.
 As a result, the optimiser performed the model fit based on the array of model outputs over evenly-spaced time samples.
-Despite the modification introducing an $n_{th}^{2}$ degree computation based on the number of outputting steps, the actual prediction was performed only on the latest sample.
-Therefore, the autoregressive model added no performance losses during actual utilisation. 
+Despite the modification introducing an $n_{th}^{2}$ degree computation based on the number of outputting steps, the actual prediction was performed only on the latest sample, meaning that the autoregressive model added no performance losses during actual utilisation.
+Therefore, the accuracy of capturing non-trained driving profiles has tripled, from 2.77\% to 0.81\% percentage error.
+In addition, a capture of complex driving behaviour, like FUDS, also improved by factor 3-4, from 1.82\% to 0.50\% error, in general producing a far closer charge prediction line to actual SoC.
+Unlike early researched models, even with increased complexity by dealing with both change and discharge cycles, the new methods have a better learning curve degradation, as well as equally good capture throughout the entire cycle, especially in the middle point of the charge, at 3.3V of Lithium-Ion batteries, which was the main improvement goal.
 
 %
 %

@@ -4,19 +4,19 @@ In the case of excellent input values, the output is expected to be within~1 \% 
 %
 %
 Two subplots, \mbox{Figure~\ref{fig:regular_tr}}, demonstrate the prediction results of a four-feature-based FUDS-trained simple LSTM model against a single battery cycle of DST driving.
-\mbox{Subfigure~\ref{subfig:regular_tr}} demonstrates the prediction based on the always-known perfect State of Charge, at any random point in time, marked with a red dotted line.
-On the other hand, the \mbox{Subfigure~\ref{subfig:regular_ts}} uses the feedforward approach, where only the first sample window has the actual SoC.
+\mbox{Figure~\ref{subfig:regular_tr}} demonstrates the prediction with input SoC based on known perfect State of Charge at any random point in time, marked with a red dotted line (i.e. 500 values for SoC, with sensory data, from learning used to predict charge at 501).
+On the other hand, the \mbox{Figure~\ref{subfig:regular_ts}} uses the feedforward approach, where only the first sample window has the actual SoC.
 Every upcoming prediction replaces the known value with a prediction and therefore has a strict order of samples from start to end, marked as a yellow dotted line.
 The same colour annotation will be used for all the remaining plots to distinguish the input schemes.
 
 %
 %
 %
-The green error axis has been dropped from \mbox{subfigure~\ref{subfig:regular_ts}} due to high inaccuracy, which covers half of the plot area.
+The green error axis has been dropped from \mbox{Figure~\ref{subfig:regular_ts}} due to high inaccuracy, which covers half of the plot area.
 \ifthenelse{\boolean{thesis}}{The implementation of this prediction method is presented in \mbox{Appendix~\ref{app:Feed-Forward}}.}{}
 It demonstrates how the appended charge output model accumulates the error with every dependent input in a single prediction.
 If that output is used for further prediction and the model keeps preserving the dependency, the miss accuracy value rises non-linearly.
-This is a good justification for why there has been no evidence in the publication of utilising a feed-forward approach to the SoC estimation.
+This is a good justification for why there has been no evidence in the published literature of utilising a feed-forward approach to the SoC estimation.
 \ifthenelse{\boolean{thesis}}{
     \begin{figure}[htbp]
         \centering
@@ -65,7 +65,7 @@ This is a good justification for why there has been no evidence in the publicati
 %
 The reason for that lies in the weights the model places on the State of Charge input feature.
 For a better weight balance, the training procedure must be modified to consider the possibility of an inaccuracy in the input charge data.
-One example of a modified training loop is Autoregressive models~\cite{time_2020}.
+One example of a modified training loop are Autoregressive models~\cite{time_2020}.
 The implementation can be applied to any early-created model, referring to regressive implementation.
 However, this is an example of the earlier mentioned stateful data management, where the model was explicitly programmed to run internally automatically and remains of stateless type.
 The state will be produced and used internally but is not present in the outputs.
@@ -88,7 +88,7 @@ Therefore, the training procedure for the regular LSTM model has been modified t
 The diagram in Figure~\ref{fig:training_testing} illustrates how the technique has been adapted to the current research.
 Unlike Figure~\ref{fig:autoregressive}, the training and testing procedures were separated from each other on two separate subfigures.
 % The diagram in \mbox{Figure~\ref{subfig:testing}} illustrates regular training and testing procedures for a model to produce output.
-The diagram in \mbox{Subfigure~\ref{subfig:training}} demonstrates the procedure for the model call using autoregression during the training, whereas Figure~\ref{subfig:testing} only shows as a comparison to the regular usage and during the actual application or testing.
+The diagram in \mbox{Figure~\ref{subfig:training}} demonstrates the procedure for the model call using autoregression during the training, whereas Figure~\ref{subfig:testing} only shows as a comparison to the regular usage and during the actual application or testing.
 \ifthenelse{\boolean{thesis}}{Code-based detailed implementation have been attached in Appendix~\ref{app:AutoFeedback}.}{}
 % Unlike regular LSTM, training and testing differ from each other.
 If the testing procedure remains unchanged, the training performs multiple calls during a single-window sample processing.
@@ -125,8 +125,8 @@ The more output samples the model returns during the training (Returned training
 %
 %
 Now, with modified training procedure and optimiser usage of the 30 output samples (29 known and one predicted) as an example, \mbox{Figure~\ref{fig:modefied_tr}} contains a similar test, as without autoregression on earlier Figure~\ref{fig:regular_tr}.
-Even though the accuracy with tabled samples has decreased between subfigures~\ref{subfig:regular_tr} and~\ref{subfig:modefied_tr}, its feed-forward prediction accuracy has significantly increased and does not lose the trend, subfigures~\ref{subfig:regular_ts} and~\ref{subfig:modefied_ts}.
-The implementation has been based on contributions from the original framework developers~\cite{time_2020} and written based on corresponding original documentation~\cite{tensorflow2015-whitepaper}.
+Even though the accuracy with tabled samples has decreased between Figures~\ref{subfig:regular_tr} and~\ref{subfig:modefied_tr}, its feed-forward prediction accuracy has significantly increased and does not lose the trend, Figures~\ref{subfig:regular_ts} and~\ref{subfig:modefied_ts}.
+The implementation has been based on contributions from the original framework developers \cite{time_2020} and written based on corresponding original documentation \cite{tensorflow2015-whitepaper}.
 \ifthenelse{\boolean{thesis}}{
 \begin{figure}[H]
     \centering

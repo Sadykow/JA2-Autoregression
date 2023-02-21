@@ -44,11 +44,15 @@ The LSTM model has been used widely in stock-price prediction or weather forecas
 %? add references if I feel to it
 However, unlike State of Charge estimation, which commonly uses $V$, $I$, and $T$ as inputs, those methods utilise the output feature as an input to the subsequent prediction to propagate results further and calculate the time before a critical event occurrence.
 Besides, methods like weather forecasting for a week are not limited by lacking output data, since the searched criteria are always known or will be known once they happen, allowing updates and improvements of follow-up predictions.
-Contrarily, a battery's actual State of Charge cannot be determined and verified against previously-made predictions without additional battery modelling techniques, not to mention having it integrated into an Electric Vehicle's accumulator.
-It would require a proper battery cycler, which will perform a set of pulse tests, utilising a battery and affecting its charge and remaining life.
+On the contrast, a battery's actual State of Charge cannot be directly determined or measured making verification against previously-made predictions difficult without additional battery modelling techniques or laboratory equipment.
+%, not to mention having it integrated into an Electric Vehicle's accumulator.
+It can be determined with a proper battery cycler, performing a set of pulse tests, but this is infeasible for practical applications.
+%utilising a battery and affecting its charge and remaining life.
 % (As opposed to the SoC estimate, where getting actual values to require a battery cycler capable ... ) 
 %%%%%%%%%%%
 %Unlike the charge estimation, which can only output a single value based on a history of samples, they are not limited to ... . Therefore, it does not require the output as input since the truth will become known in due time.
+As such, to include the charge in the process, SoC as a learning input is used, later making a predicted array of values used on testing.
+This introduces potential issues for error accumulation with every evaluation that will be addressed.
 
 %
 %
@@ -61,7 +65,7 @@ Since no dropout was applied before the model's output, a set of strategies has 
 \ifthenelse {\boolean{thesis}}{Chapter~\ref{cha:Analysis} at subsections~\ref{subsec:l-rate} and~\ref{subsec:t_model} explain those two methods, which have already proven to be effective at training SoC models.} 
 {Early research on published methods has already utilised those two methods to assist in the models' training process [Sadykov, 1].
 It involved a scheduled learning rate value update with every passing epoch for as long as the accuracy kept improving with every passing iteration, as well as assisting the models' recovery in the event of overfitting by double reduction of the value either until the models' return to the same minimal optimisation or finalising the optimum result reach.}
-As a result, a NN model will learn dependency between a fixed amount of equally distributed time samples $n$ and yet independent from the order of the inputs.
+As a result, a NN model will learn dependency between a fixed amount of equally distributed time samples $n$ and yet be independent from the order of the inputs.
 \ifthenelse {\boolean{thesis}}{\mbox{Figure~\ref{fig:Windowing}} adapts the earlier Figure~\ref{fig:Windowing3f}, demonstrating how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features (Voltage, Current, Temperature and added initial SoC), 500 timestamps and around a hundred thousand samples to fit on.}
 {\mbox{Figure~\ref{fig:Windowing}} demonstrates how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features, 500 timestamps and around a hundred thousand samples to fit on.}
 Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
