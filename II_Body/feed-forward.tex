@@ -35,30 +35,21 @@ This is a good justification for why there has been no evidence in the published
             \caption{Feed-Forward validation process snapshot}
             \label{subfig:regular_ts}
         \end{subfigure}
-        \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop}
+        \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop.}
         \label{fig:regular_tr}
     \end{figure}
 } {
-    \begin{figure}[htbp]
+    \begin{figure*}[!t]
         \centering
         % DST based tests
-        \begin{subfigure}[b]{\columnwidth}
-            \centering
-            \includesvg[width=\linewidth]{III_Conclussion/im_compare/FUDS-val-48.svg}
-            % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2020/FUDS-models/SMFUDS-val-9.svg}
-            \caption{Regular training process snapshot}
-            \label{subfig:regular_tr}
-        \end{subfigure}
+        \subfloat[Regular training process snapshot]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMFUDS-val-9.svg}}
+        \label{subfig:regular_tr}
         \hfill
-        \begin{subfigure}[b]{\columnwidth}
-            \centering
-            \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMFUDS-FF-9.svg}
-            \caption{Feed-Forward validation process snapshot}
-            \label{subfig:regular_ts}
-        \end{subfigure}
-        \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop}
+        \subfloat[Feed-Forward validation process snapshot]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMFUDS-FF-9.svg}}
+        \label{subfig:regular_ts}
+        \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop.}
         \label{fig:regular_tr}
-    \end{figure}
+    \end{figure*}
 }
 
 %
@@ -74,9 +65,9 @@ For example, from a given input of sensory data of 23 days, a weather prediction
 However, this case produces the exact number of output features, matching the input to make the prediction work properly.
 Besides, once the 24 day comes, the same model can be updated with new actual information, adjusting the follow-up for three weeks.
 In the case of the State of Charge prediction model, such an approach cannot be used by itself since the SoC can not be determined like sensory data.
-\begin{figure}[htbp]%[htbp]
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=0.7\linewidth]{II_Body/images/multistep_autoregressive.png}
+    \includegraphics[width=\columnwidth]{II_Body/images/multistep_autoregressive.png}
     \caption{Autoregressive model input and output demonstration from time-series tutorial~\cite{time_2020}}
     \label{fig:autoregressive}
 \end{figure}
@@ -100,28 +91,41 @@ With a new approach, it will compare an array of predicted samples against the a
 Unlike testing, the training is not feed-forward based; therefore, all actual SoC data and known SoC inputs are considered true, except the last $s$, which matches the number of outputs.
 % This was meant to increase the model fit process.
 The more output samples the model returns during the training (Returned training array), the better the real-time prediction against aggressive driving profiles.
-\begin{figure}[htbp]
-    \centering
-    % DST based tests
-    \begin{subfigure}[b]{0.85\textwidth}
+\ifthenelse{\boolean{thesis}}{
+    \begin{figure}[htbp]
         \centering
-        % \includegraphics[width=\linewidth]{II_Body/images/IMG_20210524_133103.jpg}
-        \includegraphics[width=\linewidth]{II_Body/images/Autoregression-Training.png}
-        \caption{Custom autoregressive training procedure}
+        % DST based tests
+        \begin{subfigure}[b]{0.85\textwidth}
+            \centering
+            % \includegraphics[width=\linewidth]{II_Body/images/IMG_20210524_133103.jpg}
+            \includegraphics[width=\linewidth]{II_Body/images/Autoregression-Training.png}
+            \caption{Custom autoregressive training procedure}
+            \label{subfig:training}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.85\textwidth}
+            \centering
+            % \includegraphics[width=\linewidth]{II_Body/images/IMG_20210524_133052.jpg}
+            \includegraphics[width=\linewidth]{II_Body/images/Autoregression-Testing.png}
+            \caption{Regular testing and validation procedure}
+            \label{subfig:testing}
+        \end{subfigure}
+        \caption{Block diagram demonstration of training and testing working procedures for 4-featured-based models.}
+        \label{fig:training_testing}
+    \end{figure}
+} {
+    \begin{figure*}[!t]
+        \centering
+        % DST based tests
+        \subfloat[Custom autoregressive training procedure]{\includegraphics[width=0.85\linewidth]{II_Body/images/Autoregression-Training.png}}
         \label{subfig:training}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.85\textwidth}
-        \centering
-        % \includegraphics[width=\linewidth]{II_Body/images/IMG_20210524_133052.jpg}
-        \includegraphics[width=\linewidth]{II_Body/images/Autoregression-Testing.png}
-        \caption{Regular testing and validation procedure}
+        \hfill
+        \subfloat[Regular testing and validation procedure]{\includegraphics[width=0.85\linewidth]{II_Body/images/Autoregression-Testing.png}}
         \label{subfig:testing}
-    \end{subfigure}
-    \caption{Block diagram demonstration of training and testing working procedures for 4-featured-based models.}
-    \label{fig:training_testing}
-\end{figure}
-
+        \caption{Block diagram demonstration of training and testing working procedures for 4-featured-based models.}
+        \label{fig:training_testing}
+    \end{figure*}
+}
 %
 %
 Now, with modified training procedure and optimiser usage of the 30 output samples (29 known and one predicted) as an example, \mbox{Figure~\ref{fig:modefied_tr}} contains a similar test, as without autoregression on earlier Figure~\ref{fig:regular_tr}.
@@ -144,27 +148,17 @@ The implementation has been based on contributions from the original framework d
         \caption{Feed-Forward validation process}
         \label{subfig:modefied_ts}
     \end{subfigure}
-    \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops}
+    \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops.}
     \label{fig:modefied_tr}
 \end{figure}
 } {
-\begin{figure}[htbp]
+\begin{figure*}[!t]
     \centering
-    \begin{subfigure}[b]{\columnwidth}
-        \centering
-        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDSval-19.svg}
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}
-        \caption{Modified training process}
-        \label{subfig:modefied_tr}
-    \end{subfigure}
-    \begin{subfigure}[b]{\columnwidth}
-        \centering
-        % \includesvg[width=\linewidth]{III_Conclussion/Models/Sadykov2021-30steps/FUDS-models/SMRFUDS-FF-19.svg}
-        \includesvg[width=\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}
-        \caption{Feed-Forward validation process}
-        \label{subfig:modefied_ts}
-    \end{subfigure}
-    \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops}
+    \subfloat[Modified training process]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}}
+    \label{subfig:modefied_tr}
+    \subfloat[Feed-Forward validation process]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}}
+    \label{subfig:modefied_ts}
+    \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops.}
     \label{fig:modefied_tr}
-\end{figure}
+\end{figure*}
 }

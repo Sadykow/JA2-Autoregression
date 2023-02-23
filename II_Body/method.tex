@@ -18,7 +18,7 @@ The charge cycles were resampled to equalise with a discharge rate of 1 Hz, and 
 \begin{figure}[ht]
     % RMSE equation: RMS = (tf.keras.backend.sqrt(tf.keras.backend.square(y_test_one[::,]-PRED)))
     \centering
-    \includesvg[width=0.8\columnwidth]{II_Body/images/plot-example.svg}
+    \includesvg[width=\columnwidth]{II_Body/images/plot-example.svg}
     \caption{Feed-Forward accuracy plot demonstration.}
     \label{fig:plot_demo}
 \end{figure}
@@ -40,5 +40,5 @@ Everything follow-up prediction is based on the early produced output of the sam
 % Report resutls based on error degradation pver Mean Average Error and Root MEan Squared Errors.
 % Choosing the most optimal will be the test subject.
 \ifthenelse{\boolean{thesis}}{In the end, to compute overall performance comparable results, each model was tested against the entire training set of all three profiles and summarised in a single table, compared with two LSTM models from previous Chapter~\ref{cha:Analysis}.}
-{In the end, to compute overall performance comparable results, each model was tested against the entire training set of all three profiles and summarised in a single table, compared with two LSTM models from articles Chem and Mamo \ref{}.}
+{In the end, to compute overall performance comparable results, each model was tested against the entire training set of all three profiles and summarised in a single table, compared with two LSTM models from articles Chem and Mamo \cite{mamo_long_2020}.}
 % BEst one per each iteration will be summarised in a table and then compared against two acccuracy plots as per following example.

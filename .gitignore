@@ -6,6 +6,8 @@
 *.log
 *.pdf
 *.synctex.gz
+main.loc
+main.soc
 
 svg-inkscape
 .vscode

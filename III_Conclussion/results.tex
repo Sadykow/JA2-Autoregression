@@ -105,6 +105,7 @@ Despite making the training process slow compared to other steps due to concurre
 With cross-training and testing over ten attempts average (to minimise the stochastic nature of the Machine Learning), Figure~\ref{fig:Model-6res} has been produced to demonstrate the resulting predictions.
 The total errors for each model are summarised in Table~\ref{tab:acc-results2}.
 In total, 30 models were produced, averaged, and compared for the best usage in an Electric Vehicle.
+\ifthenelse{\boolean{thesis}}{
 \begin{figure*}[htbp]
     \centering
     %%%%%%%%%%%%%%%%% DST based tests %%%%%%%%%%%%%%%%%
@@ -165,7 +166,32 @@ In total, 30 models were produced, averaged, and compared for the best usage in 
     \caption{Model 6: Stateless LSTM with 30 steps of Autoregression.}
     \label{fig:Model-6res}
 \end{figure*}
-
+} {
+\begin{figure*}[!h]
+    \centering
+    %%%%%%%%%%%%%%%%% DST based tests %%%%%%%%%%%%%%%%%
+    \subfloat[Average training and testing MAE history; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/M6-history-DST-mae.svg}}
+    \hfill
+    \subfloat[Validation on a single DST cycle of SoC estimation; average of 10 attempts at 25\textdegree{}C]{\includesvg[width=0.325\linewidth]{II_Body/images/DST-6-train.svg}}
+    \hfill
+    \subfloat[Testing on two cycles of US06 and FUDS profiles; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/DST-6-test.svg}}
+    \label{subfig:Model-6res-DSTvsFUDS}
+    %%%%%%%%%%%%%%%%% US06 based tests %%%%%%%%%%%%%%%%%
+    \subfloat[Average training and testing MAE history; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/M6-history-US06-mae.svg}}
+    \hfill
+    \subfloat[Validation on a single US06 cycle of SoC estimation; average of 10 attempts at 25\textdegree{}C]{\includesvg[width=0.325\linewidth]{II_Body/images/US06-6-train.svg}}
+    \subfloat[Testing on two cycles of DST and FUDS profiles; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/US06-6-test.svg}}
+    % %%%%%%%%%%%%%%%%% FUDS based tests %%%%%%%%%%%%%%%%%
+    \hfill
+    \subfloat[Average training and testing MAE history; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/M6-history-FUDS-mae.svg}}
+    \hfill
+    \subfloat[Validation on a single FUDS cycle of SoC estimation; average of 10 attempts at 25\textdegree{}C]{\includesvg[width=0.325\linewidth]{II_Body/images/FUDS-6-train.svg}}
+    \hfill
+    \subfloat[Testing on two cycles of DST and US06 profiles; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/FUDS-6-test.svg}}
+    \caption{Model 6: Stateless LSTM with 30 steps of Autoregression.}
+    \label{fig:Model-6res}
+\end{figure*}
+}
 %
 %
 Based on plot observation, all profiles achieved an error of around 1\% at the training, which can be observed on feed-forward plots on the validation set.
@@ -176,9 +202,9 @@ Yet, the results do not deviate from validation as much as other similar models,
 
 %
 %
-In addition to the results of the currently-researched model, Table~\ref{tab:acc-results2} includes the best results from Chapter~\ref{cha:Analysis} LSTM models, which are considered as the two best models for charge- discharge SoC estimation on other profiles.
+\textcolor{red}{In addition to the results of the currently-researched model, Table~\ref{tab:acc-results2} includes the best results from Chapter~\ref{cha:Analysis} LSTM models, which are considered as the two best models for charge- discharge SoC estimation on other profiles.}
 \ifthenelse{\boolean{thesis}}{Even though a three-layer model was proven superior to a single one in the previous chapter, the same amount of neurons in one layer but with autoregression has shown better average results than any previously-reported variations.}
-{Even though a three-layer model was proven superior to a single one in the earlier works~\ref{}, the same amount of neurons in one layer but with autoregression has shown better average results than any previously-reported variations.}
+{\textcolor{red}{Even though a three-layer model was proven superior to a single one in the earlier works~\ref{}}, the same amount of neurons in one layer but with autoregression has shown better average results than any previously-reported variations.}
 Compared to the same trained and test profiles, the new method reduced the error compared to LSTM (Model \#1) and LSTM with Attention (Model \#3) by a factor of 3.
 In addition, it also managed to reduce testing errors by a factor of 2 against other profiles.
 FUDS is the best model to train on and capture complex driving behaviours for the new model.
@@ -236,21 +262,21 @@ Therefore, since the SoC is a function of current over time, the charge of US06 
     \caption{Accuracy result summary for entire training datasets.}
     \centering
     \label{tab:acc-results2}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{ c| l| c c c| c c c |c c c}
-    \hline\hline \\[-4mm]
-% Columns setup
-    \multirow{3}{1em}{\#} &
-    \multirow{3}{3em}{Trained} &
-    \multicolumn{9}{c}{Tested} \\
-    \cline{3-11}
-    & & 
-    \multicolumn{3}{c|}{DST} &
-    \multicolumn{3}{c|}{US06} &
-    \multicolumn{3}{c}{FUDS} \\
-    \cline{3-11}
-        & & MSE(\%) & RMSE(\%) & $R^{2}$(\%) & MSE(\%) & RMSE(\%) & $R^{2}$(\%) & MSE(\%) & RMSE(\%) & $R^{2}$(\%) \\
-    \hline
+\resizebox{\linewidth}{!}{
+    \begin{tabular}{ c l c c c c c c c c c}
+        \hline\hline \\[-4mm]
+    % Columns setup
+        \multirow{4}{*}{\textbf{\#}\vspace{+8pt}} &
+        \multirow{4}{*}{\textbf{Trained}\vspace{+8pt}} &
+        \multicolumn{9}{c}{\textbf{Tested}} \\
+        \cline{3-11}
+        & & 
+        \multicolumn{3}{c}{\textbf{DST}} &
+        \multicolumn{3}{c}{\textbf{US06}} &
+        \multicolumn{3}{c}{\textbf{FUDS}} \\
+        \cline{3-11}
+        & & \textbf{MSE~(\%)} & \textbf{RMSE~(\%)} & \textbf{\boldmath{$R^{2}$~(\%)}} & \textbf{MSE~(\%)} & \textbf{RMSE~(\%)} & \textbf{\boldmath{$R^{2}$~(\%)}} & \textbf{MSE~(\%)} & \textbf{RMSE~(\%)} & \textbf{\boldmath{$R^{2}$~(\%)}} \\
+        \hline
     % Content
     %Chemali2017
         & DST & 2.77 & 3.52 & 98.71 & 2.86 & 3.93 & 98.34 & 3.28 & 4.62 & 97.66 \\ 
@@ -266,9 +292,9 @@ Therefore, since the SoC is a function of current over time, the charge of US06 
     % 4 & US06 & 6.19 & 8.57 & 92.35 & 3.30 & 4.12 & 98.17 & 5.42 & 6.82 & 94.91 \\ 
     %   & FUDS & 5.74 & 7.49 & 94.16 & 4.03 & 5.75 & 96.44 & 1.58 & 2.28 & 99.43 \\ 
     \hline
-    New & DST & 0.81 & 1.10 & 99.87 & 1.92 & 2.71 & 99.21 & 1.77 & 2.35 & 99.40  \\
-    Met-& US06 & 1.49 & 2.02 & 99.57 & 0.89 & 1.06 & 99.88 & 1.28 & 1.94 & 99.59  \\
-    hod & FUDS & 2.10 & 2.94 & 99.10 & 1.28 & 1.87 & 99.62 & 0.50 & 0.68 & 99.95  \\
+    \textbf{New} & \textbf{DST} & \textbf{0.81} & \textbf{1.10} & \textbf{99.87} & \textbf{1.92} & \textbf{2.71} & \textbf{99.21} & \textbf{1.77} & \textbf{2.35} & \textbf{99.40}  \\
+    \textbf{Met-}& \textbf{US06} & \textbf{1.49} & \textbf{2.02} & \textbf{99.57} & \textbf{0.89} & \textbf{1.06} & \textbf{99.88} & \textbf{1.28} & \textbf{1.94} & \textbf{99.59}  \\
+    \textbf{hod} & \textbf{FUDS} & \textbf{2.10} & \textbf{2.94} & \textbf{99.10} & \textbf{1.28} & \textbf{1.87} & \textbf{99.62} & \textbf{0.50} & \textbf{0.68} & \textbf{99.95}  \\
     \hline\hline
 \end{tabular}
 }
