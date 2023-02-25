@@ -3,8 +3,8 @@ Time-series prediction of a neural model relies on the input history of equally 
 {The LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering (preserving) the long dependencies~\cite{rasifaghihi_predictive_2020}.}
 The cells inside the model act as memory units to preserve the dependence.
 Therefore, the output is closely dependent on the previous input samples.
-Unlike the normal RNN, and the more modern version GRU, LSTM has a more complicated structure constructed from several logical gates~\cite{LSTM_Hochreiter1997}.
-It is the most widely used type of model.
+Unlike the normal RNN and the more modern version GRU, LSTM has a more complicated structure constructed from several logical gates~\cite{LSTM_Hochreiter1997}.
+% It is the most widely used type of model.
 \ifthenelse {\boolean{thesis}}{Chapter~\ref{cha:Analysis} provides a summary of the LSTM cell logic, with corresponding equations explaining the gates logic in detail.} 
 {\mbox{Figure~\ref{fig:LSTM-cell2}} provides a summary of the cell logic.
 It utilises three gates: forget $f_t$, input $i_t$ and output $o_t$, \mbox{Equation~\ref{eq:LSTM-gates2}}.
@@ -40,32 +40,40 @@ Output variables $h_t$ and $c_t$ represent memory cell output and the cell state
 
 %
 %
-The LSTM model has been used widely in stock-price prediction or weather forecasting. 
+The LSTM model has been used widely in stock price prediction or weather forecasting. 
 %? add references if I feel to it
 However, unlike State of Charge estimation, which commonly uses $V$, $I$, and $T$ as inputs, those methods utilise the output feature as an input to the subsequent prediction to propagate results further and calculate the time before a critical event occurrence.
-Besides, methods like weather forecasting for a week are not limited by lacking output data, since the searched criteria are always known or will be known once they happen, allowing updates and improvements of follow-up predictions.
-On the contrast, a battery's actual State of Charge cannot be directly determined or measured making verification against previously-made predictions difficult without additional battery modelling techniques or laboratory equipment.
+Besides, methods like weather forecasting for a week are not limited by lacking output data since the searched criteria are always known or will be known once they happen, allowing updates and improvements of follow-up predictions.
+Contrary to this case, a battery's actual State of Charge cannot be directly determined or measured, making verification against previously-made predictions difficult without additional battery modelling techniques or laboratory equipment.
 %, not to mention having it integrated into an Electric Vehicle's accumulator.
-It can be determined with a proper battery cycler, performing a set of pulse tests, but this is infeasible for practical applications.
+It can be determined with a proper battery cycler, performing a set of pulse tests, which is infeasible for practical EV applications.
 %utilising a battery and affecting its charge and remaining life.
 % (As opposed to the SoC estimate, where getting actual values to require a battery cycler capable ... ) 
 %%%%%%%%%%%
 %Unlike the charge estimation, which can only output a single value based on a history of samples, they are not limited to ... . Therefore, it does not require the output as input since the truth will become known in due time.
 As such, to include the charge in the process, SoC as a learning input is used, later making a predicted array of values used on testing.
-This introduces potential issues for error accumulation with every evaluation that will be addressed.
+Such an approach introduces potential issues for error accumulation with every evaluation that will be addressed.
 
 %
 %
+\begin{landscape}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\linewidth]{II_Body/images/Windowing4f-A3.jpg}
+        \caption{Data Windowing scheme at 1Hz sampling rate. For visualisation purposes, the $s$-step has been used as 250 seconds, which is different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, around zero.}
+        \label{fig:Windowing}
+    \end{figure}
+\end{landscape}
 The best way to use the performance of the stateless LSTM model is through training with a data windowing technique.
 The NN model will receive a fixed set of equally-distributed time samples at each time prediction.
-Every next forecast will shift the time window by a constant step $s$, until all possible combinations of time slices go through the model.
-That approach is referred to as a stateless model, which only sees dependencies over input samples rather than preserving every received input, like in stateful implementations.
+Every next forecast will shift the time window by a constant step $s$, until all possible combinations of time slices have gone through the training model.
+That approach is called a stateless model, which only sees dependencies over input samples rather than preserving every received input, like in stateful implementations.
 It also allows the order of the windows to be shuffled to avoid overfitting.
 Since no dropout was applied before the model's output, a set of strategies has been applied to update the learning rate and rollback before early stopping to assist the fitting process.
 \ifthenelse {\boolean{thesis}}{Chapter~\ref{cha:Analysis} at subsections~\ref{subsec:l-rate} and~\ref{subsec:t_model} explain those two methods, which have already proven to be effective at training SoC models.} 
-{Early research on published methods has already utilised those two methods to assist in the models' training process [Sadykov, 1].
-It involved a scheduled learning rate value update with every passing epoch for as long as the accuracy kept improving with every passing iteration, as well as assisting the models' recovery in the event of overfitting by double reduction of the value either until the models' return to the same minimal optimisation or finalising the optimum result reach.}
-As a result, a NN model will learn dependency between a fixed amount of equally distributed time samples $n$ and yet be independent from the order of the inputs.
+{Early research on published methods has already utilised those two methods to assist the models' training process~\cite{sadykov_practical_2022}.
+It involved a scheduled learning rate value update with every passing epoch for as long as the accuracy kept improving with every passing iteration, as well as assisting the models' recovery in the event of overfitting by double reduction of the rate either until the models' return to the same minimal fitting or finalises the optimum result reach.}
+As a result, a NN model will learn dependency between a fixed amount of equally distributed time samples $n$ and yet be independent of the order of the inputs.
 \ifthenelse {\boolean{thesis}}{\mbox{Figure~\ref{fig:Windowing}} adapts the earlier Figure~\ref{fig:Windowing3f}, demonstrating how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features (Voltage, Current, Temperature and added initial SoC), 500 timestamps and around a hundred thousand samples to fit on.}
 {\mbox{Figure~\ref{fig:Windowing}} demonstrates how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features, 500 timestamps and around a hundred thousand samples to fit on.}
 Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
@@ -99,7 +107,7 @@ It was decided to stick to known approaches to validate the efficiency of the ne
     \end{tabular}
 \end{table}
 }
-{The number of neurons has been selected based on the results made based on earlier discoveries of the most optimal hyperparameters set [Sadykov, 1].
+{The number of neurons has been selected based on the results made on earlier discoveries of the most optimal hyperparameters set~\cite{sadykov_practical_2022}.
 Results were adapted to the new custom-implemented model to validate the technique's efficiency in a comparable way with already-tested approaches.
 \begin{table}[ht]
     \renewcommand{\arraystretch}{1.3}
@@ -130,7 +138,7 @@ The optimisation algorithm for the fitting process has been selected as the regu
 The selection of this optimiser is made to allow comparison to two early-created LSTM-based models which use the same optimiser in Chapter~\ref{cha:Analysis}.
 }
 {
-The optimisation algorithm for the fitting process has been defined by Adam, \mbox{Algorithm~\ref{alg:copyAdam}}, with the corresponding hyperparameters on \mbox{Table~\ref{tab:newM-params}}.
+The optimisation algorithm for the fitting process has been defined by Adam, \mbox{Algorithm~\ref{alg:copyAdam}}, with the corresponding inputs changes and hyperparameters on \mbox{Table~\ref{tab:newM-params}}.
 %\textcolor{red}{Try to use Robust Adam instead, because why the hell not since I lost one month of my life to implement that cursed algorithm from Javids miss-typed notes? Complete this section with details as per Gareth Javid's implementation if RoAdam will be able to produce a faster fitting.}
 \begin{algorithm}\captionsetup{labelfont={sc,bf}, labelsep=newline}
     \caption{Adaptive Moment Estimation (Adam) optimisation}

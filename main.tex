@@ -404,6 +404,11 @@
 % journal papers have the author affiliations above the "Manuscript
 % received ..."  text while in non-compsoc journals this is reversed. Sigh.
 
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0002-6436-7069} % Marat Sadykov
+\newcommand{\orcidauthorB}{0000-0002-2970-9158} % Pr David Holmes
+\newcommand{\orcidauthorC}{0000-0001-8137-9507} % Pr Geoff Walker
+
 \author{Marat~Sadykov, %~\IEEEmembership{Member,~IEEE,}
         Sam~Haines, %~\IEEEmembership{Fellow,~OSA,}
         Geoff~Walker,~\IEEEmembership{Member,~IEEE,}
@@ -529,22 +534,15 @@ E-mail: d.holmes@qut.edu.au
 \input{./I_Introduction/Intro}
 % \hfill mds 
 % \hfill August 26, 2015
-\begin{landscape}
-  \begin{figure}[ht]
-      \centering
-      \includegraphics[width=\linewidth]{II_Body/images/Windowing4f-A3.jpg}
-      \caption{Data Windowing scheme at 1Hz sampling rate. For visualisation purposes, the $s$-step has been used as 250 seconds, which is different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, around zero.}
-      \label{fig:Windowing}
-  \end{figure}
-\end{landscape}
 
 \section{Method Development} \label{sec:layer}
 \subsection{LSTM estimation}
   \input{./II_Body/layer}  
 \subsection{Development of Feed-Forward Autoregressive model} \label{sec:feed}
   \input{./II_Body/feed-forward}
+\newpage
 \subsection{Testing methodology}
-  \input{./II_Body/method}
+\input{./II_Body/method}
 
 \section{Results} \label{sec:results}
 \input{./III_Conclussion/results}

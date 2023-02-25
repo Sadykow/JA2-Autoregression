@@ -61,3 +61,17 @@
 	year = {2020},
 	file = {Snapshot:/mnt/WORK/Zotero/storage/XNQ34AAH/time_series.html:text/html},
 }
+
+@Article{sadykov_practical_2022,
+AUTHOR = {Sadykov, Marat and Haines, Sam and Broadmeadow, Mark and Walker, Geoff and Holmes, David William},
+TITLE = {Practical Evaluation of Lithium-Ion Battery State-of-Charge Estimation Using Time-Series Machine Learning for Electric Vehicles},
+JOURNAL = {Energies},
+VOLUME = {16},
+YEAR = {2023},
+NUMBER = {4},
+ARTICLE-NUMBER = {1628},
+URL = {https://www.mdpi.com/1996-1073/16/4/1628},
+ISSN = {1996-1073},
+ABSTRACT = {This paper presents a practical usability investigation of recurrent neural networks (RNNs) to determine the best-suited machine learning method for estimating electric vehicle (EV) batteries&rsquo; state of charge. Using models from multiple published sources and cross-validation testing with several driving scenarios to determine the state of charge of lithium-ion batteries, we assessed their accuracy and drawbacks. Five models were selected from various published state-of-charge estimation models, based on cell types with GRU or LSTM, and optimisers such as stochastic gradient descent, Adam, Nadam, AdaMax, and Robust Adam, with extensions via momentum calculus or an attention layer. Each method was examined by applying training techniques such as a learning rate scheduler or rollback recovery to speed up the fitting, highlighting the implementation specifics. All this was carried out using the TensorFlow framework, and the implementation was performed as closely to the published sources as possible on openly available battery data. The results highlighted an average percentage accuracy of 96.56% for the correct SoC estimation and several drawbacks of the overall implementation, and we propose potential solutions for further improvement. Every implemented model had a similar drawback, which was the poor capturing of the middle area of charge, applying a higher weight to the voltage than the current. The combination of these techniques into a single custom model could result in a better-suited model, further improving the accuracy.},
+DOI = {10.3390/en16041628}
+}

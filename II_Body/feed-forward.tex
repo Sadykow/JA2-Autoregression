@@ -1,22 +1,13 @@
 The regular training procedure for a 4-feature model has a significant limitation. The model does not consider the Feed-Forward application of the prediction output.
-In the case of excellent input values, the output is expected to be within~1 \% miss accuracy, since from 500 ideal SoC values, estimation of value 501 is a trivial task.
+In the case of excellent input values, the output is expected to be within~1 \% miss-accuracy since from 500 ideal SoC values, estimation of value 501 is a trivial task.
 
 %
 %
 Two subplots, \mbox{Figure~\ref{fig:regular_tr}}, demonstrate the prediction results of a four-feature-based FUDS-trained simple LSTM model against a single battery cycle of DST driving.
-\mbox{Figure~\ref{subfig:regular_tr}} demonstrates the prediction with input SoC based on known perfect State of Charge at any random point in time, marked with a red dotted line (i.e. 500 values for SoC, with sensory data, from learning used to predict charge at 501).
-On the other hand, the \mbox{Figure~\ref{subfig:regular_ts}} uses the feedforward approach, where only the first sample window has the actual SoC.
+\mbox{Figure~\ref{fig:regular_tr}a} demonstrates the prediction with input SoC based on known perfect State of Charge at any random point in time, marked with a red dotted line (i.e. 500 values for SoC, with sensory data, from learning used to predict charge at 501).
+On the other hand, the \mbox{Figure~\ref{fig:regular_tr}b} uses the feedforward approach, where only the first sample window has the true SoC.
 Every upcoming prediction replaces the known value with a prediction and therefore has a strict order of samples from start to end, marked as a yellow dotted line.
 The same colour annotation will be used for all the remaining plots to distinguish the input schemes.
-
-%
-%
-%
-The green error axis has been dropped from \mbox{Figure~\ref{subfig:regular_ts}} due to high inaccuracy, which covers half of the plot area.
-\ifthenelse{\boolean{thesis}}{The implementation of this prediction method is presented in \mbox{Appendix~\ref{app:Feed-Forward}}.}{}
-It demonstrates how the appended charge output model accumulates the error with every dependent input in a single prediction.
-If that output is used for further prediction and the model keeps preserving the dependency, the miss accuracy value rises non-linearly.
-This is a good justification for why there has been no evidence in the published literature of utilising a feed-forward approach to the SoC estimation.
 \ifthenelse{\boolean{thesis}}{
     \begin{figure}[htbp]
         \centering
@@ -43,10 +34,8 @@ This is a good justification for why there has been no evidence in the published
         \centering
         % DST based tests
         \subfloat[Regular training process snapshot]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMFUDS-val-9.svg}}
-        \label{subfig:regular_tr}
         \hfill
         \subfloat[Feed-Forward validation process snapshot]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMFUDS-FF-9.svg}}
-        \label{subfig:regular_ts}
         \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop.}
         \label{fig:regular_tr}
     \end{figure*}
@@ -54,13 +43,23 @@ This is a good justification for why there has been no evidence in the published
 
 %
 %
+%
+The green error area axis has been dropped from \mbox{Figure~\ref{fig:regular_tr}b} due to high inaccuracy, which would cover half of the plot area.
+\ifthenelse{\boolean{thesis}}{The implementation of this prediction method is presented in \mbox{Appendix~\ref{app:Feed-Forward}}.}{}
+It demonstrates how the appended charge output model accumulates the error with every dependent input in a single prediction.
+If that output is used for further prediction and the model keeps preserving the dependency, the miss accuracy value rises non-linearly.
+This is a good justification for why there has been no evidence in the published literature of utilising a feed-forward approach to the SoC estimation.
+
+%
+%
+%! Get eid of that figgure, find a way to refer to it.
 The reason for that lies in the weights the model places on the State of Charge input feature.
 For a better weight balance, the training procedure must be modified to consider the possibility of an inaccuracy in the input charge data.
 One example of a modified training loop are Autoregressive models~\cite{time_2020}.
 The implementation can be applied to any early-created model, referring to regressive implementation.
 However, this is an example of the earlier mentioned stateful data management, where the model was explicitly programmed to run internally automatically and remains of stateless type.
 The state will be produced and used internally but is not present in the outputs.
-\mbox{Figure~\ref{fig:autoregressive}} demonstrate how a trained model internally uses produced prediction to produce more than a single output ahead of time.
+\ifthenelse{\boolean{thesis}}{\mbox{Figure~\ref{fig:autoregressive}} demonstrate how a trained model internally uses produced prediction to produce more than a single output ahead of time.
 For example, from a given input of sensory data of 23 days, a weather prediction model estimates a further three weeks ahead.
 However, this case produces the exact number of output features, matching the input to make the prediction work properly.
 Besides, once the 24 day comes, the same model can be updated with new actual information, adjusting the follow-up for three weeks.
@@ -71,15 +70,20 @@ In the case of the State of Charge prediction model, such an approach cannot be 
     \caption{Autoregressive model input and output demonstration from time-series tutorial~\cite{time_2020}}
     \label{fig:autoregressive}
 \end{figure}
+} {The implementation demonstration from time-series tutorial~\cite{time_2020} of the utilised Machine Learning framework provides both a written and visual explanation of Autoregression implementation in the context of weather prediction ahead of time.
+In the case of the State of Charge prediction model, such an approach cannot be used by itself since the SoC can not be determined like sensory data.
+Therefore, it will be adapted to overcome the problem of accumulated error in the feed-forward estimation method.}
 
 %
 %
-The SoC estimation model may still benefit from multiple outputs by adapting the Autoregression to the accumulator utilisation scenario.
-Therefore, the training procedure for the regular LSTM model has been modified to consider potential inaccuracy in the known data rather than the future outputs.
+\ifthenelse{\boolean{thesis}}{The SoC estimation model may benefit from multiple outputs by adapting the Autoregression to the accumulator utilisation scenario.
+Therefore, the}
+{The} training procedure for the regular LSTM model has been modified to consider potential inaccuracy in the known data rather than the future outputs.
 The diagram in Figure~\ref{fig:training_testing} illustrates how the technique has been adapted to the current research.
-Unlike Figure~\ref{fig:autoregressive}, the training and testing procedures were separated from each other on two separate subfigures.
+\ifthenelse{\boolean{thesis}}{Unlike Figure~\ref{fig:autoregressive}, the training and testing procedures were separated from each other on two separate subfigures.}
+{Unlike with Autoregressive example from the documentation tutorial~\cite{time_2020}, the training and testing procedures were separated from each other on two separate subfigures.}
 % The diagram in \mbox{Figure~\ref{subfig:testing}} illustrates regular training and testing procedures for a model to produce output.
-The diagram in \mbox{Figure~\ref{subfig:training}} demonstrates the procedure for the model call using autoregression during the training, whereas Figure~\ref{subfig:testing} only shows as a comparison to the regular usage and during the actual application or testing.
+The diagram in \mbox{Figure~\ref{fig:training_testing}a} demonstrates the procedure for the model call using autoregression during the training, whereas \mbox{Figure~\ref{fig:training_testing}b} only shows as a comparison to the regular usage and during the actual application or testing.
 \ifthenelse{\boolean{thesis}}{Code-based detailed implementation have been attached in Appendix~\ref{app:AutoFeedback}.}{}
 % Unlike regular LSTM, training and testing differ from each other.
 If the testing procedure remains unchanged, the training performs multiple calls during a single-window sample processing.
@@ -90,7 +94,7 @@ Every output of every step has been stored in the returned array for the optimis
 With a new approach, it will compare an array of predicted samples against the actual values of the SoC, making the adjustments based on the inaccuracies present in the dependencies and considering them as part of the system.
 Unlike testing, the training is not feed-forward based; therefore, all actual SoC data and known SoC inputs are considered true, except the last $s$, which matches the number of outputs.
 % This was meant to increase the model fit process.
-The more output samples the model returns during the training (Returned training array), the better the real-time prediction against aggressive driving profiles.
+The more output samples the model returns during the training (Returned training array), the longer the training process becomes, but the better the real-time prediction against aggressive driving profiles gets achieved.
 \ifthenelse{\boolean{thesis}}{
     \begin{figure}[htbp]
         \centering
@@ -118,19 +122,18 @@ The more output samples the model returns during the training (Returned training
         \centering
         % DST based tests
         \subfloat[Custom autoregressive training procedure]{\includegraphics[width=0.85\linewidth]{II_Body/images/Autoregression-Training.png}}
-        \label{subfig:training}
         \hfill
         \subfloat[Regular testing and validation procedure]{\includegraphics[width=0.85\linewidth]{II_Body/images/Autoregression-Testing.png}}
-        \label{subfig:testing}
         \caption{Block diagram demonstration of training and testing working procedures for 4-featured-based models.}
         \label{fig:training_testing}
     \end{figure*}
 }
+
 %
 %
 Now, with modified training procedure and optimiser usage of the 30 output samples (29 known and one predicted) as an example, \mbox{Figure~\ref{fig:modefied_tr}} contains a similar test, as without autoregression on earlier Figure~\ref{fig:regular_tr}.
-Even though the accuracy with tabled samples has decreased between Figures~\ref{subfig:regular_tr} and~\ref{subfig:modefied_tr}, its feed-forward prediction accuracy has significantly increased and does not lose the trend, Figures~\ref{subfig:regular_ts} and~\ref{subfig:modefied_ts}.
-The implementation has been based on contributions from the original framework developers \cite{time_2020} and written based on corresponding original documentation \cite{tensorflow2015-whitepaper}.
+Even though the accuracy with tabled samples has decreased between \mbox{Figure~\ref{fig:regular_tr}a and~\ref{fig:modefied_tr}a}, its feed-forward prediction accuracy has significantly increased and does not lose the trend, \mbox{Figure~\ref{fig:regular_tr}b and~\ref{fig:modefied_tr}b}.
+The implementation has been based on contributions from the original framework developers~\cite{time_2020} and written based on corresponding original documentation of Tensorflow 2.3~\cite{tensorflow2015-whitepaper}.
 \ifthenelse{\boolean{thesis}}{
 \begin{figure}[H]
     \centering
