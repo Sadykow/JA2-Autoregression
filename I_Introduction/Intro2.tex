@@ -1,0 +1,48 @@
+%
+%
+The past decade has seen a rapid growth of the market for Electric Vehicles (EVs), with all major auto makers currently investing heavily in EV platform development~\cite{iea_global_2023}, and the technology broadly expected to overtake and become equally or even more profitable to make than the internal combustion engine by around 2025~\cite{baik_making_2019}.
+The promise of a clean, environmentally friendly transport future is an attractive one, but there remains significant work to be undertaken to increase battery range, battery lifespan, decrease cost, decrease weight, improve end of life management, and other key issues, to fully realise the sustainable potential of EV systems.
+One area that remains a barrier to more sustainable battery utilisation is the development of a method to accurately estimate how much remaining charge is in an EV's battery in real-time.
+In contrast to fuel-based vehicles where measuring volume of fuel remaining is a trivial task, the effective State of Charge (SoC) of a battery depends on multiple factors and can be different at different temperatures and conditions~\cite{xing_state_2014}, and change significantly over time due to ageing, damage, and other influences~\cite{johansson_neural_2018}.
+
+%
+%
+While remaining an open research question, accurate battery SoC estimation is critical in assessing a batteries' performance \textcolor{red}{[ref]}, facilitating accurate estimates of remaining range [ref], ensuring protection of battery health \textcolor{red}{[ref]}, and enabling the highest level of overall battery utilization.
+The determination of SoC is typically carried out in a vehicle's Battery Management System (BMS), and the logic used in current systems employ techniques like Coulomb Counting (CC) that integrates measured current over time to estimate chare usage~\cite{ng_enhanced_2009,robust_SoC}, or battery modelling based on equivalent circuits and using voltage, current, and other sensor data to approximate the battery behaviour~\cite{6953745}.
+These approaches are simple to implement but are susceptible to inaccuracies due to Coulombic inefficiencies~\cite{Smith_2010}, data drift \textcolor{red}{[ref]}, temperature variability~\cite{xing_state_2014}, \textcolor{blue}{non-linear multi-variable dependence of response \textcolor{red}{[ref]}}, and other issues.
+More recently computer intelligence or machine learning based models have been proposed that use statistical methods and multi-dimensional data fitting based on battery cycle training data (usually voltage, current, and temperature measurements), as a way to improve the accuracy of SoC estimation and account for the many non-linear behaviours of a typical battery in a phenomenological way~\cite{hansen_support_2005,anton_battery_2013,he_state_2014}.
+Methods employed include Fuzzy logic~\cite{malkhandi_fuzzy_2006}, Support Vector Machine~\cite{hansen_support_2005, anton_battery_2013}, and Recurrent Neural Networks (RNN)~\cite{song_lithium-ion_2018,Chemali2017,mamo_long_2020,jiao_gru-rnn_2020,xiao_accurate_2019,javid_adaptive_2020,zhang_deep_2020}.
+While these methods have shown great promise in laboratory conditions (see for example~\cite{jiao_gru-rnn_2020}), there remains significant work to be done before they represent a viable option for the next generation of on-car BMS circuitry.
+
+%
+%
+Of the computer intelligence approaches employed to SoC estimation, RNNs are perhaps the most appropriate.
+Multiple examples employing time-series based models have been published, specifically: approaches based on the Long Short-Term Memory (LSTM) method~\cite{Chemali2017,mamo_long_2020,zhang_deep_2020}, and the Gated Recurrent Unit (GRU) method~\cite{song_lithium-ion_2018,jiao_gru-rnn_2020,xiao_accurate_2019,javid_adaptive_2020}.
+In an earlier work~\cite{sadykov_practical_2022}, we have evaluated the ability of multiple implementations of RNN models to estimate the SoC of a Lithium-Ion battery across multiple different simulated drive cycle experimental result sets.
+The research found that a model trained on one driving scenario was effective in accurately reproducing the full battery utilisation of that specific driving behaviour but was poor at extrapolating to different drive cycle behaviours that were outside the training set (e.g., training on DST, and predicting based on US06 and FUDS\footnote{DST, US06, and FUDS are examples of dynamic drive cycles that are used to evaluate the discharge and SoC characteristics of EV batteries~\cite{castillo_18_2015}. They involve dynamic charge-discharge histories that are applied to a battery that are meant to simulate a car driving around an urban environment (i.e. accelerating and decelerating with regenerative breaking, plus full charge cycles). This will be discussed further in Chapter 2.}), with inaccuracy increasing by at least double (put some numbers here).
+In a practical implementation of SoC estimation (i.e. on a real vehicle), the ability to accurately predict SoC outside a given training set is critical, as all people will use and drive their vehicles in a slightly different way.
+It is this feature that was the primary evaluation in~\cite{sadykov_practical_2022}, and the main motivation for the new model proposed in this work.
+
+%
+%
+A key difference between the application of machine learning to many other non-linear systems (e.g., financial market predictions or analysis of the weather) and its application to SoC estimation, is that the primary focus of the prediction in batteries, i.e. SoC, cannot be directly measured in real-time\footnote{SoC can be measured for a battery directly, but this requires long time settling tests that may take minutes or hours at a controlled battery state for the battery to reach equilibrium and a measurement to be taken \textcolor{red}{[ref confirm accuracy of statement]}, and this is obviously infeasible for a real-time SoC measurement approach for EV applications.} \textcolor{red}{[ref]}.
+As such, it typically isn't used as an input feature to training or prediction (where current market or current weather state are used to improve the next prediction in the other examples).
+The absence of a real-time “ground truth” of SoC is one of the features that makes SoC prediction so challenging \textcolor{red}{[ref]}.
+The risk of using predicted SoC as an input parameter to any computer intelligence model is obvious, in that any small initial errors may very rapidly cause a divergent solution.
+However, if this risk could be managed, there is potential to greatly improve the accuracy of such methods for SoC prediction.
+Several options exist.
+The first is to use an initial SoC estimation from other means (e.g., from Coulomb Counting).
+This may, however, be susceptible to the same limitations experienced by the chosen method.
+The second is to employ a Feed-Forward model \textcolor{red}{[ref]} to propagate the output value of the charge as an input to the next prediction but utilise an Autoregressive technique~\cite{time_2020} to avoid the propagation of prediction error.
+\textcolor{red}{(Explain here, based on the literature / reference why you think this will work to avoid the error. This is the key motivation and justification for this paper).}
+
+%
+%
+As such, in the remainder of this paper a novel method for implementing a SoC estimation training loop and model will be presented based on the Autoregressive technique, that uses a 4-feature input (current, voltage, temperature, and SoC), and increases SoC prediction accuracy, while avoiding the accumulation of prediction error that might otherwise make a Feed-Forward based model infeasible.
+The rest of this paper is organised as follows: a methodology for an RNN model is discussed in Section~\ref{sec:layer}.
+The details of how auto-regression has been utilised are in Section~\ref{sec:feed}.
+% Subsections 4.1 and 4.2 separate model validation points and parameter estimation processes.
+Section~\ref{sec:results} summarises the investigation results in a comparable manner similar to the previous work~\cite{sadykov_practical_2022} and compares the degree of improvement over traditional RNN methods.
+Finally, Section~\ref{sec:conclussion} concludes the research by outlining several observations, which may require separate consideration.
+% Most were isolated to closed scenarios with provided data or from battery cycling machines.
+% The most promising approach to improve a model and make it more universal is to increase complexity. While some introduced deeper layer network, others added additional mechanisms to those already used.
