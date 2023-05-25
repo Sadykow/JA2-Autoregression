@@ -8,7 +8,15 @@ Each temperature was taken from three driving profiles: Dynamic Stress Test (DST
 % The choice of validation sets was due to differences in the current consumption.
 % If DST has a constant variation of the current amps over time, the US06 uses an aggressive mechanism similar to the FUDS.
 The ability to accurately capture other driving mechanisms with minor error deviation from training acts as a validation mechanism and justifies the value of the technique.
-The charge cycles were resampled to equalise with a discharge rate of 1 Hz, and all data were normalised based on a mean and standard deviation of the training set.
+The charge cycles were resampled to equalise with a discharge rate of 1 Hz, and all data were normalised based on a mean and standard deviation of the training set. \textcolor{red}{ADD REASONABLE EXPLANATION TO THE GRAPH APPERANCE HERE}
+%!!!
+%!!
+\begin{figure}[ht]
+    \centering
+    \includesvg[width=\columnwidth]{../Ch3Analysis/II_Body/images/cross-data.svg}
+    \caption{Three profiles cross data split for training, validation and testing in a simplistic SoC cycle representation through different temperatures}
+    \label{fig:cross-data}
+\end{figure}
 
 %
 %

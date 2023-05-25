@@ -1,4 +1,4 @@
-Time-series prediction of a neural model relies on the input history of equally distributed samples.
+Time-series prediction of a neural model relies on an input history of equally distributed samples.
 \ifthenelse {\boolean{thesis}}{As discussed in earlier chapters, the LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering (preserving) the long dependencies \cite{rasifaghihi_predictive_2020}.}
 {The LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering (preserving) the long dependencies~\cite{rasifaghihi_predictive_2020}.}
 The cells inside the model act as memory units to preserve the dependence.
@@ -7,20 +7,12 @@ Unlike the normal RNN and the more modern version GRU, LSTM has a more complicat
 % It is the most widely used type of model.
 \ifthenelse {\boolean{thesis}}{Chapter~\ref{cha:Analysis} provides a summary of the LSTM cell logic, with corresponding equations explaining the gates logic in detail.} 
 {\mbox{Figure~\ref{fig:LSTM-cell2}} provides a summary of the cell logic.
-It utilises three gates: forget $f_t$, input $i_t$ and output $o_t$, \mbox{Equation~\ref{eq:LSTM-gates2}}.
-The decisions are based around sigmoid $\sigma$ function~\ref{eq:sigmoid2}.
-With default $tanh$ as activation function, \mbox{Equation~\ref{eq:LSTM-output2}} describes the procedure for cell state update and further propagation.
-Output variables $h_t$ and $c_t$ represent memory cell output and the cell state at timestamp $t$.
+The decisions are based around sigmoid $\sigma$ equation~\ref{eq:sigmoid2}.
 \begin{equation}
     \sigma(x) = \frac{1}{1+e^{-x}}
     \label{eq:sigmoid2}
 \end{equation}
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{II_Body/LSTM/images/LSTM.jpg}
-    \caption{Long Short-Term Memory Cell}
-    \label{fig:LSTM-cell2}
-\end{figure}
+The cell logic utilises three gates: forget $f_t$, input $i_t$ and output $o_t$, \mbox{Equation~\ref{eq:LSTM-gates2}}.
 \begin{equation}
     \begin{split}
         f_t &= \sigma \left(W_f \left[h_{t-1}, x_t \right] + b_f \right) \\
@@ -29,6 +21,8 @@ Output variables $h_t$ and $c_t$ represent memory cell output and the cell state
     \end{split}
     \label{eq:LSTM-gates2}
 \end{equation}
+$tanh$ as the default activation function, in procedure for cell state update and further propagation, \mbox{equation~\ref{eq:LSTM-output2}} .
+Output variables $h_t$ and $c_t$ represent memory cell output and the cell state at timestamp $t$.
 \begin{equation}
     \begin{split}
         c_t &= f_t c_{t-1}+i_t \times tanh \left(W_c \left[h_{t-1}, x_t \right] + b_c \right) \\
@@ -36,11 +30,18 @@ Output variables $h_t$ and $c_t$ represent memory cell output and the cell state
     \end{split}
     \label{eq:LSTM-output2}
 \end{equation}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{II_Body/LSTM/images/LSTM.jpg}
+    \caption{Long Short-Term Memory Cell}
+    \label{fig:LSTM-cell2}
+\end{figure}
 }
 
 %
 %
-The LSTM model has been used widely in stock price prediction or weather forecasting. 
+%? May 19 2023 - removing paragraph from article.
+\ifthenelse {\boolean{thesis}}{The LSTM model has been used widely in stock price prediction or weather forecasting. 
 %? add references if I feel to it
 However, unlike State of Charge estimation, which commonly uses $V$, $I$, and $T$ as inputs, those methods utilise the output feature as an input to the subsequent prediction to propagate results further and calculate the time before a critical event occurrence.
 Besides, methods like weather forecasting for a week are not limited by lacking output data since the searched criteria are always known or will be known once they happen, allowing updates and improvements of follow-up predictions.
@@ -53,6 +54,7 @@ It can be determined with a proper battery cycler, performing a set of pulse tes
 %Unlike the charge estimation, which can only output a single value based on a history of samples, they are not limited to ... . Therefore, it does not require the output as input since the truth will become known in due time.
 As such, to include the charge in the process, SoC as a learning input is used, later making a predicted array of values used on testing.
 Such an approach introduces potential issues for error accumulation with every evaluation that will be addressed.
+} {} 
 
 %
 %
