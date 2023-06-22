@@ -80,12 +80,29 @@ As a result, a NN model will learn dependency between a fixed amount of equally 
 {\mbox{Figure~\ref{fig:Windowing}} demonstrates how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features, 500 timestamps and around a hundred thousand samples to fit on.}
 Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
 
+\begin{figure}[htbp]
+    \centering
+    % DST based tests
+    \includesvg[width=\linewidth]{II_Body/images/simple_windows.svg}
+    \caption{Simple windowing example.}
+    \label{fig:windowing_simple}
+\end{figure}
+\textcolor{blue}{Here, a time-series training set of equally spaced data points is broken up into "windows" of set with, \textit{s}-skip.
+A window is defined starting out each data point so that each window overlaps with s-step other windows.
+}
+\textcolor{blue}{Each window is associated with an output parameter.
+The process can be broadly explained in simple terms whereby, prediction using a trained LSTM model of this type will take a window width of input samples and then effectively "choose" the window of best fit from the trained data set, outputting the associated parameter, much like image recognition works. 
+}
+\textcolor{blue}{In this work, the data set has four features, namely current, voltage, temperature adn SoC, and an output parameter of SoC (i.e the next SoC imediately following the window set.)
+The full windowing classification of this data is represented in Figure 2.
+For such multi-dimensional arrays, the training/prediction calculation be ... more complicated. }
+
 %
 %
-\ifthenelse {\boolean{thesis}}{Similar to Chapter~\ref{cha:Analysis}, the mean and standard deviation has been used to normalise all data to speed up the training process.}
-{The mean and standard deviation has been used to normalise all data to speed up the training process.}
+\ifthenelse {\boolean{thesis}}{Similar to Chapter~\ref{cha:Analysis}, to speed up the training process, the mean and standard deviation of each of the four features has been used to normalise all data.}
+{To speed up the training process, the mean and standard deviation of each of the four features has been used to normalise all data.}
 The normalisation constant from training input samples has been used for all further validation and testing sets to ensure the right trends.
-The state of charge narrowed between 0 and 1 to represent the percentage charge to two decimals.
+The SoC narrowed between 0 and 1 to represent the percentage charge to two decimals.
 \mbox{Table~\ref{tab:params}} highlights the parameters required to define the initial model, where $s$ defines output step size, which will be justified later in Section~\ref{sec:feed}.
 A $\sigma$ function as an output justifies the charge normalisation between 0 and 1.
 \ifthenelse {\boolean{thesis}}{The number of neurons has been selected based on the results made in Chapter~\ref{cha:Analysis}, Section~\ref{sec:AN:Results}.
