@@ -76,26 +76,40 @@ Therefore, it will be adapted to overcome the problem of accumulated error in th
 
 %
 %
-\textcolor{red}{ (Must be rewritten as per discusion clearer and sompler)
 \ifthenelse{\boolean{thesis}}{The SoC estimation model may benefit from multiple outputs by adapting the Autoregression to the accumulator utilisation scenario.
 Therefore, the}
 {The} training procedure for the regular LSTM model has been modified to consider potential inaccuracy in the known data rather than the future outputs.
 The diagram in Figure~\ref{fig:training_testing} illustrates how the technique has been adapted to the current research.
-\ifthenelse{\boolean{thesis}}{Unlike Figure~\ref{fig:autoregressive}, the training and testing procedures were separated from each other on two separate subfigures.}
-{Unlike with Autoregressive example from the documentation tutorial~\cite{time_2020}, the training and testing procedures were separated from each other on two separate subfigures.}
+\ifthenelse{\boolean{thesis}}{Unlike methods from the previous Chapter, the training and testing procedures were separated from each other.}
+{Unlike with Autoregressive example from the documentation tutorial~\cite{time_2020}, the training and testing procedures were separated from each other, and predictions happen not in the future, but over the already known data}
 % The diagram in \mbox{Figure~\ref{subfig:testing}} illustrates regular training and testing procedures for a model to produce output.
-The diagram in \mbox{Figure~\ref{fig:training_testing}a} demonstrates the procedure for the model call using autoregression during the training, whereas \mbox{Figure~\ref{fig:training_testing}b} only shows as a comparison to the regular usage and during the actual application or testing.
+% The diagram in \mbox{Figure~\ref{fig:training_testing}a} demonstrates the procedure for the model call using autoregression during the training, whereas \mbox{Figure~\ref{fig:training_testing}b} only shows as a comparison to the regular usage and during the actual application or testing.
 \ifthenelse{\boolean{thesis}}{Code-based detailed implementation have been attached in Appendix~\ref{app:AutoFeedback}.}{}
+
+%
+% ---->>>>>>>>>>.
 % Unlike regular LSTM, training and testing differ from each other.
-If the testing procedure remains unchanged, the training performs multiple calls during a single-window sample processing.
-Every new call outputs the results and feeds again into the same model, with one sample from each sensor.
-Each output also contained a model state, containing the values stored in the cells, preserving dependency between model calls.
+If the testing procedure remains unchanged, the training performs multiple calls during a single-window sample processing to actively incorporate its expected error.
+For each window, rather than training all 500 samples in an instant, there is an iterative process between 490 and 500 if $AR-width$ is equal to 10, as an example.
+While 490 samples of Voltage, Current, Temperature and previous or known SoC values at time before $t$ will take a regular go through the model and output the predicted SoC for $t+1$, every sample from $AR-width$ (10 in this case) will pass through the model one by one with Voltage, Current and Temperature, but along with every outputted SoC after 490th run at $t+r$.
+This way, not only will the model output predicted SoC equal to $AR-width$ (Returned training array of 10 samples), but it also trains on the inaccuracy that was produced by its outputs, which the optimiser from Algorithm~\ref{alg:copyAdam} will attempt to minimise after passing through each window of 500 samples.
+The concept is similar to what RoAdam optimiser attempts to achieve to speed up the optimisation by directly incorporating the error in hyperparameters calculation.
+
+%
+%
+In other words, every new call outputs the results and feeds again into the same model, with one sample from each sensor.
+Each output also contained a model state, containing the values stored in the NN' cells, preserving dependency between model calls for the Machine Learning framework utilisation only.
+% Intentinally, with time, it will get minimised.
 % State output is used only for internal model processing.
-Every output of every step has been stored in the returned array for the optimiser to adjust weights.
-With a new approach, it will compare an array of predicted samples against the actual values of the SoC, making the adjustments based on the inaccuracies present in the dependencies and considering them as part of the system.
-Unlike testing, the training is not feed-forward based; therefore, all actual SoC data and known SoC inputs are considered true, except the last $s$, which matches the number of outputs.
+% Every output of every step has been stored in the returned array for the optimiser to adjust weights.
+With a new approach, the optimiser will compare an array of predicted samples against the actual values of the SoC, making adjustments based on the inaccuracies present in the dependencies and considering them as part of the system, to update weights accordingly.
+Unlike testing, the training is not feed-forward based; therefore, all actual SoC data and known SoC inputs are considered true, except the last $AR-width$, which matches the number of outputs and used only by the optimiser, not at training, therefore being excluded from input arrays $t_{n+...}$ on Figure~\ref{fig:training_testing}.
+To compare this process with the standard approach, using predicted SoC in the Feed-Forward manner will assume that the history 500 samples have been perfectly correct, leading to error accumulation and divergence from the actual value.
 % This was meant to increase the model fit process.
-The more output samples the model returns during the training (Returned training array), the longer the training process becomes, but the better the real-time prediction against aggressive driving profiles gets achieved.}
+The more output samples the model returns during the training (Returned training array), the longer the training process becomes, but the better the real-time prediction against aggressive driving profiles gets achieved.
+For training, that process is done purely for one window, which means, they still can be shuffled in any order, if necessary.
+That regressive process of using only several last samples with some error produced by the models' prediction is far more efficient than adding a random noise level in the array of known SoC and adjusting to what level brings better results for each driving profile.
+% By minimising the error from AR-width number of predicted SoC using the optimiser, the imperfection of the SoC in the history becomes included to the models' weights.
 \ifthenelse{\boolean{thesis}}{
     \begin{figure}[htbp]
         \centering
@@ -132,16 +146,16 @@ The more output samples the model returns during the training (Returned training
         \centering
         % DST based tests
         \includegraphics[width=0.85\linewidth]{II_Body/images/Autoregression_updated-Training.png}
-        \caption{Block diagram demonstration of custom autoregressive training procedure for 4-featured-based models.}
+        \caption{Block diagram demonstration of custom autoregressive training procedure for 4-featured-based models, where $n$ is the initial number of input samples, excluding the $AR-width$ $(r)$. The sum of $n$ and $r$ is equal to 500 samples for this research.}
         \label{fig:training_testing}
     \end{figure*}
 }
 
 %
 %
-Now, with modified training procedure and optimiser usage of the 30 output samples (29 known and one predicted) as an example, \mbox{Figure~\ref{fig:modefied_tr}} contains a similar test, as without autoregression on earlier Figure~\ref{fig:regular_tr}.
+Now, with modified training procedure and optimiser usage of the 30 $AR-width$ samples, as an example, \mbox{Figure~\ref{fig:modefied_tr}} contains a similar test, as without autoregression on earlier Figure~\ref{fig:regular_tr}.
 Even though the accuracy with tabled samples has decreased between \mbox{Figure~\ref{fig:regular_tr}a and~\ref{fig:modefied_tr}a}, its feed-forward prediction accuracy has significantly increased and does not lose the trend.
-The implementation has been based on contributions from the original framework developers~\cite{time_2020} and written based on corresponding original documentation of Tensorflow 2.3~\cite{tensorflow2015-whitepaper}.
+The implementation has been based on contributions from the original framework developers~\cite{time_2020} and written based on corresponding original documentation of Tensorflow 2.4~\cite{tensorflow2015-whitepaper}.
 \ifthenelse{\boolean{thesis}}{
 \begin{figure}[H]
     \centering
