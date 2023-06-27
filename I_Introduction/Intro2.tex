@@ -25,16 +25,19 @@ It is this feature that was the primary evaluation in~\cite{sadykov_practical_20
 
 %
 %
-A key difference between the application of machine learning to many other non-linear systems (e.g., financial market predictions or analysis of the weather) and its application to SoC estimation, is that the primary focus of the prediction in batteries, i.e. SoC, cannot be directly measured in real-time\footnote{SoC can be measured for a battery directly, but this requires long time settling tests that may take minutes or hours at a controlled battery state for the battery to reach equilibrium and a measurement to be taken \textcolor{red}{[ref confirm accuracy of statement]}, and this is obviously infeasible for a real-time SoC measurement approach for EV applications.} \textcolor{red}{[ref]}.
-As such, it typically isn't used as an input feature to training or prediction (where current market or current weather state are used to improve the next prediction in the other examples).
-The absence of a real-time “ground truth” of SoC is one of the features that makes SoC prediction so challenging \textcolor{red}{[ref]}.
-The risk of using predicted SoC as an input parameter to any computer intelligence model is obvious, in that any small initial errors may very rapidly cause a divergent solution.
-However, if this risk could be managed, there is potential to greatly improve the accuracy of such methods for SoC prediction.
+A key difference between the application of machine learning to many other non-linear systems (e.g., financial market predictions or analysis of the weather) and its application to SoC estimation is that the primary focus of the prediction in batteries, i.e. SoC, cannot be directly measured in real-time\footnote{SoC can be measured for a battery directly, but this requires a long time settling tests that may take minutes or hours at a steady battery state for it to reach equilibrium and measurement to be taken~\cite{ali_towards_2019}, and this is infeasible for a real-time SoC measurement approach for EV applications.}.
+As such, it typically is not used as an input feature to training or prediction (whereas the current market or weather state are used to improve the next prediction in the other examples).
+The absence of a real-time “ground truth” of SoC is one of the features that makes SoC prediction so challenging. % \textcolor{red}{[ref]}
+The risk of using predicted SoC as an input parameter to any computer intelligence model is evident because minor initial errors may rapidly cause a divergent solution.
+However, if this risk could be managed, there is potential to improve significantly the accuracy of such methods for SoC prediction.
 Several options exist.
 The first is to use an initial SoC estimation from other means (e.g., from Coulomb Counting).
 This may, however, be susceptible to the same limitations experienced by the chosen method.
-The second is to employ a Feed-Forward model \textcolor{red}{[ref]} to propagate the output value of the charge as an input to the next prediction but utilise an Autoregressive technique~\cite{time_2020} to avoid the propagation of prediction error.
-\textcolor{red}{(Explain here, based on the literature / reference why you think this will work to avoid the error. This is the key motivation and justification for this paper).}
+The second is to employ an RNN model to propagate the output value of the charge as an input to the next prediction but utilise an Autoregressive technique~\cite{time_2020} to avoid the propagation of prediction error.
+This approach should be more reasonable and practical than attempting to manually distribute weights between features or manipulate with an implication of the noise to input data to make output less sensible to miss accuracies.
+The example of the technique from documentation~\cite{time_2020} provided a reasonable way to approach.
+However, instead of looking towards the future outputs with initial inputs only, the set of predetermined sensory data will be provided to the model.
+% \textcolor{red}{(Explain here, based on the literature / reference why you think this will work to avoid the error. This is the key motivation and justification for this paper).}
 
 %
 %

@@ -13,15 +13,28 @@ The proposed technique is implemented on current Lithium-Ion battery cycling dat
 Unlike simple Feed-Forward prediction with high error due to accumulated  SoC offset, the Autoregressive modification lowered the training miss accuracy to 1-3\% of Mean Average Error (MAE).
 The implementation has been modified to fit low-power Chip-on-Board devices or used on TPU processors to be easily integrated into any electrical grid.
 }{
-Implementing a reliable algorithm for determining the State of Charge (SoC) of a battery in an electrical grid is one of the significant tasks in the Battery Management System (BMS).
-Accurate and universal SoC estimation at different utilisation conditions helps assess the batteries' performance and improve overall usage.
-Given the variety of issues with traditional methods of calculating SoC, the Computer Intelligence-based models tend to use statistical data rather than battery modelling, which allows charge estimation from an unknown initial charge percentage at any point of utilisation.
-Due to the common non-linear characteristics of Lithium-Ion cells, the Neural Network based models have had better performance results in building the complicated multidimensional relationship between typical battery sensory data.
-%: Voltage, Current and Temperature, yet fail to allocate weight across trendies features by themselves.
-However, using pure history of sensory measurements of Voltage, Current and Temperature over a full cycle battery utilisation has imperfections when applying trained models on unforeseen driving tests.
-In the present paper, a Recurrent Neural Network (RNN) model with a new Autoregressive modification has been proposed to improve upon early published Machine Learning methods to enhance the estimation accuracy further and make results less sensible to changed conditions of usage.
-This method has an advantage over traditional 3-feature-based models to be used in the Feed-forward way to preserve SoC results for further estimation and minimise accumulated error influence on the overall SoC prediction system.
-As a result, the method could diverge with actual trained State of Charge values from any initial condition and accurately capture even the most complicated charge regions within 2-3\% error on the testing datasets.
+    % \begin{itemize}
+        % \item This paper presents \dots
+        This paper presents a Recurrent Neural Network (RNN) model for the State of Charge (SoC) estimation inside Electric Vehicles with a new Autoregressive modification proposed to improve upon early published Machine Learning methods to enhance the prediction accuracy further and make results less sensitive to interchangeable usage conditions.
+        % \item Background \dots How?
+        By building upon earlier published finding, where several models were assessed on estimating an SoC using a history window of sensory data, this works proposes, implements and reports its methods of improving accuracy by introducing the State of Charge as part of sensory inputs in a Feed-Forward manner.
+        % \item Method \dots -> What have been done
+        The method is based on the Autoregressive implementation of RNN model training, where the several latest samples of known SoC in the inputs are considered potentially inaccurate and treated as a source of divergence in the follow-up predictions during Feed-Forward testing that optimisation process is meant to minimise.
+        % the main issue for model divergence during Feed-Forward prediction and made to be one of the features
+        % \item Results \dots What results where achieved.
+        As a result, with a slight increase in training time, the accuracy of the output prediction for three different driving profiles doubled compared to the two best models, which were concluded from previous findings.
+        % \item conclusions \dots What conclussion have I wrote?
+        Overall, the test results have proven the usability of the model in actual driving conditions, which in combination with any other RNN methods to determine the initial set of input State of Charge and theoretically low computational load on Tensor processors, can become a suitable replacement to any other traditional way of estimation, which relies on battery modelling rather than statistical estimations.
+    % \end{itemize}
+% Implementing a reliable algorithm for determining the State of Charge (SoC) of a battery in an electrical grid is one of the significant tasks in the Battery Management System (BMS).
+% Accurate and universal SoC estimation at different utilisation conditions helps assess the batteries' performance and improve overall usage.
+% Given the variety of issues with traditional methods of calculating SoC, the Computer Intelligence-based models tend to use statistical data rather than battery modelling, which allows charge estimation from an unknown initial charge percentage at any point of utilisation.
+% Due to the common non-linear characteristics of Lithium-Ion cells, the Neural Network based models have had better performance results in building the complicated multidimensional relationship between typical battery sensory data.
+% %: Voltage, Current and Temperature, yet fail to allocate weight across trendies features by themselves.
+% However, using pure history of sensory measurements of Voltage, Current and Temperature over a full cycle battery utilisation has imperfections when applying trained models on unforeseen driving tests.
+% In the present paper, 
+% This method has an advantage over traditional 3-feature-based models to be used in the Feed-forward way to preserve SoC results for further estimation and minimise accumulated error influence on the overall SoC prediction system.
+% As a result, the method could diverge with actual trained State of Charge values from any initial condition and accurately capture even the most complicated charge regions within 2-3\% error on the testing datasets.
 % (?) It also difficult to determine SoC at a unknows initial conditions, which makes NN superior method... 
 % Has a potential of predicting in future on how much remaining usefull charge can be used
 }

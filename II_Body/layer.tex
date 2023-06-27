@@ -91,7 +91,7 @@ Here, in Figure~\ref{fig:windowing_simple}, a time-series training set of equall
 A window is defined starting out each data point so that each window overlaps with s-step other windows.
 Each window is associated with an output parameter.
 The process can be broadly explained in simple terms whereby, prediction using a trained LSTM model of this type will take a window width of input samples and then effectively "choose" the window of best fit from the trained data set, outputting the associated parameter, much like image recognition works. 
-\textcolor{blue}{In this work, the data set has four features, namely current, voltage, temperature and State of Charge, and an output parameter of SoC (i.e the next SoC imediately following the window set.)
+\textcolor{blue}{In this work, the data set has four features, namely current, voltage, temperature and State of Charge, and an output parameter of SoC (i.e the next SoC immediately following the window set.)
 The full windowing classification of this data is represented in Figure 2.
 For such multi-dimensional arrays, the training/prediction can happen at any order, since the model gets all required information to train and adjust weights within a windows of inputs and associated outputs.}
 % The same has been true for previous research in this area~\cite{sadykov_practical_2022}, but will be explored further, by building up on the derived conclusions and introducing a sequential way of testing model in Feed-Forward manner, similar to the behaviour of the real driving conditions.}
