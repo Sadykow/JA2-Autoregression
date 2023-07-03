@@ -219,6 +219,10 @@ In total, 30 models were produced in this study, averaged, and compared for the 
     \multicolumn{3}{c}{FUDS} \\
     \cline{3-11}
      & & MAE(\%) & RMSE(\%) & $R^{2}$(\%) & MAE(\%) & RMSE(\%) & $R^{2}$(\%) & MAE(\%) & RMSE(\%) & $R^{2}$(\%) \\
+     \hline
+     \textbf{New} & \textbf{DST} & \textbf{0.81} & \textbf{1.10} & \textbf{99.87} & \textbf{1.92} & \textbf{2.71} & \textbf{99.21} & \textbf{1.77} & \textbf{2.35} & \textbf{99.40}  \\
+     \textbf{Met-}& \textbf{US06} & \textbf{1.49} & \textbf{2.02} & \textbf{99.57} & \textbf{0.89} & \textbf{1.06} & \textbf{99.88} & \textbf{1.28} & \textbf{1.94} & \textbf{99.59}  \\
+     \textbf{hod} & \textbf{FUDS} & \textbf{2.10} & \textbf{2.94} & \textbf{99.10} & \textbf{1.28} & \textbf{1.87} & \textbf{99.62} & \textbf{0.50} & \textbf{0.68} & \textbf{99.95}  \\
     \hline
     % Content
     %Chemali2017
@@ -234,10 +238,6 @@ In total, 30 models were produced in this study, averaged, and compared for the 
     %   & DST & 2.89 & 3.61 & 98.65 & 3.82 & 5.38 & 96.88 & 4.11 & 5.51 & 96.67 \\ 
     % 4 & US06 & 6.19 & 8.57 & 92.35 & 3.30 & 4.12 & 98.17 & 5.42 & 6.82 & 94.91 \\ 
     %   & FUDS & 5.74 & 7.49 & 94.16 & 4.03 & 5.75 & 96.44 & 1.58 & 2.28 & 99.43 \\ 
-    \hline
-    \textbf{New} & \textbf{DST} & \textbf{0.81} & \textbf{1.10} & \textbf{99.87} & \textbf{1.92} & \textbf{2.71} & \textbf{99.21} & \textbf{1.77} & \textbf{2.35} & \textbf{99.40}  \\
-    \textbf{Met-}& \textbf{US06} & \textbf{1.49} & \textbf{2.02} & \textbf{99.57} & \textbf{0.89} & \textbf{1.06} & \textbf{99.88} & \textbf{1.28} & \textbf{1.94} & \textbf{99.59}  \\
-    \textbf{hod} & \textbf{FUDS} & \textbf{2.10} & \textbf{2.94} & \textbf{99.10} & \textbf{1.28} & \textbf{1.87} & \textbf{99.62} & \textbf{0.50} & \textbf{0.68} & \textbf{99.95}  \\
     \hline\hline
 \end{tabular}
 }
@@ -290,6 +290,11 @@ In total, 30 models were produced in this study, averaged, and compared for the 
 
 %!
 %!
+% \textcolor{red}{Explanation for variance plot is missing. Jump to Pr Lovel discussion at 55:00 for Fig~\ref{fig:Models-var}}
+For a better performance comparison, the variance plot on Figure~\ref{fig:Models-var} has been created from the histories of 10 attempts for 3 model, associated to each in the Table.
+The X-axis has been reduced for all plots, for the purpose of clearly comparing the newly proposed training process method to others.
+While the initial start is equivalent to any other model, the time before reaching the optimum solution is clearly dominated with new approach, which can be improved even further with increased AR-width.
+Although, similar to the size of the history input, with every additional sample in the training loop, the time of overall training is increased on the O(n) scale.
 %! Find a better place
 \begin{figure*}[!h]
     \centering
@@ -299,7 +304,8 @@ In total, 30 models were produced in this study, averaged, and compared for the 
     \subfloat[A simple LSTM models' variance visualisation]{\includesvg[width=0.325\linewidth]{III_Conclussion/im_var/M1-variance.svg}}
     \hfill
     \subfloat[LSTM with Attention models' variance visualisation]{\includesvg[width=0.325\linewidth]{III_Conclussion/im_var/M3-variance.svg}}
-    \label{subfig:Models-var}
+    \caption{Variance comparison plot, where Max and Min lines outline the limits of the best and worst case histories and average being the overall performance.}
+    \label{fig:Models-var}
 \end{figure*}
 
 %
