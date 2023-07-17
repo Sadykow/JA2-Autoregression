@@ -55,7 +55,7 @@ This is a good justification for why there has been no evidence in the published
 %! Get eid of that figgure, find a way to refer to it.
 A key reason for the inaccuracies of the prediction in \mbox{Figure~\ref{fig:regular_tr}b} lies in the weights the model places on the State of Charge input feature.
 For a better weight balance, the training procedure must be modified to consider the possibility of an inaccuracy in the input charge data.
-An example of a modified training loop can be found in the Autoregressive models of \mbox{Lamberta et al.~\cite{time_2020}}.
+An example of a modified training loop can be found in the Autoregressive models of \mbox{Lamberta et al.~\cite{time_2020}}, utilising methods of teacher forcing~\cite{brownlee_what_2017}.%,orac_lstm_2024}.
 The implementation can be applied to any early-created model, referring to regressive implementation.
 % However, this is an example of the earlier mentioned stateful data management, where the model was explicitly programmed to run internally automatically and remains of stateless type.
 % The state will be produced and used internally but is not present in the outputs.

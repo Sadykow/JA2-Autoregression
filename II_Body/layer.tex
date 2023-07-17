@@ -37,6 +37,13 @@ Output variables $h_t$ and $c_t$ represent memory cell output and the cell state
     \label{fig:LSTM-cell2}
 \end{figure}
 }
+\begin{figure}[htbp]
+    \centering
+    % DST based tests
+    \includesvg[width=\linewidth]{II_Body/images/simple_windows.svg}
+    \caption{Simple windowing example.}
+    \label{fig:windowing_simple}
+\end{figure}
 
 %
 %
@@ -59,7 +66,7 @@ Such an approach introduces potential issues for error accumulation with every e
 %
 %
 \begin{landscape}
-    \begin{figure}[ht]
+    \begin{figure}[t]
         \centering
         \includegraphics[width=\linewidth]{II_Body/images/Windowing4f-A3.jpg}
         \caption{Data Windowing scheme at 1Hz sampling rate. For visualisation purposes, the $s$-step has been used as 250 seconds, which is different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, around zero.}
@@ -80,13 +87,7 @@ As a result, a NN model will learn dependency between a fixed amount of equally 
 {\mbox{Figure~\ref{fig:Windowing}} demonstrates how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features, 500 timestamps and around a hundred thousand samples to fit on.}
 Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
 
-\begin{figure}[htbp]
-    \centering
-    % DST based tests
-    \includesvg[width=\linewidth]{II_Body/images/simple_windows.svg}
-    \caption{Simple windowing example.}
-    \label{fig:windowing_simple}
-\end{figure}
+
 Here, in Figure~\ref{fig:windowing_simple}, a time-series training set of equally spaced data points is broken up into "windows" of a set with, \textit{s}-skip.
 A window is defined starting out each data point so that each window overlaps with s-step other windows.
 Each window is associated with an output parameter.
