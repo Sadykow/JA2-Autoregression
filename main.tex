@@ -369,6 +369,8 @@
 % (Unless specifically asked to do so by the journal or conference you plan
 % to submit to, of course. )
 
+%! DEBUG. Remove later
+% \usepackage{pdfcomment}
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
@@ -539,11 +541,14 @@ E-mail: d.holmes@qut.edu.au
 
 \section{Method Development} \label{sec:layer}
 Before the development of the new approach is detailed, we need to outline how the methods and the data will be assessed against the testing methodology.
-
-\textcolor{blue}{Matt: Do we need to put an outline of the next subsections or turn in in brief summary of what's to come, similar to Results?}
+% \pdfcomment{
+%   ALTERNATIVELY:
+%   The following subsection/part will describe battery data and performance metrics used in similar methods, structure and modifications of the researched Time-series model, and summaries a newly proposed method to improve the overall accuracy.
+% }
 Subsection~\ref{subsec:testing} outlines what and how battery data is used and reported for performance metrics against other methods.
-Subsection~\ref{subsec:lstm} present the type, structure and method of the Time-series model, which will be utilised throughout the research, along with input and output data management and optimisation strategy.
+Subsection~\ref{subsec:lstm} presents the type, structure and method of the time-series machine learning models which will be utilised throughout the research, along with input and output data management and optimisation strategy.
 Subsection~\ref{sec:feed} provides the full summary of how the new method is implemented from the procedural perspective and why it is considered viable to improve the overall accuracy.
+% \textcolor{blue}{Matt: Do we need to put an outline of the next subsections or turn in in brief summary of what's to come, similar to Results?}
 \subsection{Testing methodology}~\label{subsec:testing}
   \input{./II_Body/method}
 \subsection{LSTM estimation}~\label{subsec:lstm}

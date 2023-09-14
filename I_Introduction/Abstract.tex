@@ -15,16 +15,19 @@ The implementation has been modified to fit low-power Chip-on-Board devices or u
 }{
     % \begin{itemize}
         % \item This paper presents \dots
-        This paper presents a Recurrent Neural Network (RNN) model for the State of Charge (SoC) estimation inside Electric Vehicles with a new Autoregressive modification proposed to improve upon early published Machine Learning methods to enhance the prediction accuracy further and make results less sensitive to interchangeable usage conditions.
+        This paper presents a Recurrent Neural Network (RNN) model for the State of Charge (SoC) estimation of Electric Vehicle.
+        A new Autoregressive modification is proposed to improve upon earlier published Machine Learning models to enhance the prediction accuracy and make results less sensitive to interchangeable usage conditions.
         % \item Background \dots How?
-        By building upon earlier published finding, where several models were assessed on estimating an SoC using a history window of sensory data, this works proposes, implements and reports its methods of improving accuracy by introducing the State of Charge as part of sensory inputs in a Feed-Forward manner.
+        By building upon earlier published findings, assessing several models ability to estimate SoC using a history window of sensory data (Sadykov \textit{et al}~\cite{sadykov_practical_2022}), this work proposes, implements, and reports its methods of improving accuracy by introducing the State of Charge as part of sensory inputs in a Feed-Forward manner.
         % \item Method \dots -> What have been done
-        The method is based on the Autoregressive implementation of RNN model training, where the several latest samples of known SoC in the inputs are considered potentially inaccurate and treated as a source of divergence in the follow-up predictions during Feed-Forward testing that optimisation process is meant to minimise.
+        The method is based on the Autoregressive implementation of RNN model training, where successively calculated SoC values are used as input in the subsequent predictions, but the potential inaccuracies with those predictions that might otherwise cause significant and rapid divergence are accounted for within a modified recursive training procedure.
+        %the several latest samples of known SoC in the inputs are considered potentially inaccurate and treated as a source of divergence in the follow-up predictions during Feed-Forward testing that optimisation process is meant to minimise.
         % the main issue for model divergence during Feed-Forward prediction and made to be one of the features
         % \item Results \dots What results where achieved.
-        As a result, with a slight increase in training time, the accuracy of the output prediction for three different driving profiles doubled compared to the two best models, which were concluded from previous findings.
+        As a result, with a slight increase in training time, the accuracy of the output prediction for three different realistic charge-discharge driving profiles doubled compared to the two best previously published RNN models.
         % \item conclusions \dots What conclussion have I wrote?
-        Overall, the test results have proven the usability of the model in actual driving conditions, which in combination with any other RNN methods to determine the initial set of input State of Charge and theoretically low computational load on Tensor processors, can become a suitable replacement to any other traditional way of estimation, which relies on battery modelling rather than statistical estimations.
+        Overall, the test results have demonstrated the usability of the current model in actual driving scenarios, making such models a viable replacement to estimation approaches used in electric vehicle battery management systems.
+        %which in combination with any other RNN methods to determine the initial set of input State of Charge and theoretically low computational load on Tensor processors, can become a suitable replacement to any other traditional way of estimation, which relies on battery modelling rather than statistical estimations.
     % \end{itemize}
 % Implementing a reliable algorithm for determining the State of Charge (SoC) of a battery in an electrical grid is one of the significant tasks in the Battery Management System (BMS).
 % Accurate and universal SoC estimation at different utilisation conditions helps assess the batteries' performance and improve overall usage.

@@ -1,4 +1,4 @@
-Time-series prediction of a neural model relies on an input history of equally distributed samples.
+Time-series prediction of a neural models rely on an input history of equally distributed samples.
 \ifthenelse {\boolean{thesis}}{As discussed in earlier chapters, the LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering (preserving) the long dependencies \cite{rasifaghihi_predictive_2020}.}
 {The LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering (preserving) the long dependencies~\cite{rasifaghihi_predictive_2020}.}
 The cells inside the model act as memory units to preserve the dependence.
@@ -37,7 +37,7 @@ Output variables $h_t$ and $c_t$ represent memory cell output and the cell state
     \label{fig:LSTM-cell2}
 \end{figure}
 }
-\begin{figure}[htbp]
+\begin{figure}[hbp]
     \centering
     % DST based tests
     \includesvg[width=\linewidth]{II_Body/images/simple_windows.svg}
@@ -76,25 +76,26 @@ Such an approach introduces potential issues for error accumulation with every e
 The best way to use the performance of the stateless LSTM model is through training with a data windowing technique.
 The NN model will receive a fixed set of equally-distributed time samples at each time prediction.
 Every next forecast will shift the time window by a constant step $s$, until all possible combinations of time slices have gone through the training model.
-That approach is called a stateless model, which only sees dependencies over input samples rather than preserving every received input, like in stateful implementations.
+That approach is called a stateless model, which only sees dependencies over the input sample range, rather than preserving every received input, like in stateful implementations.
 It also allows the order of the windows to be shuffled to avoid overfitting.
 Since no dropout was applied before the model's output, a set of strategies has been applied to update the learning rate and rollback before early stopping to assist the fitting process.
 \ifthenelse {\boolean{thesis}}{Chapter~\ref{cha:Analysis} at subsections~\ref{subsec:l-rate} and~\ref{subsec:t_model} explain those two methods, which have already proven to be effective at training SoC models.} 
 {Early research on published methods has already utilised those two methods to assist the models' training process~\cite{sadykov_practical_2022}.
 It involved a scheduled learning rate value update with every passing epoch for as long as the accuracy kept improving with every passing iteration, as well as assisting the models' recovery in the event of overfitting by double reduction of the rate either until the models' return to the same minimal fitting or finalises the optimum result reach.}
 As a result, a NN model will learn dependency between a fixed amount of equally distributed time samples $n$ and yet be independent of the order of the inputs.
-\ifthenelse {\boolean{thesis}}{\mbox{Figure~\ref{fig:Windowing}} adapts the earlier Figure~\ref{fig:Windowing3f}, demonstrating how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features (Voltage, Current, Temperature and added initial SoC), 500 timestamps and around a hundred thousand samples to fit on.}
-{\mbox{Figure~\ref{fig:Windowing}} demonstrates how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features, 500 timestamps and around a hundred thousand samples to fit on.}
-Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
+\ifthenelse {\boolean{thesis}}{\mbox{Figure~\ref{fig:Windowing}} adapts the earlier Figure~\ref{fig:Windowing3f}, demonstrating how the input dataset is constructed and ordered into a 3-dimensional dataset, with four features (Voltage, Current, Temperature and added initial SoC), 500 timestamps and around a hundred thousand samples to fit on.}{}
 
-
+%
+%
 Here, in Figure~\ref{fig:windowing_simple}, a time-series training set of equally spaced data points is broken up into "windows" of a set with, \textit{s}-skip.
 A window is defined starting out each data point so that each window overlaps with s-step other windows.
 Each window is associated with an output parameter.
-The process can be broadly explained in simple terms whereby, prediction using a trained LSTM model of this type will take a window width of input samples and then effectively "choose" the window of best fit from the trained data set, outputting the associated parameter, much like image recognition works. 
-\textcolor{blue}{In this work, the data set has four features, namely current, voltage, temperature and State of Charge, and an output parameter of SoC (i.e the next SoC immediately following the window set.)
-The full windowing classification of this data is represented in Figure 2.
-For such multi-dimensional arrays, the training/prediction can happen at any order, since the model gets all required information to train and adjust weights within a windows of inputs and associated outputs.}
+The process can be broadly explained in simple terms whereby, prediction using a trained LSTM model of this type will take a window width of input samples and then effectively "choose" the window of best fit from the trained data set, outputting the associated parameter, much like how image recognition works.
+\mbox{Figure~\ref{fig:Windowing}} demonstrates how those windows in the dataset are constructed and ordered into a 3-dimensional data, with four features, 500 timestamps and around a hundred thousand samples to fit on.
+Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
+In this work, the data set has four features, namely current, voltage, temperature and State of Charge, and an output parameter of SoC (i.e the next SoC immediately following the window set.)
+% The full windowing classification of this data is represented in Figure 2.
+For such multi-dimensional arrays, the training/prediction can happen at any order, since the model gets all required information to train and adjust weights within a windows of inputs and associated outputs.
 % The same has been true for previous research in this area~\cite{sadykov_practical_2022}, but will be explored further, by building up on the derived conclusions and introducing a sequential way of testing model in Feed-Forward manner, similar to the behaviour of the real driving conditions.}
 
 %
@@ -102,7 +103,7 @@ For such multi-dimensional arrays, the training/prediction can happen at any ord
 \ifthenelse {\boolean{thesis}}{Similar to Chapter~\ref{cha:Analysis}, to speed up the training process, the mean and standard deviation of each of the four features has been used to normalise all data.}
 {To speed up the training process, the mean and standard deviation of each of the four features has been used to normalise all data.}
 The normalisation constant from training input samples has been used for all further validation and testing sets to ensure the right trends.
-To simplify the implementation of SoC being both an input and output feature and fit to real-world scenario inside an accumulator, it has been narrowed between 0 and 1 to represent the percentage charge to two decimals and shifted by one sample back to associate Voltage, Current and Temperature with an existing SoC value, not the one which will be theoretically predicted; in the text called as previous or known State of Charge.
+To simplify the implementation of SoC being both an input and output feature and fit to real-world scenario inside a battery pack, it has been narrowed between 0 and 1 to represent the percentage charge to two decimals and shifted by one sample back to associate Voltage, Current and Temperature with an existing SoC value, not the one which will be theoretically predicted; referred to as \textit{previous} or \textit{known} State of Charge in the remainder of this work.
 \mbox{Table~\ref{tab:params}} highlights the parameters required to define the initial model, where $s$ defines output step size, which will be justified later in Section~\ref{sec:feed}.
 A $\sigma$ function as an output justifies the charge normalisation between 0 and 1.
 \ifthenelse {\boolean{thesis}}{The number of neurons has been selected based on the results made in Chapter~\ref{cha:Analysis}, Section~\ref{sec:AN:Results}.
@@ -153,11 +154,11 @@ Results were adapted to the new custom-implemented model to validate the techniq
 %
 \ifthenelse {\boolean{thesis}}
 {
-The optimisation algorithm for the fitting process has been selected as the regular Adam method, which was highlighted in Chapter~\ref{cha:Analysis}, \mbox{Algorithm~\ref{alg:Adam}}, with the corresponding hyperparameters, \mbox{Table~\ref{tab:uni-hyperparams}}.
+The optimisation algorithm for the fitting process have been selected as the regular Adam method, which was highlighted in Chapter~\ref{cha:Analysis}, \mbox{Algorithm~\ref{alg:Adam}}, with the corresponding hyperparameters, \mbox{Table~\ref{tab:uni-hyperparams}}.
 The selection of this optimiser is made to allow comparison to two early-created LSTM-based models which use the same optimiser in Chapter~\ref{cha:Analysis}.
 }
 {
-The optimisation algorithm for the fitting process has been defined by Adam, \mbox{Algorithm~\ref{alg:copyAdam}}, with the corresponding inputs changes and hyperparameters on \mbox{Table~\ref{tab:newM-params}}.
+The optimisation algorithm for the fitting process has been defined by Adam, \mbox{Algorithm~\ref{alg:copyAdam}}, with the corresponding inputs changes and hyperparameters on \mbox{Table~\ref{tab:newM-params}}. %? Return Adam paper reference if space would allow
 %\textcolor{red}{Try to use Robust Adam instead, because why the hell not since I lost one month of my life to implement that cursed algorithm from Javids miss-typed notes? Complete this section with details as per Gareth Javid's implementation if RoAdam will be able to produce a faster fitting.}
 \begin{algorithm}\captionsetup{labelfont={sc,bf}, labelsep=newline}
     \caption{Adaptive Moment Estimation (Adam) optimisation}

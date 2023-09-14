@@ -6,24 +6,24 @@
 %     \item Verify the model against another cell with the same profile.
 %     \item Validate the performance against the other two profiles, DST and US06.
 % \end{itemize}
-The previos chapter has concluded that all researched models do not meet the same accuracy or implementation, matching time-series models in onther scenarios like weather forecasting.
-A likely contriburing factor is the nature of the weight distribution across three input features, where the training process appears to put higher impact on the voltage curve.
-In addition, the large range in temperatures adds discrepancy in the predictions, due to the impact of higher power dissipation in a hotter state.
-Since the state of charge is actually a function of current over time, this chapter is intended to research a way to improve that accuracy through modification of the training process.
+The previous chapter has concluded that all researched models do not meet the same accuracy or implementation, matching time-series models in other scenarios like weather forecasting.
+A likely contributing factor is the nature of the weight distribution across three input features, where the training process appears to put a higher impact on the voltage curve.
+In addition, the large range in temperatures adds discrepancy in the predictions due to the impact of higher power dissipation in a hotter state.
+Since the state of charge is a function of current over time, this chapter intends to research a way to improve that accuracy through modification of the training process.
 
 
 %
 %
 %There have been several attempts to determine the most effective strategy for model training.
 %Both LSTM and Gradient Recurrent Unit are effective, and there is no noticeable difference in the impact between speed and outputted accuracy.
-The correction of the limitations identified in Chapter~\ref{cha:Analysis}, such as training a cross-accurate model and minimisation of internal resistance influence or higher temperatures, will require an implemention of a new 4-feature-based method.
-This time, the state of charge will be used as an additional input feature for the training, assuming that initial state of the battery has either being known due to being fully charge or completely depleted, or using other methods of estimation.
-For example, some models researched earlier, have an ability to estimate SoC at any point in the cycle using only sensory readings.
+Correcting the limitations identified in Chapter~\ref{cha:Analysis}, such as training a cross-accurate model and minimising internal resistance influence or higher temperatures, will require implementing a new 4-feature-based method.
+This time, the state of charge will be used as an additional input feature for the training, assuming that the initial state of the battery has either been known due to being fully charged or completely depleted or using other methods of estimation.
+For example, some models researched earlier can estimate SoC at any point in the cycle using only sensory readings.
 
 %
 %
 In this chapter, the Long short-term memory model will be developed, with a history of approximately 8 minutes and 20 seconds usage (500 samples at 1Hz), to predict the current State of Charge and propagate the result further into the next prediction.
-A novel method of the training loop model will be proposed, to eliminate the possibility of accumulating error along with the value of a charge, utilising the Autoregressive~\cite{time_2020} technique to introduce an adaptive and robust solution to training output inaccuracy over time.
+A novel method of the training loop model will be proposed to eliminate the possibility of accumulating error along with the value of a charge, utilising the Autoregressive~\cite{time_2020} technique to introduce an adaptive and robust solution to training output inaccuracy over time.
 % It utilises the Autoregressive technique to introduce an adaptive and robust solution to training with some training output inaccuracy over time.
 Furthermore, it forces the model to consider the potential of having variations in the State of Charge history and not fail the prediction in the following outputs.
 
