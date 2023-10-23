@@ -1,21 +1,22 @@
 %
 %
 \ifthenelse{\boolean{thesis}}{To carry out detailed evaluation of the new model, the battery cycling data obtained from the Battery Research Group of the Center for Advanced Life Cycle Engineering (CALCE) Group at the University of Maryland~\cite{noauthor_calce_2017}, as per methodology of Chapter~\ref{cha:Analysis}.}
-{The battery cycling data used here were obtained from the Battery Research Group of the Center for Advanced Life Cycle Engineering (CALCE) Group at the University of Maryland~\cite{noauthor_calce_2017}.}
+{The A123 battery cycling data of ANR26650 M1-A type and cell chemistry $LiFePO_4$ used here was obtained from the Battery Research Group of the Center for Advanced Life Cycle Engineering (CALCE) Group at the University of Maryland~\cite{noauthor_calce_2017}.}
+This type has the most complex voltage against SoC curve in the 3.3V region of the 30-80\% charge, making it difficult to estimate with direct sensor reading correlation.
 The data includes battery temperatures of 20, 25, 30, 40 and 50\textdegree{}C over three driving profiles and these have been selected as training and testing groups.
 Each temperature was taken from three driving profiles: Dynamic Stress Test (DST), Highway driving (US06) and Federal-Urban driving schedule (FUDS) (see~\cite{castillo_18_2015}).
 % The FUDS driving scheduler acts as a training set, then the other two DST and US06 for testing.
 % The choice of validation sets was due to differences in the current consumption.
 % If DST has a constant variation of the current amps over time, the US06 uses an aggressive mechanism similar to the FUDS.
 The ability to accurately capture other driving mechanisms with minor error deviation from training, acts as a validation mechanism and justifies the value of the technique.
-The charge cycles were resampled a discharge rate of 1 Hz, and all data was normalised based on a mean and standard deviation of the training set.
-Figure~\ref{fig:cross-data} outlines the State of Charge cycles, associated with Voltage, Current and Temperature, oversampled and cross-cycle classified for Training, Validation and Testing purposes.
+The charge cycles were resampled at a discharge rate of 1 Hz, and all data was normalised based on a mean and standard deviation of the training set.
+Figure~\ref{fig:cross-data} outlines the SoC cycles, associated with voltage, current and temperature, oversampled and cross-cycle classified for training, validation and testing purposes.
 %!!!
 %!!
 \begin{figure}[ht]
     \centering
     \includesvg[width=\columnwidth]{../Ch3Analysis/II_Body/images/cross-data.svg}
-    \caption{Three profiles cross data split for training, validation and testing in a simplistic SoC cycle representation through different temperatures. The three cycle types were DST, US06 and FUDS, with one selected as the training cycle, and the other two as testing for each evaluation.}
+    \caption{Three profiles cross data split of A123 batteries for training, validation and testing in a simplistic SoC cycle representation through different temperatures. The three cycle types were DST, US06 and FUDS, with one selected as the training cycle, and the other two as testing for each evaluation.}
     \label{fig:cross-data}
 \end{figure}
 
@@ -27,12 +28,12 @@ Figure~\ref{fig:cross-data} outlines the State of Charge cycles, associated with
 \begin{figure}[ht]
     % RMSE equation: RMS = (tf.keras.backend.sqrt(tf.keras.backend.square(y_test_one[::,]-PRED)))
     \centering
-    \includesvg[width=\columnwidth]{II_Body/images/plot-example.svg}
+    \includesvg[width=0.85\columnwidth]{II_Body/images/plot-example.svg}
     \caption{Feed-Forward accuracy plot demonstration.}
     \label{fig:plot_demo}
 \end{figure}
-Figure~\ref{fig:plot_demo} shows an example of how prediction accuracy has been evaluated in this work, where the actual State of Charge is compared with prediction.
-The filled area below the plot captures the error in terms of the Absolute Difference between two lines, as per Equation~\ref{eq:abs-error}.
+Figure~\ref{fig:plot_demo} shows an example of how prediction accuracy has been evaluated in this work, where the actual SoC compared with prediction.
+The filled area below the plot captures the error in terms of the absolute difference between two lines, as per Equation~\ref{eq:abs-error}.
 % For comparison, all Figures with two subplots were distinguished from each other by prediction line color, as per early Figure~\ref{fig:regular_tr}.
 % The left subfigures~\textit{a} with red output line referes to the input taken directrly from the table, including the perfect SoC history.
 % The right subfigures~\textit{b} with yellow prediction refers to Feed-Forward method, where only Voltage, Current and Temperature were taken from the table through the testing.
@@ -50,7 +51,7 @@ In this way, outlying models and random fluctuations are smoothed to provide a m
 % Report resutls based on error degradation pver Mean Average Error and Root MEan Squared Errors.
 % Choosing the most optimal will be the test subject.
 \ifthenelse{\boolean{thesis}}{In the end, to compute overall performance comparable results, each model was tested against the entire training set of all three profiles and summarised in a single table, compared with two LSTM models from previous Chapter~\ref{cha:Analysis}.}
-{Overall, the results were reported on nine subplots, three per profile, where the first column would outline training and testing history over training time, the second - predictions on a single 25\textdegree{}C trained cycle, and the third from 25 and 30\textdegree{}C testing against cycles of other two profiles.
+{Overall, the results were reported on nine subplots, three per profile, where the first column would outline training and testing history over training time, the second - predictions on a single 25\textdegree{}C trained cycle, and the third from 25 and 30\textdegree{}C testing against cycles of the other two profiles.
 % In the end, each model was tested against the entire training set of all three profiles and summarised in a single table, compared with two LSTM models from early published article~\cite{sadykov_practical_2022}. %? RETURN THIS if space would allow it
 }
 % BEst one per each iteration will be summarised in a table and then compared against two acccuracy plots as per following example.

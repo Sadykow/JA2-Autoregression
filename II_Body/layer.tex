@@ -1,4 +1,4 @@
-Time-series prediction of a neural models rely on an input history of equally distributed samples.
+Time-series prediction of neural models rely on an input history of equally distributed samples.
 \ifthenelse {\boolean{thesis}}{As discussed in earlier chapters, the LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering (preserving) the long dependencies \cite{rasifaghihi_predictive_2020}.}
 {The LSTM model is a recurrent neural network designed to solve the vanishing gradient problem by remembering (preserving) the long dependencies~\cite{rasifaghihi_predictive_2020}.}
 The cells inside the model act as memory units to preserve the dependence.
@@ -12,7 +12,8 @@ The decisions are based around sigmoid $\sigma$ equation~\ref{eq:sigmoid2}.
     \sigma(x) = \frac{1}{1+e^{-x}}
     \label{eq:sigmoid2}
 \end{equation}
-The cell logic utilises three gates: forget $f_t$, input $i_t$ and output $o_t$, \mbox{Equation~\ref{eq:LSTM-gates2}}.
+The cell logic utilises three gates.
+Forget $f_t$ to control the level of information to ignore, input $i_t$ to decide upon relevant information to add and output $o_t$ to determine the influence to model at the current step, \mbox{equation~\ref{eq:LSTM-gates2}}.
 \begin{equation}
     \begin{split}
         f_t &= \sigma \left(W_f \left[h_{t-1}, x_t \right] + b_f \right) \\
@@ -21,8 +22,8 @@ The cell logic utilises three gates: forget $f_t$, input $i_t$ and output $o_t$,
     \end{split}
     \label{eq:LSTM-gates2}
 \end{equation}
-$tanh$ as the default activation function, in procedure for cell state update and further propagation, \mbox{equation~\ref{eq:LSTM-output2}} .
-Output variables $h_t$ and $c_t$ represent memory cell output and the cell state at timestamp $t$.
+The $tanh$ activation function is used as the default in procedures for cell state update and further propagation, \mbox{equation~\ref{eq:LSTM-output2}}.
+Variables $h_t$ and $c_t$ represent memory cell output and the cell state at timestamp $t$.
 \begin{equation}
     \begin{split}
         c_t &= f_t c_{t-1}+i_t \times tanh \left(W_c \left[h_{t-1}, x_t \right] + b_c \right) \\
@@ -32,7 +33,7 @@ Output variables $h_t$ and $c_t$ represent memory cell output and the cell state
 \end{equation}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{II_Body/LSTM/images/LSTM.jpg}
+    \includegraphics[width=0.95\columnwidth]{II_Body/LSTM/images/LSTM.jpg}
     \caption{Long Short-Term Memory Cell}
     \label{fig:LSTM-cell2}
 \end{figure}
@@ -40,7 +41,7 @@ Output variables $h_t$ and $c_t$ represent memory cell output and the cell state
 \begin{figure}[hbp]
     \centering
     % DST based tests
-    \includesvg[width=\linewidth]{II_Body/images/simple_windows.svg}
+    \includesvg[width=0.8\columnwidth]{II_Body/images/simple_windows.svg}
     \caption{Simple windowing example.}
     \label{fig:windowing_simple}
 \end{figure}
@@ -78,7 +79,8 @@ The NN model will receive a fixed set of equally-distributed time samples at eac
 Every next forecast will shift the time window by a constant step $s$, until all possible combinations of time slices have gone through the training model.
 That approach is called a stateless model, which only sees dependencies over the input sample range, rather than preserving every received input, like in stateful implementations.
 It also allows the order of the windows to be shuffled to avoid overfitting.
-Since no dropout was applied before the model's output, a set of strategies has been applied to update the learning rate and rollback before early stopping to assist the fitting process.
+% Since no \textit{Dropout} layer was applied before the model's output, a set of strategies has been applied to update the learning rate and rollback before early stopping to assist the fitting process.
+To produce repeatable and comparable results and assist the fitting process, the \textit{Droput} layer, to avoid overfitting at the end of the layer, has been replaced with strategies that update the learning rate and rollback before early stopping.
 \ifthenelse {\boolean{thesis}}{Chapter~\ref{cha:Analysis} at subsections~\ref{subsec:l-rate} and~\ref{subsec:t_model} explain those two methods, which have already proven to be effective at training SoC models.} 
 {Early research on published methods has already utilised those two methods to assist the models' training process~\cite{sadykov_practical_2022}.
 It involved a scheduled learning rate value update with every passing epoch for as long as the accuracy kept improving with every passing iteration, as well as assisting the models' recovery in the event of overfitting by double reduction of the rate either until the models' return to the same minimal fitting or finalises the optimum result reach.}
@@ -95,7 +97,7 @@ The process can be broadly explained in simple terms whereby, prediction using a
 Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
 In this work, the data set has four features, namely current, voltage, temperature and State of Charge, and an output parameter of SoC (i.e the next SoC immediately following the window set.)
 % The full windowing classification of this data is represented in Figure 2.
-For such multi-dimensional arrays, the training/prediction can happen at any order, since the model gets all required information to train and adjust weights within a windows of inputs and associated outputs.
+For such multi-dimensional arrays, the training/prediction can happen in any order, since the model gets all required information to train and adjust weights within a windows of inputs and associated outputs.
 % The same has been true for previous research in this area~\cite{sadykov_practical_2022}, but will be explored further, by building up on the derived conclusions and introducing a sequential way of testing model in Feed-Forward manner, similar to the behaviour of the real driving conditions.}
 
 %
@@ -118,7 +120,7 @@ It was decided to stick to known approaches to validate the efficiency of the ne
         \hline\hline \\[-4mm]
         Input     & $shape= \left( 1,500,4 \right)$ & $batch=1 $  \\
         \hline
-        LSTM      & $activation= 'tanh'$ & $units=131$  \\
+        LSTM      & $activation=tanh$ & $units=131$  \\
         \hline
         Dropout   & $0.0$ &   \\
         \hline
@@ -139,7 +141,7 @@ Results were adapted to the new custom-implemented model to validate the techniq
         \hline\hline \\[-4mm]
         Input     & $shape= \left( 1,500,4 \right)$ & $batch=1 $  \\
         \hline
-        LSTM      & $activation= 'tanh'$ & $units=131$  \\
+        LSTM      & $activation=tanh$ & $units=131$  \\
         \hline
         Dropout   & $0.0$ &   \\
         \hline
