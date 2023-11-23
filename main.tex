@@ -1,52 +1,20 @@
-\documentclass[lettersize,journal]{IEEEtran}
-% *** CITATION PACKAGES ***
-%
-% normal IEEE
-\usepackage{cite}
+\documentclass[a4paper,fleqn]{cas-dc}
 % *** GRAPHICS RELATED PACKAGES ***
 %
-\ifCLASSINFOpdf
-  \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-\else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-  % \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
-\fi
+% \usepackage[pdftex]{graphicx}
 % Adds SVG Support out of cls file
 \usepackage{svg}
-% *** MATH PACKAGES ***
-%
-\usepackage{amsmath}
 % *** SPECIALIZED LIST PACKAGES ***
 %
 \usepackage{algorithm, algorithmic}
-% *** ALIGNMENT PACKAGES ***
-%
-\usepackage{array}
 % *** SUBFIGURE PACKAGES ***
 \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
 % *** FLOAT PACKAGES ***
 %
 %\usepackage{fixltx2e}
-\usepackage{stfloats}
+% \usepackage{stfloats}
 % \usepackage{dblfloatfix}
 
-%\ifCLASSOPTIONcaptionsoff
-%  \usepackage[nomarkers]{endfloat}
-% \let\MYoriglatexcaption\caption
-% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
-%\fi
 % *** PDF, URL AND HYPERLINK PACKAGES ***
 %
 \usepackage{url}
@@ -57,55 +25,168 @@
 % lscape.sty Produce landscape pages in a (mainly) portrait document.
 \usepackage{pdflscape}
 % Fancy table related trick
-\usepackage{multirow}
+% \usepackage{multirow}
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+% \hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
 % updated with editorial comments 8/9/2021
-\usepackage[hidelinks]{hyperref}
-\usepackage{orcidlink}
+% \usepackage[hidelinks]{hyperref}
+% \usepackage{orcidlink}
+
+% \usepackage[authoryear,longnamesfirst]{natbib}
+\usepackage[numbers,square]{natbib}
+% \let\cite\citep
+
+%%%Author macros
+\def\tsc#1{\csdef{#1}{\textsc{\lowercase{#1}}\xspace}}
+\tsc{WGM}
+\tsc{QE}
 
 \begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
 
-\title{Feed-Forward State of Charge Estimation \\ Using Time-Series Machine Learning Prediction With Autoregressive Models}
+% Short title
+\shorttitle{Feed-Forward State of Charge Estimation Using Time-Series Machine Learning Prediction With Autoregressive Models}
 
-% Author Orchid ID: enter ID or remove command
-\newcommand{\orcidauthorA}{0000-0002-6436-7069} % Marat Sadykov
-\newcommand{\orcidauthorB}{0000-0002-2970-9158} % Pr David Holmes
-\newcommand{\orcidauthorC}{0000-0001-8137-9507} % Pr Geoff Walker
-\newcommand{\orcid}[1]{\href{https://orcid.org/#1}{\includegraphics[width=8pt]{orcid.jpeg}}}
+% Short author
+\shortauthors{Marat Sadykov, Sam Haines, Geoffrey Walker and David William Holmes}
 
-\author{Marat~Sadykov\orcidlink{0000-0002-6436-7069}, %~\IEEEmembership{Member,~IEEE,}
-        Sam~Haines, %~\IEEEmembership{Fellow,~OSA,}
-        Geoffrey Walker\orcidlink{0000-0001-8137-9507},~\IEEEmembership{Senior Member,~IEEE,}
-        and~David~William~Holmes\orcidlink{0000-0002-2970-9158} %,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
-\thanks{Manuscript received March 19, 2023; revised April ??, 2023.}
-\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Sadykov, S. Haines and D.W. Holmes are with the School of Mechanical, Medical and Process Engineering (MMPE), Queensland University of Technology~(QUT), Brisbane, QLD 4000, Australia.\protect\\
-% note need leading \protect in front of \\ to get a newline within \thanks as
-% \\ is fragile and will error, could use \hfil\break instead.
-E-mail: d.holmes@qut.edu.au
-\IEEEcompsocthanksitem G. Walker is with School of Electrical Engineering \& Robotics, Queensland University of Technology (QUT), Brisbane,~QLD~4000, Australia.}% <-this % stops an unwanted space
-}
+% Main title of the paper
+\title[mode=title]{Feed-Forward State of Charge Estimation Using Time-Series Machine Learning Prediction With Autoregressive Models}
+
+% Title footnote mark
+% eg: \tnotemark[1]
+% \tnotemark[1,2] 
+
+% Title footnote 1.
+% eg: \tnotetext[1]{Title footnote text}
+% \tnotetext[1]{<tnote text>} 
+
+% \thanks{Manuscript received March 19, 2023; revised April ??, 2023.}
 
 % The paper headers
-\markboth{IEEE Transactions on Intelligent Vehicles,~Vol.~8, No.~10, November~2023}%
-{Sadykov \MakeLowercase{\textit{et al.}}: Feed-Forward State of Charge Estimation Ising Time-Series Machine Learning Prediction With Autoregressive Models on Lithium-Ion Batteries}
+% \markboth{IEEE Transactions on Intelligent Vehicles,~Vol.~8, No.~10, November~2023}%
+% {Sadykov \MakeLowercase{\textit{et al.}}: Feed-Forward State of Charge Estimation Ising Time-Series Machine Learning Prediction With Autoregressive Models on Lithium-Ion Batteries}
+
+% First author
+%
+% Options: Use if required
+% \author[1,3]{Author Name}[type=editor,
+%       style=chinese,
+%       auid=000,
+%       bioid=1,
+%       prefix=Sir,
+%       orcid=0000-0000-0000-0000,
+%       facebook=<facebook id>,
+%       twitter=<twitter id>,
+%       linkedin=<linkedin id>,
+%       gplus=<gplus id>]
+%* Author 1
+\author[1]{M. Sadykov}[type=editor,
+      auid=000,
+      bioid=1,
+      prefix=Sir,
+      role=Researcher,
+      orcid=0000-0002-6436-7069]
+
+% Corresponding author indication
+\cormark[1]
+
+% Footnote of the first author
+\fnmark[1]
+
+% Email id of the first author
+% \ead{sadykovmarat@pm.me}
+
+% URL of the first author
+% \ead[url]{www.qut.edu.au/1}
+
+% Credit authorship
+% eg: \credit{Conceptualization of this study, Methodology, Software}
+\credit{Conceptualisation of this study, Methodology, Software, Validation, Formal Analysis, Investigation, Resources, Data Curation, Original draft preparation, Editing and Data Visualisation}
+
+% Address/affiliation
+\affiliation[1]{
+            organization={School of Mechanical, Medical and Process Engineering (MMPE)},
+            addressline={Queensland University of Technology~(QUT)}, 
+            city={Brisbane},
+            postcode={4000}, 
+            state={QLD},
+            country={Australia}}
+
+\author[1]{Sam Haines}[
+      style=chinese]
+\credit{Conceptualisation of this study and Resources acquisition}
+\author[2]{Geoffrey Walker}[
+      style=chinese,
+      orcid=0000-0001-8137-9507]
+\credit{Work validation, article review and editing, and supervision}
+\author[1]{David William Holmes}[
+      style=chinese,
+      orcid=0000-0002-2970-9158]
+
+% Corresponding author indication
+\cormark[1]
+
+% Footnote of the second author
+\fnmark[1]
+
+% Email id of the second author
+\ead{d.holmes@qut.edu.au}
+
+% URL of the second author
+% \ead[url]{www.qut.edu.au/1}
+
+% Credit authorship
+\credit{Conceptualisation of this study, Methodology, Validation, Formal Analysis, article review and editing, Supervision, Project administration and Funding acquisition}
+
+% Address/affiliation
+\affiliation[2]{
+            organization={School of Electrical Engineering \& Robotics},
+            addressline={Queensland University of Technology~(QUT)}, 
+            city={Brisbane},
+            postcode={4000}, 
+            state={QLD},
+            country={Australia}}
+
+% Corresponding author text
+\cortext[1]{Corresponding author.}
+
+% Footnote text
+\fntext[1]{These authors contributed equally to this work.}
+
+% For a title note without a number/mark
+%\nonumnote{}
+
+\begin{abstract}[S U M M A R Y]
+  This paper presents a Recurrent Neural Network (RNN) model for the State of Charge (SoC) estimation for an Electric Vehicle's Lithium-Ion battery.
+  A new Autoregressive modification is proposed to improve upon earlier published Machine Learning models to enhance the prediction accuracy and make results less sensitive to varying usage conditions.
+  By building upon earlier published findings, assessing several models ability to estimate SoC using a history window of sensory data (Sadykov \textit{et al}~\cite{sadykov_practical_2022}), this work proposes, implements, and reports its methods of improving accuracy by introducing the State of Charge as part of sensory inputs in a Feed-Forward manner.
+  The method is based on the Autoregressive implementation of RNN model training, where successively calculated SoC values are used as input in the subsequent predictions, but the potential inaccuracies with those predictions that might otherwise cause significant and rapid divergence are accounted for within a modified recursive training procedure.
+  As a result, with a slight increase in training time, the accuracy of the output prediction for three different realistic charge-discharge driving profiles doubled compared to the two best previously published RNN models.
+  Overall, the test results have demonstrated the usability of the current model in actual driving scenarios, making such models a viable replacement to estimation approaches used in electric vehicle battery management systems.
+\end{abstract}
+
+% Research highlights
+% \begin{highlights}
+%   \item 1
+%   \item 2
+%   \item 3
+% \end{highlights}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{keywords}
+  Autoregressive models \sep
+  % Lithium iron phosphate battery ($LiFePO_{4}$),
+  Lithium-Ion Battery (Li-Ion) \sep
+  Long Short-Term Memory Recurrent Neural Networks (LSTM-RNNs) \sep
+  State of Charge (SOC) estimation \sep
+  TensorFlow (TF)
+\end{keywords}
 
 % make the title area
 \maketitle
-
-\begin{abstract}
-  \input{I_Introduction/Abstract}
-\end{abstract}
-
-% Note that keywords are not normally used for peerreview papers.
-\begin{IEEEkeywords}
-  Autoregressive models,
-  % Lithium iron phosphate battery ($LiFePO_{4}$),
-  Lithium-Ion Battery (Li-Ion),
-  Long Short-Term Memory Recurrent Neural Networks (LSTM-RNNs),
-  State of Charge (SOC) estimation,
-  TensorFlow (TF).
-\end{IEEEkeywords}
 
 \section{Introduction}\label{sec:introduction}
 \input{./I_Introduction/Intro2}
@@ -139,20 +220,25 @@ Subsection~\ref{sec:feed} provides the full summary of how the new method is imp
 % The authors would like to thank...
 \input{./III_Conclussion/acknowledgements}
 
-% Can use something like this to put references on a page
-% by themselves when using endfloat and the captionsoff option.
-\ifCLASSOPTIONcaptionsoff
-  \newpage
-\fi
-% references section
+\printcredits
 
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
-\bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
+% \funding{
+%     The research was funded by the Automotive Engineering Graduate Program (AEGP), grand number AEGP000036, from the Australian Government Department of Industry Science, Energy and Resources in cooperation with industry partner Prohelion.
+% }
+
+% \dataavailability{
+%     \textls[-5]{The lithium-ion battery cycling data presented in this study are openly available at the Battery Research Group of the Center for Advanced Life Cycle Engineering (CALCE) Group official repository website, which can be accessed using the following link: \url{https://web.calce.umd.edu/batteries/data.htm}, in the section on A123 batteries~\cite{noauthor_calce_2017} (accessed on 20 March~2020).}
+% }
+
+% \conflictsofinterest{
+%     The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the results.
+% } 
+
+%% Loading bibliography style file
+%\bibliographystyle{model1-num-names}
+\bibliographystyle{cas-model2-names}
+
+% Loading bibliography database
 \bibliography{
   ../Ch3Analysis/I_Introduction/BibIntro,
   ../Ch3Analysis/II_Body/BibRNN,
@@ -161,7 +247,7 @@ Subsection~\ref{sec:feed} provides the full summary of how the new method is imp
   I_Introduction/BibIntro,
   ../Z-References/References
 }
-% that's all folks
+
 \end{document}
 
 
