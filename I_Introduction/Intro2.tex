@@ -8,7 +8,7 @@ In contrast to fuel-based vehicles where measuring volume of fuel remaining is a
 %
 %
 While remaining an open research question, accurate battery SoC estimation is critical in assessing a batteries' performance, facilitating accurate estimates of the remaining range, ensuring the protection of battery health, and enabling the highest level of overall battery utilization~\cite{yamin_embedded_2014}.
-The determination of SoC is typically carried out in a vehicle's Battery Management System (BMS), and the logic used in current systems employ techniques like Coulomb Counting (CC) that integrates measured current over time to estimate charge usage~\cite{robust_SoC}, or battery modelling based on equivalent circuits and using voltage, current, and other sensor data to approximate the battery behaviour~\cite{6953745}. %~\cite{ng_enhanced_2009,robust_SoC}
+The determination of SoC is typically carried out in a vehicle's Battery Management System (BMS), and the logic used in current systems employ techniques like Coulomb Counting (CC) that integrates measured current over time to estimate charge usage~\cite{robust_SoC}, or battery modelling based on equivalent circuits and using voltage, current, and other sensor data to approximate the battery behaviour~\cite{6953745,ng_enhanced_2009,robust_SoC}.
 These approaches are simple to implement but are susceptible to inaccuracies due to coulombic inefficiencies~\cite{Smith_2010}, temperature variability~\cite{xing_state_2014}, non-linear multi-variable dependence of response ~\cite{hansen_support_2005,anton_battery_2013,he_state_2014}, and other issues.
 More recently, computer intelligence or machine learning-based models have been proposed that use statistical methods and multi-dimensional data fitting based on battery cycle training data (usually voltage, current, and temperature measurements), as a way to improve the accuracy of SoC estimation and account for the many non-linear behaviours of a typical battery in a phenomenological way~\cite{hansen_support_2005,anton_battery_2013,he_state_2014}.
 Methods employed include Fuzzy logic~\cite{malkhandi_fuzzy_2006}, Support Vector Machines~\cite{hansen_support_2005, anton_battery_2013}, and Recurrent Neural Networks (RNN)~\cite{song_lithium-ion_2018,Chemali2017,mamo_long_2020,jiao_gru-rnn_2020,xiao_accurate_2019,javid_adaptive_2020,zhang_deep_2020}.
@@ -28,7 +28,7 @@ It is this feature that was the primary evaluation in~\cite{sadykov_practical_20
 %
 A key difference between the application of machine learning to many other non-linear systems (e.g., financial market predictions or analysis of the weather) and its application to SoC estimation is that the primary focus of the prediction in batteries, i.e. SoC, cannot be directly measured in real-time\footnote{SoC can be measured for a battery directly, but this requires a long time settling tests that may take minutes or hours at a steady battery state for it to reach equilibrium and measurement to be taken~\cite{ali_towards_2019}. This is infeasible for a real-time SoC measurement approach for EV applications.}.
 As such, SoC is typically not used as an input feature to training or prediction (whereas the current market or weather state are used to improve the next prediction in the other examples).
-The absence of a real-time “ground truth” of SoC is one of the features that makes SoC prediction so challenging. % \textcolor{red}{[ref]}
+The absence of a real-time “ground truth” of SoC is one of the features that makes SoC prediction so challenging.
 The risk of using predicted SoC as an input parameter to any computer intelligence model is evident because minor initial errors may rapidly cause a divergent solution.
 However, if this risk could be managed, there is potential to improve significantly the accuracy of such methods for SoC prediction.
 Several options exist.
@@ -42,7 +42,6 @@ This approach should be more reasonable and practical than attempting to manuall
 %The example of the technique from documentation~\cite{time_2020} provided a reasonable way to approach.
 Such a technique has been used in~\cite{time_2020} and provides a good potential approach.
 However, instead of looking towards the future outputs with initial inputs only, the set of predetermined sensory data will be provided to the model in our case.
-% \textcolor{red}{(Explain here, based on the literature / reference why you think this will work to avoid the error. This is the key motivation and justification for this paper).}
 
 %
 %
