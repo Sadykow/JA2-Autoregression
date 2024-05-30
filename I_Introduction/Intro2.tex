@@ -30,22 +30,25 @@ A key difference between the application of machine learning to many other non-l
 As such, SoC is typically not used as an input feature to training or prediction (whereas the current market or weather state are used to improve the next prediction in the other examples).
 The absence of a real-time “ground truth” of SoC is one of the features that makes SoC prediction so challenging.
 The risk of using predicted SoC as an input parameter to any computer intelligence model is evident because minor initial errors may rapidly cause a divergent solution.
-However, if this risk could be managed, there is potential to improve significantly the accuracy of such methods for SoC prediction.
-Several options exist.
+% However, if this risk could be managed, there is potential to improve significantly the accuracy of such methods for SoC prediction.
+% Several options exist.
+However, the risk could be reduced by using initial SoC from other means, like 3-feature based models discussed in previous work~\cite{sadykov_practical_2022}, or by employing the charge feature to those models utilising an autoregressive technique~\cite{time_2020} to avoid the propagation of prediction error.
 
 %
 %
-The first is to use an initial SoC estimation from other means (e.g., from coulomb counting).
-This may, however, be susceptible to the same limitations experienced by the chosen method.
-The second is to employ an RNN model to propagate the output value of the charge as an input to the next prediction but utilise an autoregressive technique~\cite{time_2020} to avoid the propagation of prediction error.
-This approach should be more reasonable and practical than attempting to manually distribute weights between features or manipulate with an introduction of noise to input data to make output less sensitive to mis-accuracies.
+% The first is to use an initial SoC estimation from other means (e.g., from coulomb counting).
+% This may, however, be susceptible to the same limitations experienced by the chosen method.
+% The second is to employ an RNN model to propagate the output value of the charge as an input to the next prediction but utilise an autoregressive technique~\cite{time_2020} to avoid the propagation of prediction error.
+% This approach should be more reasonable and practical than attempting to manually distribute weights between features or manipulate with an introduction of noise to input data to make output less sensitive to mis-accuracies.
 %The example of the technique from documentation~\cite{time_2020} provided a reasonable way to approach.
-Such a technique has been used in~\cite{time_2020} and provides a good potential approach.
-However, instead of looking towards the future outputs with initial inputs only, the set of predetermined sensory data will be provided to the model in our case.
+% Such a technique has been used in~\cite{time_2020} and provides a good potential approach.
+% However, instead of looking towards the future outputs with initial inputs only, the set of predetermined sensory data will be provided to the model in our case.
+This paper will carry on the previous findings to overcome identified issues in the estimation of full-cycle battery utilisation and propose a new method, which has not been researched deeply enough.
+A novel method for implementing a SoC estimation training loop will be presented based on the autoregressive technique, which uses a 4-feature input (current, voltage, temperature, and SoC), with a history of 8 minutes and 20 seconds usage (500 samples at 1Hz), and increases SoC prediction accuracy, while avoiding the accumulation of prediction error that might otherwise make a feed-forward based model infeasible.
+That way, the model will be forced to consider the accuracy of its State of Charge prediction before loss calculation.
 
 %
 %
-As such, in the remainder of this paper a novel method for implementing a SoC estimation training loop and model will be presented based on the autoregressive technique, that uses a 4-feature input (current, voltage, temperature, and SoC), and increases SoC prediction accuracy, while avoiding the accumulation of prediction error that might otherwise make a feed-forward based model infeasible.
 The rest of this paper is organised as follows: a methodology for an RNN model is discussed in Section~\ref{sec:layer}.
 The details of how auto-regression has been utilised are in Section~\ref{sec:feed}.
 % Subsections 4.1 and 4.2 separate model validation points and parameter estimation processes.
