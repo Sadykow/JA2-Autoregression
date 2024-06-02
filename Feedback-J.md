@@ -46,10 +46,8 @@ Marking of the psudocode or reference to whatever implementation it is refeered
 >> **Page 2 Col 1 Lines 20-51 Need to consult with that. Current arrangement requires no extra sentences to be added, therefore 2nd last paragraph of introduction has to be rethinking. Following paragraphs has been pulled from early versions of the Introduction which can replace Page 2 Col 1 Lines 33-48:** However, the risk could be reduced by using initial SoC from other means, like 3-feature based models discussed in previous work [23], or by employing the charge feature to those models utilising an autoregressive technique [17] to avoid the propagation of prediction error.
 >> **Removing Page 2 Col 2 Lines 3-9 and replacing 2nd last paragraph with:** This paper will carry on the previous findings to overcome identified issues in the estimation of full-cycle battery utilisation and propose a new method, which has not been researched deeply enough. A novel method for implementing a SoC estimation training loop will be presented based on the autoregressive technique, which uses a 4-feature input (current, voltage, temperature, and SoC), with a history of 8 minutes and 20 seconds usage (500 samples at 1Hz), and increases SoC prediction accuracy, while avoiding the accumulation of prediction error that might otherwise make a feed-forward based model infeasible. That way, the model will be forced to consider the miss accuracy of its State of Charge prediction before loss calculation. \n The rest of this paper is organised as follows ...
 >>
->>
 >> (Page 2, Col 1 Lines 7-8) clearly state that the LSTM with Attention Layer showed the best results to given problem, therefore the GRU mentioning was only added for introduction purposses and that it has been considered for usage. However, to avoid the confusion and since it was used in the previous article, the line mentioning GRU methods can be removed if requested (Page 1, Col 2 Line 57)
 >>
->
 
 > (3) The quality of Figure (5) and Figure (7) is poor, which needs to be improved.
 >
@@ -86,6 +84,11 @@ Although the paper is well written amd the genearl idea is clear, some aspects s
 >
 >> (Now even I can't recall what was my reasoning for that indexation...) Page 5 Col 1 Lines 30+ **The s-step has been renamed with s-skip to match the in-text definition.**
 >>
+>> By the initial idea, s was meant to equal 1, since this is one sample step the data take, making SpC_(s) to be SoC_(1). Howeer, since it brought more confussion, the Figure has been updated as recommended and further clarifications were made: Page 4 description - "... zero, excluding possible initial data discrepancies." Page 5 Col 1 Lines 30-33 - "Here, in Figure 4, a time-series training set of equally spaced data points is broken up into "windows" of a set width (5 samples in this case), with a difference by one sample from the previous one by s-step. A window is defined starting at each data point so that each window overlaps with the next windows, shifted by s number of samples." Page 5 Col 1 Line 43 "...process, with only 1 sample shift s between each other, no batching..."
+>>
+>> To avoid further confusion with Section 2.3, the intext s step size in Page 5 Col 1 Line 22 has been renamed to AR with equivalent change on Table 1.
+>>
+>
 
 > Literature review can be improved by providing more research for models that are used for calculating the SoC of the battery (CNN with/or GRU, LSTM, BiLSTM, BiGRU) using different or CALCE dataset.
 >
