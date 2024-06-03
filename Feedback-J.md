@@ -139,7 +139,9 @@ The novelty of the paper is not clear. The structure and content of the paper is
 
 > The first reference number was 12. It was strange. The references should be indexed by sequence.
 >
->> **Honestly, no clue myself why biblography gets generated in the non-ordered way. I'll figure something later**
+>> **Honestly, no clue myself why biblography gets generated in the non-ordered way. I'll figure something later.
+>> Fount it! **
+>> The supplied style of bibliography cas-model2-names does not emply sorting. Switched to unsrtnat for now, which later canb changed by editors.
 >>
 
 > The writing of the paper was poor. The authors should improve it before it was submitted to an academic journal.
