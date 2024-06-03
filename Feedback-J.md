@@ -88,7 +88,6 @@ Although the paper is well written amd the genearl idea is clear, some aspects s
 >>
 >> To avoid further confusion with Section 2.3, the intext s step size in Page 5 Col 1 Line 22 has been renamed to AR with equivalent change on Table 1.
 >>
->
 
 > Literature review can be improved by providing more research for models that are used for calculating the SoC of the battery (CNN with/or GRU, LSTM, BiLSTM, BiGRU) using different or CALCE dataset.
 >
@@ -121,8 +120,17 @@ The novelty of the paper is not clear. The structure and content of the paper is
 
 > Improve the overall consistency and "look-and-feel" of the figures. They should have the same fonts, font size, axes formatting, etc., as is appropriate for a high-quality journal. Make sure that fonts used in figures (labels, annotations, callouts, ...) are similar in size to the fonts used in the main text and no smaller than the font size of the figure captions. Use high-resolution graphics. For example, figure 5 and figure 3 were not clear enough for the reader.
 >
->> (**How about removin the titles from all plot figures, and put it to the description? Keep labels and axes as they are. That decision can be left to journal, since they are the one who modifes the quality.**) Figure 5 white borders were removed and increased in scale to 1.05, and Figure 3 removed from the context completely.
+>> Figure 5 white borders were removed and increased in scale to 1.0, and Figure 3 removed from the context completely.
 >>
+>> The original figure fonts were modified with STIX, as per LaTeX template.
+>>
+>> Figure 1,2,6,7 - removed title and white space around borders to make a better fit. Captions updated accordingly.
+>>
+>> Figure 9 - removed titles to avoid repeated or overwealmed information is subfigures.
+>>
+>> Figure 10 - titles removed. Captions and description updated to preserve information.
+>>
+>
 
 > The paper title was confused. No battery appeared in the title.
 >

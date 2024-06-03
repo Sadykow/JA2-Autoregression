@@ -34,11 +34,12 @@ This is a good justification for why there has been no evidence in the published
 } {
     \begin{figure*}[!t]
         \centering
+        % \vspace{-3ex}
         % DST based tests
         \subfloat[Regular training process snapshot]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMFUDS-val-9-editted.svg}}
         \hfill
         \subfloat[Feed-Forward validation process snapshot]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMFUDS-FF-9.svg}}
-        \caption{Comparison between training and testing accuracies of a 4-featured based model with a default training and testing loop. Note that the error area fill has been removed from both plots due to an extremely large error in (b).}
+        \caption{Comparison between training and testing accuracies of a 4-featured based LSTM model with a default training and testing loop on FUDS dataset. Note that the error area fill has been removed from both plots due to an extremely large error in (b).}
         \label{fig:regular_tr}
     \end{figure*}
 }
@@ -183,11 +184,12 @@ The implementation has been based on contributions from the original framework d
 } {
 \begin{figure*}[!t]
     \centering
+    \vspace{-3ex}
     \subfloat[Modified training process]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMRFUDSval-19.svg}}
     \label{subfig:modefied_tr}
     \subfloat[Feed-Forward validation process]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}}
     \label{subfig:modefied_ts}
-    \caption{Comparison between training and testing accuracies of a 4-featured based model with a modified training and default testing loops.}
+    \caption{Comparison between training and testing accuracies of a 4-featured based LSTM model with a modified training and default testing loops, and $AR_{width}$ of 30 steps.}
     \label{fig:modefied_tr}
 \end{figure*}
 }

@@ -174,27 +174,29 @@ In total, 30 models were produced in this study, averaged, and compared for the 
 \end{figure*}
 } {
 \begin{figure*}[!h]
-    \centering
+    \centering 
+    \vspace{-5ex}
     %%%%%%%%%%%%%%%%% DST based tests %%%%%%%%%%%%%%%%%
-    \subfloat[Average training and testing MAE history; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/M6-history-DST-mae.svg}}
+    \subfloat[Average training and testing MAE history on DST; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/M6-history-DST-mae.svg}}
     \hfill
     \subfloat[Validation on a single DST cycle of SoC estimation; average of 10 attempts at 25\textdegree{}C]{\includesvg[width=0.325\linewidth]{II_Body/images/DST-6-train.svg}}
     \hfill
     \subfloat[Testing on two cycles of US06 and FUDS profiles; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/DST-6-test.svg}}
     \label{subfig:Model-6res-DSTvsFUDS}
+    \\[-5ex]
     %%%%%%%%%%%%%%%%% US06 based tests %%%%%%%%%%%%%%%%%
-    \subfloat[Average training and testing MAE history; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/M6-history-US06-mae.svg}}
+    \subfloat[Average training and testing MAE history on US06; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/M6-history-US06-mae.svg}}
     \hfill
     \subfloat[Validation on a single US06 cycle of SoC estimation; average of 10 attempts at 25\textdegree{}C]{\includesvg[width=0.325\linewidth]{II_Body/images/US06-6-train.svg}}
     \subfloat[Testing on two cycles of DST and FUDS profiles; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/US06-6-test.svg}}
+    \\[-5ex]
     % %%%%%%%%%%%%%%%%% FUDS based tests %%%%%%%%%%%%%%%%%
-    \hfill
-    \subfloat[Average training and testing MAE history; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/M6-history-FUDS-mae.svg}}
+    \subfloat[Average training and testing MAE history on FUDS; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/M6-history-FUDS-mae.svg}}
     \hfill
     \subfloat[Validation on a single FUDS cycle of SoC estimation; average of 10 attempts at 25\textdegree{}C]{\includesvg[width=0.325\linewidth]{II_Body/images/FUDS-6-train.svg}}
     \hfill
     \subfloat[Testing on two cycles of DST and US06 profiles; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/FUDS-6-test.svg}}
-    \caption{Model 6: Stateless LSTM with 30 steps of Autoregression.}
+    \caption{Model 6: Stateless LSTM with 30 steps of Autoregression ($AR_{width}$).}
     \label{fig:Model-6res}
 \end{figure*}
 }
@@ -299,13 +301,14 @@ Although, similar to the size of the history input, with every additional sample
 %! Find a better place
 \begin{figure*}[!h]
     \centering
+    \vspace{-3ex}
     %%%%%%%%%%%%%%%%% DST based tests %%%%%%%%%%%%%%%%%
-    \subfloat[New methods' variance visualisation]{\includesvg[width=0.325\linewidth]{III_Conclussion/im_var/M6-variance.svg}}
+    \subfloat[New methods' variance]{\includesvg[width=0.325\linewidth]{III_Conclussion/im_var/M6-variance.svg}}
     \hfill
-    \subfloat[A simple LSTM models' variance visualisation]{\includesvg[width=0.325\linewidth]{III_Conclussion/im_var/M1-variance.svg}}
+    \subfloat[A simple LSTM models' №1 variance]{\includesvg[width=0.325\linewidth]{III_Conclussion/im_var/M1-variance.svg}}
     \hfill
-    \subfloat[LSTM with Attention models' variance visualisation]{\includesvg[width=0.325\linewidth]{III_Conclussion/im_var/M3-variance.svg}}
-    \caption{Variance comparison plot, where Max and Min lines outline the limits of the best and worst case histories and average being the overall performance.}
+    \subfloat[LSTM with Attention models' №3 variance]{\includesvg[width=0.325\linewidth]{III_Conclussion/im_var/M3-variance.svg}}
+    \caption{Variance comparison plot visualisation, where Max and Min lines outline the limits of the best and worst case histories and average of 10 attempts being the overall performance.}
     \label{fig:Models-var}
 \end{figure*}
 
