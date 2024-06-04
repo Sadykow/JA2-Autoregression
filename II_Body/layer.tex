@@ -74,8 +74,8 @@ As a result, a NN model will learn dependency between a fixed amount of equally 
 
 %
 %
-Here, in Figure~\ref{fig:windowing_simple}, a time-series training set of equally spaced data points is broken up into "windows" of a set width (5 samples in this case), with a difference by one sample from the previous one by \textit{s}-step.
-A window is defined starting at each data point so that each window overlaps with the next windows, shifted by \textit{s} number of samples.
+\textcolor{blue}{Here, in Figure~\ref{fig:windowing_simple}, a time-series training set of equally spaced data points is broken up into "windows" of a set width (5 samples in this case), with a difference by one sample from the previous one by \textit{s}-step.
+A window is defined starting at each data point so that each window overlaps with the next windows, shifted by \textit{s} number of samples.}
 Each window is associated with an output parameter.
 The process can be broadly explained in simple terms whereby, prediction using a trained LSTM model of this type will take a window width of input samples and then effectively "choose" the window of best fit from the trained data set, outputting the associated parameter, much like how image recognition works.
 \begin{figure}[hbp]
@@ -94,7 +94,7 @@ The process can be broadly explained in simple terms whereby, prediction using a
     \end{figure}
 \end{landscape}
 \mbox{Figure~\ref{fig:Windowing}} demonstrates how those windows in the dataset are constructed and ordered into a 3-dimensional data, with four features, 500 timestamps and around a hundred thousand samples to fit on.
-Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, with only 1 sample shift \textit{s} between each other, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
+Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, \textcolor{blue}{with only 1 sample shift \textit{s} between each other}, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
 In this work, the data set has four features, namely current, voltage, temperature and State of Charge, and an output parameter of SoC (i.e the next SoC immediately following the window set.)
 % The full windowing classification of this data is represented in Figure 2.
 For such multi-dimensional arrays, the training/prediction can happen in any order, since the model gets all required information to train and adjust weights within a windows of inputs and associated outputs.

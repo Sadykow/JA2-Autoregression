@@ -11,14 +11,14 @@ While remaining an open research question, accurate battery SoC estimation is cr
 The determination of SoC is typically carried out in a vehicle's Battery Management System (BMS), and the logic used in current systems employ techniques like Coulomb Counting (CC) that integrates measured current over time to estimate charge usage~\cite{robust_SoC}, or battery modelling based on equivalent circuits and using voltage, current, and other sensor data to approximate the battery behaviour~\cite{6953745,ng_enhanced_2009,robust_SoC}.
 These approaches are simple to implement but are susceptible to inaccuracies due to coulombic inefficiencies~\cite{Smith_2010}, temperature variability~\cite{xing_state_2014}, non-linear multi-variable dependence of response ~\cite{hansen_support_2005,anton_battery_2013,he_state_2014}, and other issues.
 More recently, computer intelligence or machine learning-based models have been proposed that use statistical methods and multi-dimensional data fitting based on battery cycle training data (usually voltage, current, and temperature measurements), as a way to improve the accuracy of SoC estimation and account for the many non-linear behaviours of a typical battery in a phenomenological way~\cite{hansen_support_2005,anton_battery_2013,he_state_2014}.
-Methods employed include Fuzzy logic~\cite{malkhandi_fuzzy_2006}, Support Vector Machines~\cite{hansen_support_2005, anton_battery_2013}, and Recurrent Neural Networks~\cite{song_lithium-ion_2018,Chemali2017,mamo_long_2020,jiao_gru-rnn_2020,xiao_accurate_2019,javid_adaptive_2020,zhang_deep_2020}.
+\textcolor{red}{Methods employed include Fuzzy logic~\cite{malkhandi_fuzzy_2006}, Support Vector Machines~\cite{hansen_support_2005, anton_battery_2013}, and Recurrent Neural Networks~\cite{song_lithium-ion_2018,Chemali2017,mamo_long_2020,jiao_gru-rnn_2020,xiao_accurate_2019,javid_adaptive_2020,zhang_deep_2020}.}
 While these methods have shown great promise in laboratory conditions (see for example~\cite{jiao_gru-rnn_2020}), there remains significant work to be done before they represent a viable option for the next generation of on-car BMS circuitry.
 
 %
 %
 Of the computer intelligence approaches employed in SoC estimation, RNNs are perhaps the most appropriate.
-Multiple examples employing time-series based models have been published, specifically: approaches based on the Long Short-Term Memory (LSTM) method~\cite{Chemali2017,mamo_long_2020,zhang_deep_2020} and the Gated Recurrent Unit (GRU) method~\cite{song_lithium-ion_2018,jiao_gru-rnn_2020,xiao_accurate_2019,javid_adaptive_2020}.
-In an earlier work~\cite{sadykov_practical_2022}, we evaluated the ability of multiple implementations of RNN models to estimate the SoC of a lithium iron phosphate battery across multiple different simulated drive cycles.
+\textcolor{red}{Multiple examples employing time-series based models have been published, specifically: approaches based on the Long Short-Term Memory (LSTM) method~\cite{Chemali2017,mamo_long_2020,zhang_deep_2020} and the Gated Recurrent Unit (GRU) method~\cite{song_lithium-ion_2018,jiao_gru-rnn_2020,xiao_accurate_2019,javid_adaptive_2020}.
+In an earlier work~\cite{sadykov_practical_2022}, we evaluated the ability of multiple implementations of RNN models to estimate the SoC of a lithium iron phosphate battery across multiple different simulated drive cycles.}
 The research found that a model trained on one driving scenario was effective in accurately reproducing the full battery utilisation of that specific driving behaviour but was poor at extrapolating to different drive cycle behaviours that were outside the training set (e.g., training on DST, and predicting based on US06 and FUDS\footnote{DST, US06, and FUDS are examples of dynamic drive cycles that are used to evaluate internal combustion engine (ICE) vehicle fuel consumption, emissions and now the discharge and SoC characteristics of EV batteries~\cite{castillo_18_2015}. They involve dynamic charge-discharge histories that are applied to a battery that are meant to simulate a car driving around an urban environment (i.e. accelerating and decelerating with regenerative breaking, plus full charge cycles).}), with inaccuracy increasing by at least double.
 The best model identified was the LSTM with Attention Layer~\cite{mamo_long_2020}, which had an SoC estimation accuracy of 1.82\% on the same FUDS drive cycle as trained on, and an accuracy of 3.73\% and 5.27\% for the DST and US06 drive cycles that were not in the training set.
 In a practical implementation of SoC estimation (i.e. on a real vehicle), the ability to accurately predict SoC outside a given training set is critical, as all people will use and drive their vehicles in a slightly different way.
@@ -32,7 +32,7 @@ The absence of a real-time “ground truth” of SoC is one of the features that
 The risk of using predicted SoC as an input parameter to any computer intelligence model is evident because minor initial errors may rapidly cause a divergent solution.
 % However, if this risk could be managed, there is potential to improve significantly the accuracy of such methods for SoC prediction.
 % Several options exist.
-However, the risk could be reduced by using initial SoC from other means, like 3-feature based models discussed in previous work~\cite{sadykov_practical_2022}, or by employing the charge feature to those models utilising an autoregressive technique~\cite{time_2020} to avoid the propagation of prediction error.
+\textcolor{blue}{However, the risk could be reduced by using initial SoC from other means, like 3-feature based models discussed in previous work~\cite{sadykov_practical_2022}, or by employing the charge feature to those models utilising an autoregressive technique~\cite{time_2020} to avoid the propagation of prediction error.}
 
 %
 %
@@ -43,9 +43,9 @@ However, the risk could be reduced by using initial SoC from other means, like 3
 %The example of the technique from documentation~\cite{time_2020} provided a reasonable way to approach.
 % Such a technique has been used in~\cite{time_2020} and provides a good potential approach.
 % However, instead of looking towards the future outputs with initial inputs only, the set of predetermined sensory data will be provided to the model in our case.
-This paper will carry on the previous findings to overcome identified issues in the estimation of full-cycle battery utilisation and propose a new method, which has not been researched deeply enough.
+\textcolor{blue}{This paper will carry on the previous findings to overcome identified issues in the estimation of full-cycle battery utilisation and propose a new method, which has not been researched deeply enough.
 A novel method for implementing a SoC estimation training loop will be presented based on the autoregressive technique, which uses a 4-feature input (current, voltage, temperature, and SoC), with a history of 8 minutes and 20 seconds usage (500 samples at 1Hz), and increases SoC prediction accuracy, while avoiding the accumulation of prediction error that might otherwise make a feed-forward based model infeasible.
-That way, the model will be forced to consider the accuracy of its State of Charge prediction before loss calculation.
+That way, the model will be forced to consider the accuracy of its State of Charge prediction before loss calculation.}
 
 %
 %
