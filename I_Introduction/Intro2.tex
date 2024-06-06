@@ -3,7 +3,7 @@
 The past decade has seen a rapid growth of the market for Electric Vehicles (EVs), with all major auto makers currently investing heavily in EV platform development~\cite{iea_global_2023}, and the technology broadly expected to overtake and become equally or even more profitable than the internal combustion engine by around 2025~\cite{baik_making_2019}.
 The promise of a clean, environmentally friendly transport future is an attractive one, but there remains significant work to be undertaken to increase battery range, battery lifespan, decrease cost, decrease weight, improve end of life management, and other key issues, to fully realise the sustainable potential of EV systems.
 One area that remains a barrier to more sustainable battery utilisation is the development of a method to accurately estimate how much remaining charge is in an EV's battery in real-time.
-In contrast to fuel-based vehicles where measuring volume of fuel remaining is a trivial task, the effective State of Charge of a battery depends on multiple factors and can be different at different temperatures and conditions~\cite{xing_state_2014}, and change significantly over time due to ageing, damage, and other influences~\cite{johansson_neural_2018}.
+In contrast to fuel-based vehicles where measuring volume of fuel remaining is a trivial task, the effective charge percentage of a battery depends on multiple factors and can be different at different temperatures and conditions~\cite{xing_state_2014}, and change significantly over time due to ageing, damage, and other influences~\cite{johansson_neural_2018}.
 
 %
 %
@@ -45,7 +45,7 @@ The risk of using predicted SoC as an input parameter to any computer intelligen
 % However, instead of looking towards the future outputs with initial inputs only, the set of predetermined sensory data will be provided to the model in our case.
 \textcolor{blue}{This paper will carry on the previous findings to overcome identified issues in the estimation of full-cycle battery utilisation and propose a new method, which has not been researched deeply enough.
 A novel method for implementing a SoC estimation training loop will be presented based on the autoregressive technique, which uses a 4-feature input (current, voltage, temperature, and SoC), with a history of 8 minutes and 20 seconds usage (500 samples at 1Hz), and increases SoC prediction accuracy, while avoiding the accumulation of prediction error that might otherwise make a feed-forward based model infeasible.
-That way, the model will be forced to consider the accuracy of its State of Charge prediction before loss calculation.}
+That way, the model will be forced to consider the accuracy of its charge prediction before loss calculation.}
 
 %
 %

@@ -106,7 +106,15 @@ Although the paper is well written amd the genearl idea is clear, some aspects s
 
 > in some cases acronyms are defined (as SoC for the State of Charge) but they are not consistently used. Please check along the text.
 >
->> The only definition of SoC has been used in Article info an Introduction. All the remaining reuses of State of Charge were applied to avoid constant repeatence of SoC. **(Need to clarify that, since when it become an issue?)**
+>> Following State of charge definitions were replaced:
+>> Abstract: State of charge -> charge percentage
+>> Introduction (Page 1, Col 1 Line 37): State of charge -> charge percentage
+>> Section 2.2 (Page 5, Col 1 Lines 49-50): State of Charge -> SoC, SoC -> a single SoC value
+>> (Page 5, Col 2 Line 19) State of Charge -> SoC
+>> Section 2.3 (Page 6, Col 1 Line 27) State of Charge -> charge value
+>> (Page 6, Col 1 Line 46, Col 1 Line 58) State of Charge -> SoC
+>> Conclusion (Page 9, Col 2 Line 52): State of Charge -> charge peercentage
+>> (Page 11, Col 1 Line 48) State of Charge -> SoC
 >>
 
 > in the Bibliography, reference 22 is exceeding the column format. Please fit references to the column width.
@@ -133,7 +141,7 @@ The novelty of the paper is not clear. The structure and content of the paper is
 
 > The paper title was confused. No battery appeared in the title.
 >
->> **I have no idea what to say here. We already processed the title with dozens of variation, literally. That one was the best trade off between clarity and length.**
+>> If editor would permit of usage chemical formulas, we would liek to propose followign title to address that point: "Feed-Forward State of Charge Estimation of LiFePO_4 Batteries Using Time-Series Machine Learning Prediction With Autoregressive Models", as it perfecrly fits into two lines of the title space.
 >>
 
 > The first reference number was 12. It was strange. The references should be indexed by sequence.
@@ -157,9 +165,8 @@ The paper contains sufficient experiments and proper use of methodology.
 
 > Table 1 demonstrates model structure and parameters, and obviously this is just a single-layer LSTM-RNN. Whether some enhancements of networks structure can further improve the effectiveness of this approach needs to be discussed.
 >
->> **Something was mentiond somewhere for the reasoning being not certain if multilayer implementation is correct, also that would add another area of research where I would have to determine best set of hyperparameters like it was in previous work, again this is the first time anyone used this approach. Jumping to the next step before proving that one would be (overestimation?). (Avoid bigger step  in the dark before making a small one?) Somethign what I was afraid of, need to check the thesis description.**
->>
->> No other uses of that process has been located in publications, therefore it was kept simple as a possible introduction for further improvements **A coclusion can be updated with a potential for other researchers to try out the multilayer, or the above remark next to Table 1**
+>> No other uses of that process has been located in publications, therefore it was kept simple as a possible introduction for further improvements. Following statement has been added in (Page 5, Col 2 Line 28): "... set [23]. Only a single layer RNN will be utilised throughout the work due to the primary focus on the Autoregression method that requires proper testing before further improvements. Therefore, an effective combination of layers and neurons will be outside of the scope and will only be based on the results discovered early. The results section was adapted to the new ... "
+>> Additional sentence to conclision has been added to refer this moment (Page 11, Col 1 Line 40): "The single-layer implementation implied further improvement of the method with enhanced network structure via multilayers or a higher number of neurons, which can be considered a future work. Besides, while the method has proven ... "
 >>
 
 > A discussion of the advantages of the proposed approach needs to be added to section III or elsewhere.

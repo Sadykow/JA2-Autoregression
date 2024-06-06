@@ -1,5 +1,5 @@
 \ifthenelse{\boolean{thesis}}{The objective of this chapter was to improve the State of Charge prediction inside an Electric Vehicle.}
-{The objective of this work was to improve the State of Charge prediction inside an Electric Vehicle.}
+{The objective of this work was to improve the charge percentage prediction inside an Electric Vehicle.}
 % The idea is to rely only on the sensory data and a single Neural Network-based battery model.
 The experiment has shown that SoC prediction models tend to put significant weight into the voltage to describe the charging process during the model training process, making DST the best model to train on early.
 Adding the charge as a feature has proven that the history of the SoC had a higher weight on a system than sensory data.
@@ -19,9 +19,11 @@ Unlike early researched models, even with increased complexity by dealing with b
 
 %
 %
-Although the method has proven effective on three different driving profiles, it still requires experiments to validate against driving behaviour.
+\textcolor{blue}{
+The single-layer implementation implied further improvement of the method with enhanced network structure via multilayers or a higher number of neurons, which can be considered future work.
+Besides, while} the method has proven effective on three different driving profiles, it still requires experiments to validate against driving behavior.
 The intention is to test the model during actual Electric Vehicle driving.
 On top of that, the effect of the initial start of the charge is still debatable.
 So far, few experiments with different starting points have shown accurate results, but the best way to validate the model is to observe active convergence over unseen data.
 % Even if the model still will not correctly determine the middle area of the battery as with 3-feature-based methods, the general trend of battery charge and discharge has to be followed without spikes or falls.
-If confirmed, the model can replace any other model-based State of Charge estimation technique.
+If confirmed, the model can replace any other model-based SoC estimation technique.

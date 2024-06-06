@@ -95,7 +95,7 @@ The process can be broadly explained in simple terms whereby, prediction using a
 \end{landscape}
 \mbox{Figure~\ref{fig:Windowing}} demonstrates how those windows in the dataset are constructed and ordered into a 3-dimensional data, with four features, 500 timestamps and around a hundred thousand samples to fit on.
 Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, \textcolor{blue}{with only 1 sample shift \textit{s} between each other}, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
-In this work, the data set has four features, namely current, voltage, temperature and State of Charge, and an output parameter of SoC (i.e the next SoC immediately following the window set.)
+In this work, the data set has four features, namely current, voltage, temperature and SoC, and an output parameter of a single SoC value (i.e the next SoC immediately following the window set.)
 % The full windowing classification of this data is represented in Figure 2.
 For such multi-dimensional arrays, the training/prediction can happen in any order, since the model gets all required information to train and adjust weights within a windows of inputs and associated outputs.
 % The same has been true for previous research in this area~\cite{sadykov_practical_2022}, but will be explored further, by building up on the derived conclusions and introducing a sequential way of testing model in Feed-Forward manner, similar to the behaviour of the real driving conditions.}
@@ -105,7 +105,7 @@ For such multi-dimensional arrays, the training/prediction can happen in any ord
 \ifthenelse {\boolean{thesis}}{Similar to Chapter~\ref{cha:Analysis}, to speed up the training process, the mean and standard deviation of each of the four features has been used to normalise all data.}
 {To speed up the training process, the mean and standard deviation of each of the four features has been used to normalise all data.}
 The normalisation constant from training input samples has been used for all further validation and testing sets to ensure the right trends.
-To simplify the implementation of SoC being both an input and output feature and fit to real-world scenario inside a battery pack, it has been narrowed between 0 and 1 to represent the percentage charge to two decimals and shifted by one sample back to associate Voltage, Current and Temperature with an existing SoC value, not the one which will be theoretically predicted; referred to as \textit{previous} or \textit{known} State of Charge in the remainder of this work.
+To simplify the implementation of SoC being both an input and output feature and fit to real-world scenario inside a battery pack, it has been narrowed between 0 and 1 to represent the percentage charge to two decimals and shifted by one sample back to associate Voltage, Current and Temperature with an existing SoC value, not the one which will be theoretically predicted; referred to as \textit{previous} or \textit{known} SoC in the remainder of this work.
 \mbox{Table~\ref{tab:params}} highlights the parameters required to define the initial model, where $AR$ defines output step size, which will be justified later in Section~\ref{sec:feed}.
 A $\sigma$ function as an output justifies the charge normalisation between 0 and 1.
 \ifthenelse {\boolean{thesis}}{The number of neurons has been selected based on the results made in Chapter~\ref{cha:Analysis}, Section~\ref{sec:AN:Results}.
@@ -130,7 +130,9 @@ It was decided to stick to known approaches to validate the efficiency of the ne
 \end{table}
 }
 {The number of neurons has been selected based on the results made on earlier discoveries of the most optimal hyperparameters set~\cite{sadykov_practical_2022}.
-Results were adapted to the new custom-implemented model to validate the technique's efficiency in a comparable way with already-tested approaches.
+\textcolor{blue}{Only a single layer RNN will be utilised throughout the work due to the primary focus on the Autoregression method that requires proper testing before further improvements.
+Therefore, an effective combination of layers and neurons will be outside of the scope and will only be based on the results discovered early.
+The results section was adapted} to the new custom-implemented model to validate the technique's efficiency in a comparable way with already-tested approaches.
 \begin{table}[ht]
     \renewcommand{\arraystretch}{1.3}
     \caption{Model structure and parameters}
