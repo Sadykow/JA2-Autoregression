@@ -85,14 +85,7 @@ The process can be broadly explained in simple terms whereby, prediction using a
     \caption{Simple windowing example.}
     \label{fig:windowing_simple}
 \end{figure}
-\begin{landscape}
-    \begin{figure}[t]
-        \centering
-        \includegraphics[width=\linewidth]{II_Body/images/Windowing4f-A3.jpg}
-        \caption{Data Windowing scheme at 1Hz sampling rate. For visualisation purposes, the $s$-skip has been used as 250 seconds, which is different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, around zero, excluding possible initial data discrepancies.}
-        \label{fig:Windowing}
-    \end{figure}
-\end{landscape}
+
 \mbox{Figure~\ref{fig:Windowing}} demonstrates how those windows in the dataset are constructed and ordered into a 3-dimensional data, with four features, 500 timestamps and around a hundred thousand samples to fit on.
 Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, \textcolor{blue}{with only 1 sample shift \textit{s} between each other}, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
 In this work, the data set has four features, namely current, voltage, temperature and SoC, and an output parameter of a single SoC value (i.e the next SoC immediately following the window set.)
@@ -129,9 +122,13 @@ It was decided to stick to known approaches to validate the efficiency of the ne
     \end{tabular}
 \end{table}
 }
-{The number of neurons has been selected based on the results made on earlier discoveries of the most optimal hyperparameters set~\cite{sadykov_practical_2022}.
-\textcolor{blue}{Only a single layer RNN will be utilised throughout the work due to the primary focus on the Autoregression method that requires proper testing before further improvements.
-Therefore, an effective combination of layers and neurons will be outside of the scope and will only be based on the results discovered early.
+{\textcolor{blue}{
+Considering that LSTM was the most commonly appeared type of RNN in the publications, with the most straightforward cell structure to comprehend, and detailed discussed and utilised primarily in the official framework documentation, it will be used through this research.
+However, the process implemented here could be applied to other more sophisticated algorithms, like GRU, with all kind of optimisers, but has been left outside the scope of this paper as it would require proper separate investigations.
+}
+The number of neurons has been selected based on the results made on earlier discoveries of the most optimal hyperparameters set~\cite{sadykov_practical_2022}.
+\textcolor{blue}{Only a single layer will be utilised throughout the work due to the primary focus on the Autoregression method that requires proper testing before further improvements.
+Therefore, an effective combination of layers and neurons will also be outside of the scope and will only be based on the results discovered early.
 The results section was adapted} to the new custom-implemented model to validate the technique's efficiency in a comparable way with already-tested approaches.
 \begin{table}[ht]
     \renewcommand{\arraystretch}{1.3}
@@ -205,3 +202,11 @@ The optimisation algorithm for the fitting process has been defined by Adam, \mb
     }
 \end{table}
 }
+\begin{landscape}
+    \begin{figure}[t]
+        \centering
+        \includegraphics[width=\linewidth]{II_Body/images/Windowing4f-A3.jpg}
+        \caption{Data Windowing scheme at 1Hz sampling rate. For visualisation purposes, the $s$-skip has been used as 250 seconds, which is different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, around zero, excluding possible initial data discrepancies.}
+        \label{fig:Windowing}
+    \end{figure}
+\end{landscape}

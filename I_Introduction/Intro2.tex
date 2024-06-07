@@ -15,12 +15,22 @@ More recently, computer intelligence or machine learning-based models have been 
 While these methods have shown great promise in laboratory conditions (see for example~\cite{jiao_gru-rnn_2020}), there remains significant work to be done before they represent a viable option for the next generation of on-car BMS circuitry.
 
 %
+%“what are all the models applied to SoC, and why have you chosen LSTM”
+% A wide variety of machine learning approaches have been used for SoC prediction in the literature.
+% [Methods A, B, C] [refs] have been applied to [something] with advantages of […], and observed challenges […].
+% Alternatively [methods D, and E] [refs] have addressed many of these issues, but also been found to […good or bad…].
+% From all of these methods, LSTM […insert advantages…], while avoiding some of the drawbacks of other methods like […things it doesn’t suck at…].
+% Also, LSTM is one of the simpler implementations that enables scaffolding of more advanced learning sequencing.
+% The process implemented in this work could be applied to other more sophisticated ML algorithms also, but this is left outside the scope of this paper.”
 %
-Of the computer intelligence approaches employed in SoC estimation, RNNs are perhaps the most appropriate.
-\textcolor{red}{Multiple examples employing time-series based models have been published, specifically: approaches based on the Long Short-Term Memory (LSTM) method~\cite{Chemali2017,mamo_long_2020,zhang_deep_2020} and the Gated Recurrent Unit (GRU) method~\cite{song_lithium-ion_2018,jiao_gru-rnn_2020,xiao_accurate_2019,javid_adaptive_2020}.
+Of the computer intelligence approaches employed in SoC estimation, RNNs were the most commonly applied.
+Multiple examples employing time-series based models have been published, specifically: approaches based on the Long Short-Term Memory (LSTM) method~\cite{Chemali2017,mamo_long_2020,zhang_deep_2020} and the Gated Recurrent Unit (GRU) method~\cite{song_lithium-ion_2018,jiao_gru-rnn_2020,xiao_accurate_2019,javid_adaptive_2020}.
+\textcolor{blue}{Most of the work focussed in stateless~\cite{Chemali2017,javid_adaptive_2020,zhang_deep_2020} and statefull~\cite{song_lithium-ion_2018,jiao_gru-rnn_2020,xiao_accurate_2019} models to predict SoC on battery data attempting to either rely on a short dependency of history data within few minutes, making the models applicable at any point of cycle time, or preserve from the beginning of the discharge cycle only, resulting in more susceptible results with condition change, mainly temperature.
+Others attempted to modify the models either with an additional logic (an Attention layer~\cite{mamo_long_2020}), landing better end accuracy results or modified optimisation procedures, like RoAdam~\cite{javid_adaptive_2020}, and improve the overall training process with smoother fitting lines.
 In an earlier work~\cite{sadykov_practical_2022}, we evaluated the ability of multiple implementations of RNN models to estimate the SoC of a lithium iron phosphate battery across multiple different simulated drive cycles.}
 The research found that a model trained on one driving scenario was effective in accurately reproducing the full battery utilisation of that specific driving behaviour but was poor at extrapolating to different drive cycle behaviours that were outside the training set (e.g., training on DST, and predicting based on US06 and FUDS\footnote{DST, US06, and FUDS are examples of dynamic drive cycles that are used to evaluate internal combustion engine (ICE) vehicle fuel consumption, emissions and now the discharge and SoC characteristics of EV batteries~\cite{castillo_18_2015}. They involve dynamic charge-discharge histories that are applied to a battery that are meant to simulate a car driving around an urban environment (i.e. accelerating and decelerating with regenerative breaking, plus full charge cycles).}), with inaccuracy increasing by at least double.
 The best model identified was the LSTM with Attention Layer~\cite{mamo_long_2020}, which had an SoC estimation accuracy of 1.82\% on the same FUDS drive cycle as trained on, and an accuracy of 3.73\% and 5.27\% for the DST and US06 drive cycles that were not in the training set.
+% The advantage of LSTM over GRU has not been discovered, and the simplicity of gates or their numbers did not yield any noticable results.
 In a practical implementation of SoC estimation (i.e. on a real vehicle), the ability to accurately predict SoC outside a given training set is critical, as all people will use and drive their vehicles in a slightly different way.
 It is this feature that was the primary evaluation in~\cite{sadykov_practical_2022}, and the main motivation for the new model proposed in this work.
 

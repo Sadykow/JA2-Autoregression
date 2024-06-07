@@ -64,12 +64,13 @@ Marking of the psudocode or reference to whatever implementation it is refeered
 >
 > (4) The introduction mentions GRU; therefore, why was LSTM chosen as the research object instead of the GRU network?
 
->> (There is a short refernece mentioning that, better not to repeat previous work). **I have to figure out how to refuse that request, especially since he mentioned "can be improved". With 2.2 removal, the text made a nice fit with figures.**
+>> The published models review has been expanded to avoid the necesity of bringing the table from previous work on (Page 1, Col 2 Lines 56-57) with: "... method []. "*Most of the work focussed in stateless [] and statefull [] models to predict SoC on battery data attempting to either rely on a short dependency of history data within few minutes, making the models applicable at any point of cycle time, or preserve from the beginning of the discharge cycle only, resulting in more susceptible results with condition change, mainly temperature. Others attempted to modify the models either with an additional logic (an Attention layer []), landing better end accuracy results or modified optimisation procedures, like RoAdam [], and improve the overall training process with smoother fitting lines. In the earlier ...* "
 >>
->
->> **As an option, adding extra mentions of e.x BiLSTM on Page 1 Col 2 as per references which they are defined from could tick that box. However, another examiners noticed that mentioning GRU brought only confussion for those who unfamiliar with the cotext and results of the previous work.**
+>> An additional clarification on the choice of LSTM and what is within the scope of current inverstigation has been made on (Page 5 Col 2 Lines 25-26): " *... between 0 and 1. Considering that LSTM was the most commonly appeared type of RNN in the publications, with the most straightforward cell structure to comprehend, and detailed discussed and utilised primarily in the official framework documentation, it will be used through this research. However, the process implemented here could be applied to other more sophisticated algorithms, like GRU, with all kind of optimisers, but has been left outside the scope of this paper as it would require proper separate investigations. The number ...*"
 >>
->> (Page 2, Col 1 Lines 7-8) clearly state that the LSTM with Attention Layer showed the best results to given problem, therefore the GRU mentioning was only added for introduction purposses and that it has been considered for usage. However, to avoid the confusion and since it was used in the previous article, the line mentioning GRU methods can be removed if requested (Page 1, Col 2 Line 57)
+>> The landscaped Figure 5 has been moved to the end of section 2.2, allowing extra space to put the additional paragraphs.
+>>
+>> (Page 2, Col 1 Lines 7-8) clearly state that the LSTM with Attention Layer showed the best results to given problem, therefore the GRU mentioning was only added as part of the Litrature review. With added sentanced as per 2 paragraphs above, the avoidance of GRU as being outside of the scope has been clarified.
 >>
 
 ## Examiner 1 feedback
