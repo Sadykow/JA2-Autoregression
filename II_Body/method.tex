@@ -40,10 +40,12 @@ The filled area below the plot captures the error in terms of the absolute diffe
 Only the first input window during training/testing was considered ideal by the initial fully charged/discharged state or estimated \textcolor{blue}{with previously determined best LSTM with Attention model.}
 The follow-up predictions are based on the early produced output of the same model in a feed-forward manner.
 % No $R^2$ has been produced on the Feed-forward prediction, since it is mathematically not feasible at current state due to the mix of multiple outputs.
+\textcolor{blue}{
 \begin{equation}
     \textbf{ABS error}  = \left | Actual-Prediction \right |
     \label{eq:abs-error}
 \end{equation}
+}
 }
 \ifthenelse{\boolean{thesis}}{Overall, the result reporting is conducted the same way as it was in Chapter~\ref{cha:Analysis} on the average of 10 attempts with cross-testing on three profiles.}
 {The stochastic nature of NN algorithm has been addressed by training each model 10 times, and using the average of the corresponding 10 predictions as the actual.
