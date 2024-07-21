@@ -86,7 +86,7 @@ A window is defined starting at each data point so that each window overlaps wit
 Each window is associated with an output parameter.
 The process can be broadly explained in simple terms whereby, prediction using a trained LSTM model of this type will take a window width of input samples and then effectively "choose" the window of best fit from the trained data set, outputting the associated parameter, much like how image recognition works.
 \mbox{Figure~\ref{fig:Windowing}} demonstrates how those windows in the dataset are constructed and ordered into a 3-dimensional data, with four features, 500 timestamps and around a hundred thousand samples to fit on.
-Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, \textcolor{blue}{with only 1 sample shift \textit{s} between each other}, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
+Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, \textcolor{blue}{with only 1 sample shift \textit{s} between each other}\footnote{\textcolor{blue}{For visualisation purposes, the $s$ shift has been used as 250 seconds, different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, excluding initial data discrepancies}.}, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
 In this work, the data set has four features, namely current, voltage, temperature and \textcolor{blue}{SoC}, and an output parameter of \textcolor{blue}{a single SoC value} (i.e the next SoC immediately following the window set.)
 % The full windowing classification of this data is represented in Figure 2.
 For such multi-dimensional arrays, the training/prediction can happen in any order, since the model gets all required information to train and adjust weights within a windows of inputs and associated outputs.
@@ -204,7 +204,7 @@ The selection of this optimiser is made to allow comparison to two early-created
     \begin{figure}[t]
         \centering
         \includegraphics[width=\linewidth]{II_Body/images/Windowing4f-A3.jpg}
-        \caption{Data Windowing scheme at 1Hz sampling rate. For visualisation purposes, the $s$ shift has been used as 250 seconds, which is different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, around zero, \textcolor{blue}{excluding possible initial data discrepancies}.}
+        \caption{Data Windowing scheme, demonstrating the 3D data arrangement (Samples, Features, Time) with 1 batch.}
         \label{fig:Windowing}
     \end{figure}
 \end{landscape}
