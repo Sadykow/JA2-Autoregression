@@ -4,7 +4,7 @@ In the case of excellent input values, the output is expected to be within 1 \% 
 %
 %
 Two subplots, \mbox{Figure~\ref{fig:regular_tr}}, demonstrate the prediction results of a four-feature-based FUDS-trained simple LSTM model against a single battery cycle of DST driving.
-\mbox{Figure~\ref{fig:regular_tr}a} demonstrates the prediction with input SoC based on "\textit{known}" perfect \textcolor{blue}{charge value} (i.e. from the training set) as subsequent prediction input at any random point in time, marked with a red dotted line (i.e. 500 values for SoC, with sensory data, from learning used to predict charge at 501).
+\mbox{Figure~\ref{fig:regular_tr}a} demonstrates the prediction with input SoC based on "\textit{known}" perfect charge value (i.e. from the training set) as subsequent prediction input at any random point in time, marked with a red dotted line (i.e. 500 values for SoC, with sensory data, from learning used to predict charge at 501).
 On the other hand, the \mbox{Figure~\ref{fig:regular_tr}b} uses the feedforward approach, where only the first sample window has the true SoC (i.e. from the training set), and every upcoming prediction uses the calculated value from the previous step.
 It therefore has a strict order of samples from start to end, marked as a yellow dotted line.
 The same colour annotation will be used for all the remaining plots to distinguish the input schemes.
@@ -39,7 +39,7 @@ This is a good justification for why there has been no evidence in the published
         \subfloat[Regular training process snapshot]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMFUDS-val-9-editted.svg}}
         \hfill
         \subfloat[Feed-Forward validation process snapshot]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMFUDS-FF-9.svg}}
-        \caption{Comparison between training and testing accuracies of a 4-featured based \textcolor{blue}{LSTM} model with a default training and testing loop \textcolor{blue}{on the FUDS dataset}. Note that the error area fill has been removed from both plots due to an extremely large error in (b).}
+        \caption{Comparison between training and testing accuracies of a 4-featured based LSTM model with a default training and testing loop on the FUDS dataset. Note that the error area fill has been removed from both plots due to an extremely large error in (b).}
         \label{fig:regular_tr}
     \end{figure*}
 }
@@ -54,7 +54,7 @@ This is a good justification for why there has been no evidence in the published
 %
 %
 %! Get eid of that figgure, find a way to refer to it.
-A key reason for the inaccuracies of the prediction in \mbox{Figure~\ref{fig:regular_tr}b} lies in the weights the model places on the \textcolor{blue}{SoC} input feature.
+A key reason for the inaccuracies of the prediction in \mbox{Figure~\ref{fig:regular_tr}b} lies in the weights the model places on the SoC input feature.
 For a better weight balance, the training procedure must be modified to consider the possibility of an inaccuracy in the input charge data.
 An example of a modified training loop can be found in the autoregressive models of \mbox{Lamberta et al.~\cite{time_2020}}, utilising methods of teacher forcing~\cite{brownlee_what_2017,orac_lstm_2024}.
 The implementation can be applied to any early-created model, referring to regressive implementation.
@@ -73,7 +73,7 @@ The implementation can be applied to any early-created model, referring to regre
 % \end{figure}
 % } {
 The implementation demonstration from time-series tutorial~\cite{time_2020} of the utilised Machine Learning framework provides both a written and visual explanation of autoregression implementation in the context of weather prediction ahead of time.
-In the case of the \textcolor{blue}{SoC} prediction model, such an approach cannot be used by itself since the SoC can not be determined directly from sensory data (at least not during driving conditions).
+In the case of the SoC prediction model, such an approach cannot be used by itself since the SoC can not be determined directly from sensory data (at least not during driving conditions).
 Therefore, it will be adapted to overcome the problem of accumulated error in the feed-forward estimation method.
 % }
 
@@ -189,7 +189,7 @@ The implementation has been based on contributions from the original framework d
     \label{subfig:modefied_tr}
     \subfloat[Feed-Forward validation process]{\includesvg[width=0.485\linewidth]{III_Conclussion/im_compare/SMRFUDS-FF-19.svg}}
     \label{subfig:modefied_ts}
-    \caption{Comparison between training and testing accuracies of a 4-featured based LSTM model with a modified training and default testing loops, \textcolor{blue}{and $AR_{width}$ of 30 steps}.}
+    \caption{Comparison between training and testing accuracies of a 4-featured based LSTM model with a modified training and default testing loops, and $AR_{width}$ of 30 steps}.
     \label{fig:modefied_tr}
 \end{figure*}
 }

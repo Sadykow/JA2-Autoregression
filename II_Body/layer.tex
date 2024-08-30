@@ -74,7 +74,7 @@ As a result, a NN model will learn dependency between a fixed amount of equally 
 
 %
 %
-\textcolor{blue}{Here, in Figure~\ref{fig:windowing_simple}, a time-series training set of equally spaced data points is broken up into "windows" of a set width (5 samples in this case), with a difference by one sample from the previous one by \textit{s}-step.
+Here, in Figure~\ref{fig:windowing_simple}, a time-series training set of equally spaced data points is broken up into "windows" of a set width (5 samples in this case), with a difference by one sample from the previous one by \textit{s}-step.
 \begin{figure}[hbp]
     \centering
     % DST based tests 0.8
@@ -82,12 +82,12 @@ As a result, a NN model will learn dependency between a fixed amount of equally 
     \caption{Simple windowing example.}
     \label{fig:windowing_simple}
 \end{figure}
-A window is defined starting at each data point so that each window overlaps with the next windows, shifted by \textit{s} number of samples.}
+A window is defined starting at each data point so that each window overlaps with the next windows, shifted by \textit{s} number of samples.
 Each window is associated with an output parameter.
 The process can be broadly explained in simple terms whereby, prediction using a trained LSTM model of this type will take a window width of input samples and then effectively "choose" the window of best fit from the trained data set, outputting the associated parameter, much like how image recognition works.
 \mbox{Figure~\ref{fig:Windowing}} demonstrates how those windows in the dataset are constructed and ordered into a 3-dimensional data, with four features, 500 timestamps and around a hundred thousand samples to fit on.
-Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, \textcolor{blue}{with only 1 sample shift \textit{s} between each other}\footnote{\textcolor{blue}{For visualisation purposes, the $s$ shift has been used as 250 seconds, different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, excluding initial data discrepancies}.}, no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
-In this work, the data set has four features, namely current, voltage, temperature and \textcolor{blue}{SoC}, and an output parameter of \textcolor{blue}{a single SoC value} (i.e the next SoC immediately following the window set.)
+Due to the size of the windows, equivalent to 8 and a quarter minutes of a discharge process, with only 1 sample shift \textit{s} between each other\footnote{For visualisation purposes, the $s$ shift has been used as 250 seconds, different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, excluding initial data discrepancies}., no batching mechanism has been used to reduce computational load and avoid 4-dimensional matrix management.
+In this work, the data set has four features, namely current, voltage, temperature and SoC, and an output parameter of a single SoC value (i.e the next SoC immediately following the window set.)
 % The full windowing classification of this data is represented in Figure 2.
 For such multi-dimensional arrays, the training/prediction can happen in any order, since the model gets all required information to train and adjust weights within a windows of inputs and associated outputs.
 % The same has been true for previous research in this area~\cite{sadykov_practical_2022}, but will be explored further, by building up on the derived conclusions and introducing a sequential way of testing model in Feed-Forward manner, similar to the behaviour of the real driving conditions.}
@@ -97,7 +97,7 @@ For such multi-dimensional arrays, the training/prediction can happen in any ord
 \ifthenelse {\boolean{thesis}}{Similar to Chapter~\ref{cha:Analysis}, to speed up the training process, the mean and standard deviation of each of the four features has been used to normalise all data.}
 {To speed up the training process, the mean and standard deviation of each of the four features has been used to normalise all data.}
 The normalisation constant from training input samples has been used for all further validation and testing sets to ensure the right trends.
-To simplify the implementation of SoC being both an input and output feature and fit to real-world scenario inside a battery pack, it has been narrowed between 0 and 1 to represent the percentage charge to two decimals and shifted by one sample back to associate Voltage, Current and Temperature with an existing SoC value, not the one which will be theoretically predicted; referred to as \textit{previous} or \textit{known} \textcolor{blue}{SoC} in the remainder of this work.
+To simplify the implementation of SoC being both an input and output feature and fit to real-world scenario inside a battery pack, it has been narrowed between 0 and 1 to represent the percentage charge to two decimals and shifted by one sample back to associate Voltage, Current and Temperature with an existing SoC value, not the one which will be theoretically predicted; referred to as \textit{previous} or \textit{known} SoC in the remainder of this work.
 \mbox{Table~\ref{tab:params}} highlights the parameters required to define the initial model, where $AR$ defines output step size, which will be justified later in Section~\ref{sec:feed}.
 A $\sigma$ function as an output justifies the charge normalisation between 0 and 1.
 \ifthenelse {\boolean{thesis}}{The number of neurons has been selected based on the results made in Chapter~\ref{cha:Analysis}, Section~\ref{sec:AN:Results}.
@@ -121,17 +121,15 @@ It was decided to stick to known approaches to validate the efficiency of the ne
     \end{tabular}
 \end{table}
 }
-{\textcolor{blue}{
-Having the most straightforward cell structure and being well understood and tested, LSTM represents the most frequently applied RNN model used in existing published research.
+{Having the most straightforward cell structure and being well understood and tested, LSTM represents the most frequently applied RNN model used in existing published research.
 As such, in this work, we will focus on an LSTM implementation, however the process implemented here could be equally applied to other more sophisticated algorithms like GRU, with the addition of optimisers and other improvements as needed.
 Because development of the autoregressive method itself is the aim here, application to other more advanced RNN models has been left outside the scope of this paper.
 % Considering that LSTM was the most commonly appeared type of RNN in the publications, with the most straightforward cell structure to comprehend, and detailed discussed and utilised primarily in the official framework documentation, it will be used through this research.
 % However, the process implemented here could be applied to other more sophisticated algorithms, like GRU, with all kind of optimisers, but has been left outside the scope of this paper as it would require proper separate investigations.
-}
 The number of neurons has been selected based on the results made on earlier discoveries of the most optimal hyperparameters set~\cite{sadykov_practical_2022}.
-\textcolor{blue}{Only a single layer will be utilised throughout the work due to the primary focus on the Autoregression method that requires proper testing before further improvements.
+Only a single layer will be utilised throughout the work due to the primary focus on the Autoregression method that requires proper testing before further improvements.
 Therefore, an effective combination of layers and neurons will also be outside of the scope and will only be based on the results discovered early.
-The results section was revised} to the new custom-implemented model to validate the technique's efficiency in a comparable way with already-tested approaches.
+The results section was revised to the new custom-implemented model to validate the technique's efficiency in a comparable way with already-tested approaches.
 \begin{table}[ht]
     \renewcommand{\arraystretch}{1.3}
     \caption{Model structure and parameters}
@@ -146,7 +144,7 @@ The results section was revised} to the new custom-implemented model to validate
         \hline
         Dropout   & $0.0$ &   \\
         \hline
-        Output    & \textcolor{blue}{$activation= \sigma\left(AR, 1 \right)$ }&   \\
+        Output    & $activation= \sigma\left(AR, 1 \right)$ &   \\
         \hline\hline
     \end{tabular}
     }

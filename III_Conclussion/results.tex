@@ -108,10 +108,10 @@ Despite making the training process slow compared to other steps due to concurre
 
 \subsection{Accuracy comparison}
 With cross-training and testing over ten attempts average (to minimise the stochastic nature of the Machine Learning), Figure~\ref{fig:Model-6res} has been produced to demonstrate the resulting predictions.
-The total errors for each model \textcolor{blue}{across the entire dataset for every temperature range} are summarised in Table~\ref{tab:acc-results2}.
+The total errors for each model across the entire dataset for every temperature range are summarised in Table~\ref{tab:acc-results2}.
 It shows results from the most accurate model in~\cite{sadykov_practical_2022}, model 1 \& 3, compared to present results.
 In total, 30 models were produced in this study, averaged, and compared for the best usage in an Electric Vehicle.
-\textcolor{blue}{Matching profiles in the Trained and Tested row and column report the training error, verified separately after concluding the fitting process along with other profiles.}
+Matching profiles in the Trained and Tested row and column report the training error, verified separately after concluding the fitting process along with other profiles.
 \ifthenelse{\boolean{thesis}}{
 \begin{figure*}[htbp]
     \centering
@@ -197,7 +197,7 @@ In total, 30 models were produced in this study, averaged, and compared for the 
     \subfloat[Validation on a single FUDS cycle of SoC estimation; average of 10 attempts at 25\textdegree{}C]{\includesvg[width=0.325\linewidth]{II_Body/images/FUDS-6-train.svg}}
     \hfill
     \subfloat[Testing on two cycles of DST and US06 profiles; average of 10 attempts]{\includesvg[width=0.325\linewidth]{II_Body/images/FUDS-6-test.svg}}
-    \caption{Model 6: Stateless LSTM with 30 steps of Autoregression \textcolor{blue}{($AR_{width}$)}.}
+    \caption{Model 6: Stateless LSTM with 30 steps of Autoregression ($AR_{width}$).}
     \label{fig:Model-6res}
 \end{figure*}
 }
@@ -309,7 +309,7 @@ Although, similar to the size of the history input, with every additional sample
     \subfloat[A simple LSTM models' №1 variance]{\includesvg[width=0.325\linewidth]{III_Conclussion/im_var/M1-variance.svg}}
     \hfill
     \subfloat[LSTM with Attention models' №3 variance]{\includesvg[width=0.325\linewidth]{III_Conclussion/im_var/M3-variance.svg}}
-    \caption{Variance comparison plot visualisation, where Max and Min lines outline the limits of the best and worst case histories and \textcolor{blue}{average of 10 attempts} being the overall performance.}
+    \caption{Variance comparison plot visualisation, where Max and Min lines outline the limits of the best and worst case histories and average of 10 attempts being the overall performance.}
     \label{fig:Models-var}
 \end{figure*}
 
