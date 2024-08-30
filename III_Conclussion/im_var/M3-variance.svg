@@ -1,0 +1,1020 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1008pt"
+   height="864pt"
+   viewBox="0 0 1008 864"
+   version="1.1"
+   id="svg10456"
+   sodipodi:docname="M3-variance.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1432"
+     inkscape:window-height="869"
+     id="namedview10458"
+     showgrid="false"
+     inkscape:zoom="0.77170139"
+     inkscape:cx="672"
+     inkscape:cy="-46.00225"
+     inkscape:window-x="221"
+     inkscape:window-y="1211"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="axes_1" />
+  <metadata
+     id="metadata9855">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:date>2023-06-21T19:50:15.131362</dc:date>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Matplotlib v3.6.2, https://matplotlib.org/</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs9859">
+    <style
+       type="text/css"
+       id="style9857">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+  </defs>
+  <g
+     id="figure_1">
+    <g
+       id="patch_1">
+      <path
+         d="M 0 864  L 1008 864  L 1008 0  L 0 0  z "
+         style="fill: #ffffff"
+         id="path9861" />
+    </g>
+    <g
+       id="axes_1">
+      <g
+         id="patch_2">
+        <path
+           d="M 77.286875 789.780625  L 970.5525 789.780625  L 970.5525 78.82575  L 77.286875 78.82575  z "
+           style="fill: #ffffff"
+           id="path9864" />
+      </g>
+      <g
+         id="matplotlib.axis_1">
+        <g
+           id="xtick_1">
+          <g
+             id="line2d_1">
+            <defs
+               id="defs9868">
+              <path
+                 id="m13b226bd58"
+                 d="M 0 0  L 0 3.5  "
+                 style="stroke: #000000; stroke-width: 0.8" />
+            </defs>
+            <g
+               id="g9872">
+              <use
+                 xlink:href="#m13b226bd58"
+                 x="119.823333"
+                 y="789.780625"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use9870" />
+            </g>
+          </g>
+          <g
+             id="text_1">
+            <!-- 0.0 -->
+            <g
+               transform="translate(100.809583 816.5775) scale(0.28 -0.28)"
+               id="g9885">
+              <defs
+                 id="defs9877">
+                <path
+                   id="Bender-30"
+                   d="M 800 800  L 2752 3981  L 2662 4064  L 1216 4064  L 800 3654  L 800 800  z M 3066 3680  L 1114 499  L 1203 416  L 2650 416  L 3066 826  L 3066 3680  z M 2829 4480  L 3482 3827  L 3482 653  L 2822 0  L 1037 0  L 384 653  L 384 3827  L 1043 4480  L 2829 4480  z "
+                   transform="scale(0.015625)" />
+                <path
+                   id="Bender-2e"
+                   d="M 346 -64  L 192 90  L 192 358  L 346 512  L 614 512  L 768 358  L 768 90  L 614 -64  L 346 -64  z "
+                   transform="scale(0.015625)" />
+              </defs>
+              <use
+                 xlink:href="#Bender-30"
+                 id="use9879" />
+              <use
+                 xlink:href="#Bender-2e"
+                 x="60.399994"
+                 id="use9881" />
+              <use
+                 xlink:href="#Bender-30"
+                 x="75.399994"
+                 id="use9883" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="xtick_2">
+          <g
+             id="line2d_2">
+            <g
+               id="g9891">
+              <use
+                 xlink:href="#m13b226bd58"
+                 x="226.164479"
+                 y="789.780625"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use9889" />
+            </g>
+          </g>
+          <g
+             id="text_2">
+            <!-- 2.5 -->
+            <g
+               transform="translate(208.594479 816.5775) scale(0.28 -0.28)"
+               id="g9904">
+              <defs
+                 id="defs9896">
+                <path
+                   id="Bender-32"
+                   d="M 819 4064  L 256 3885  L 128 4275  L 787 4480  L 2586 4480  L 3238 3821  L 3238 2662  L 2643 2067  L 550 698  L 550 416  L 3238 416  L 3238 0  L 134 0  L 134 922  L 2355 2374  L 2822 2848  L 2822 3654  L 2419 4064  L 819 4064  z "
+                   transform="scale(0.015625)" />
+                <path
+                   id="Bender-35"
+                   d="M 378 4480  L 3322 4480  L 3322 4064  L 794 4064  L 794 2675  L 2669 2675  L 3322 2022  L 3322 653  L 2662 0  L 966 0  L 320 218  L 454 608  L 1011 416  L 2483 416  L 2906 832  L 2906 1843  L 2490 2259  L 378 2259  L 378 4480  z "
+                   transform="scale(0.015625)" />
+              </defs>
+              <use
+                 xlink:href="#Bender-32"
+                 id="use9898" />
+              <use
+                 xlink:href="#Bender-2e"
+                 x="54.599991"
+                 id="use9900" />
+              <use
+                 xlink:href="#Bender-35"
+                 x="69.599991"
+                 id="use9902" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="xtick_3">
+          <g
+             id="line2d_3">
+            <g
+               id="g9910">
+              <use
+                 xlink:href="#m13b226bd58"
+                 x="332.505625"
+                 y="789.780625"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use9908" />
+            </g>
+          </g>
+          <g
+             id="text_3">
+            <!-- 5.0 -->
+            <g
+               transform="translate(314.121875 816.5775) scale(0.28 -0.28)"
+               id="g9919">
+              <use
+                 xlink:href="#Bender-35"
+                 id="use9913" />
+              <use
+                 xlink:href="#Bender-2e"
+                 x="55.899994"
+                 id="use9915" />
+              <use
+                 xlink:href="#Bender-30"
+                 x="70.899994"
+                 id="use9917" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="xtick_4">
+          <g
+             id="line2d_4">
+            <g
+               id="g9925">
+              <use
+                 xlink:href="#m13b226bd58"
+                 x="438.846771"
+                 y="789.780625"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use9923" />
+            </g>
+          </g>
+          <g
+             id="text_4">
+            <!-- 7.5 -->
+            <g
+               transform="translate(421.849896 816.5775) scale(0.28 -0.28)"
+               id="g9937">
+              <defs
+                 id="defs9929">
+                <path
+                   id="Bender-37"
+                   d="M 1594 1120  L 1594 0  L 1178 0  L 1178 1222  L 2688 3789  L 2688 4064  L 64 4064  L 64 4480  L 3104 4480  L 3104 3680  L 1594 1120  z "
+                   transform="scale(0.015625)" />
+              </defs>
+              <use
+                 xlink:href="#Bender-37"
+                 id="use9931" />
+              <use
+                 xlink:href="#Bender-2e"
+                 x="50.499985"
+                 id="use9933" />
+              <use
+                 xlink:href="#Bender-35"
+                 x="65.499985"
+                 id="use9935" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="xtick_5">
+          <g
+             id="line2d_5">
+            <g
+               id="g9943">
+              <use
+                 xlink:href="#m13b226bd58"
+                 x="545.187917"
+                 y="789.780625"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use9941" />
+            </g>
+          </g>
+          <g
+             id="text_5">
+            <!-- 10.0 -->
+            <g
+               transform="translate(521.134167 816.5775) scale(0.28 -0.28)"
+               id="g9957">
+              <defs
+                 id="defs9947">
+                <path
+                   id="Bender-31"
+                   d="M 2176 0  L 275 0  L 275 416  L 1018 416  L 1018 3898  L 422 3302  L 128 3597  L 1018 4486  L 1434 4486  L 1434 416  L 2176 416  L 2176 0  z "
+                   transform="scale(0.015625)" />
+              </defs>
+              <use
+                 xlink:href="#Bender-31"
+                 id="use9949" />
+              <use
+                 xlink:href="#Bender-30"
+                 x="35.999985"
+                 id="use9951" />
+              <use
+                 xlink:href="#Bender-2e"
+                 x="96.399979"
+                 id="use9953" />
+              <use
+                 xlink:href="#Bender-30"
+                 x="111.399979"
+                 id="use9955" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="xtick_6">
+          <g
+             id="line2d_6">
+            <g
+               id="g9963">
+              <use
+                 xlink:href="#m13b226bd58"
+                 x="651.529063"
+                 y="789.780625"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use9961" />
+            </g>
+          </g>
+          <g
+             id="text_6">
+            <!-- 12.5 -->
+            <g
+               transform="translate(628.919063 816.5775) scale(0.28 -0.28)"
+               id="g9974">
+              <use
+                 xlink:href="#Bender-31"
+                 id="use9966" />
+              <use
+                 xlink:href="#Bender-32"
+                 x="35.999985"
+                 id="use9968" />
+              <use
+                 xlink:href="#Bender-2e"
+                 x="90.599976"
+                 id="use9970" />
+              <use
+                 xlink:href="#Bender-35"
+                 x="105.599976"
+                 id="use9972" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="xtick_7">
+          <g
+             id="line2d_7">
+            <g
+               id="g9980">
+              <use
+                 xlink:href="#m13b226bd58"
+                 x="757.870208"
+                 y="789.780625"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use9978" />
+            </g>
+          </g>
+          <g
+             id="text_7">
+            <!-- 15.0 -->
+            <g
+               transform="translate(734.446458 816.5775) scale(0.28 -0.28)"
+               id="g9991">
+              <use
+                 xlink:href="#Bender-31"
+                 id="use9983" />
+              <use
+                 xlink:href="#Bender-35"
+                 x="35.999985"
+                 id="use9985" />
+              <use
+                 xlink:href="#Bender-2e"
+                 x="91.899979"
+                 id="use9987" />
+              <use
+                 xlink:href="#Bender-30"
+                 x="106.899979"
+                 id="use9989" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="xtick_8">
+          <g
+             id="line2d_8">
+            <g
+               id="g9997">
+              <use
+                 xlink:href="#m13b226bd58"
+                 x="864.211354"
+                 y="789.780625"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use9995" />
+            </g>
+          </g>
+          <g
+             id="text_8">
+            <!-- 17.5 -->
+            <g
+               transform="translate(842.174479 816.5775) scale(0.28 -0.28)"
+               id="g10008">
+              <use
+                 xlink:href="#Bender-31"
+                 id="use10000" />
+              <use
+                 xlink:href="#Bender-37"
+                 x="35.999985"
+                 id="use10002" />
+              <use
+                 xlink:href="#Bender-2e"
+                 x="86.499969"
+                 id="use10004" />
+              <use
+                 xlink:href="#Bender-35"
+                 x="101.499969"
+                 id="use10006" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="xtick_9">
+          <g
+             id="line2d_9">
+            <g
+               id="g10014">
+              <use
+                 xlink:href="#m13b226bd58"
+                 x="970.5525"
+                 y="789.780625"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use10012" />
+            </g>
+          </g>
+          <g
+             id="text_9">
+            <!-- 20.0 -->
+            <g
+               transform="translate(943.895625 816.5775) scale(0.28 -0.28)"
+               id="g10025">
+              <use
+                 xlink:href="#Bender-32"
+                 id="use10017" />
+              <use
+                 xlink:href="#Bender-30"
+                 x="54.599991"
+                 id="use10019" />
+              <use
+                 xlink:href="#Bender-2e"
+                 x="114.999985"
+                 id="use10021" />
+              <use
+                 xlink:href="#Bender-30"
+                 x="129.999985"
+                 id="use10023" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="text_10">
+          <!-- Epochs -->
+          <g
+             transform="translate(472.862188 847.905625) scale(0.32 -0.32)"
+             id="g10049">
+            <defs
+               id="defs10035">
+              <path
+                 id="Bender-45"
+                 d="M 512 0  L 512 4480  L 3283 4480  L 3283 4064  L 928 4064  L 928 2579  L 3014 2579  L 3014 2163  L 928 2163  L 928 416  L 3283 416  L 3283 0  L 512 0  z "
+                 transform="scale(0.015625)" />
+              <path
+                 id="Bender-70"
+                 d="M 915 800  L 1299 416  L 2509 416  L 2784 691  L 2784 2720  L 2509 2995  L 1344 2995  L 915 2566  L 915 800  z M 915 205  L 915 -1075  L 499 -1075  L 499 2643  L 320 3366  L 717 3462  L 819 3053  L 1178 3411  L 2682 3411  L 3200 2893  L 3200 518  L 2682 0  L 1120 0  L 915 205  z "
+                 transform="scale(0.015625)" />
+              <path
+                 id="Bender-6f"
+                 d="M 3117 531  L 2592 0  L 909 0  L 384 531  L 384 2880  L 909 3411  L 2592 3411  L 3117 2880  L 3117 531  z M 1082 416  L 2419 416  L 2701 704  L 2701 2707  L 2419 2995  L 1082 2995  L 800 2707  L 800 704  L 1082 416  z "
+                 transform="scale(0.015625)" />
+              <path
+                 id="Bender-63"
+                 d="M 2406 416  L 2970 595  L 3098 205  L 2445 0  L 909 0  L 384 531  L 384 2880  L 909 3411  L 2560 3411  L 3085 2880  L 3085 2176  L 2669 2176  L 2669 2726  L 2394 2995  L 1075 2995  L 800 2726  L 800 685  L 1075 416  L 2406 416  z "
+                 transform="scale(0.015625)" />
+              <path
+                 id="Bender-68"
+                 d="M 922 2611  L 922 0  L 506 0  L 506 3834  L 320 4397  L 710 4525  L 922 3878  L 922 3206  L 1126 3411  L 2675 3411  L 3200 2886  L 3200 0  L 2784 0  L 2784 2720  L 2509 2995  L 1306 2995  L 922 2611  z "
+                 transform="scale(0.015625)" />
+              <path
+                 id="Bender-73"
+                 d="M 2432 1088  L 2362 1229  L 403 1920  L 205 2304  L 205 2886  L 730 3411  L 2214 3411  L 2861 3194  L 2726 2803  L 2170 2995  L 909 2995  L 621 2707  L 621 2406  L 691 2259  L 2650 1568  L 2848 1190  L 2848 525  L 2323 0  L 838 0  L 192 205  L 320 602  L 890 416  L 2144 416  L 2432 704  L 2432 1088  z "
+                 transform="scale(0.015625)" />
+            </defs>
+            <use
+               xlink:href="#Bender-45"
+               id="use10037" />
+            <use
+               xlink:href="#Bender-70"
+               x="53.299988"
+               id="use10039" />
+            <use
+               xlink:href="#Bender-6f"
+               x="109.299973"
+               id="use10041" />
+            <use
+               xlink:href="#Bender-63"
+               x="163.999969"
+               id="use10043" />
+            <use
+               xlink:href="#Bender-68"
+               x="215.399963"
+               id="use10045" />
+            <use
+               xlink:href="#Bender-73"
+               x="271.399948"
+               id="use10047" />
+          </g>
+        </g>
+      </g>
+      <g
+         id="matplotlib.axis_2">
+        <g
+           id="ytick_1">
+          <g
+             id="line2d_10">
+            <defs
+               id="defs10054">
+              <path
+                 id="m3db5bfe29f"
+                 d="M 0 0  L -3.5 0  "
+                 style="stroke: #000000; stroke-width: 0.8" />
+            </defs>
+            <g
+               id="g10058">
+              <use
+                 xlink:href="#m3db5bfe29f"
+                 x="77.286875"
+                 y="783.375626"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use10056" />
+            </g>
+          </g>
+          <g
+             id="text_11">
+            <!-- 0 -->
+            <g
+               transform="translate(53.373125 793.274064) scale(0.28 -0.28)"
+               id="g10063">
+              <use
+                 xlink:href="#Bender-30"
+                 id="use10061" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="ytick_2">
+          <g
+             id="line2d_11">
+            <g
+               id="g10069">
+              <use
+                 xlink:href="#m3db5bfe29f"
+                 x="77.286875"
+                 y="655.275649"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use10067" />
+            </g>
+          </g>
+          <g
+             id="text_12">
+            <!-- 2 -->
+            <g
+               transform="translate(55.000625 665.174086) scale(0.28 -0.28)"
+               id="g10074">
+              <use
+                 xlink:href="#Bender-32"
+                 id="use10072" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="ytick_3">
+          <g
+             id="line2d_12">
+            <g
+               id="g10080">
+              <use
+                 xlink:href="#m3db5bfe29f"
+                 x="77.286875"
+                 y="527.175671"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use10078" />
+            </g>
+          </g>
+          <g
+             id="text_13">
+            <!-- 4 -->
+            <g
+               transform="translate(54.720625 537.074109) scale(0.28 -0.28)"
+               id="g10088">
+              <defs
+                 id="defs10084">
+                <path
+                   id="Bender-34"
+                   d="M 3027 1510  L 3494 1510  L 3494 1094  L 3027 1094  L 3027 0  L 2611 0  L 2611 1094  L 64 1094  L 64 1658  L 2611 4493  L 3027 4493  L 3027 1510  z M 2611 1510  L 2611 3853  L 506 1510  L 2611 1510  z "
+                   transform="scale(0.015625)" />
+              </defs>
+              <use
+                 xlink:href="#Bender-34"
+                 id="use10086" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="ytick_4">
+          <g
+             id="line2d_13">
+            <g
+               id="g10094">
+              <use
+                 xlink:href="#m3db5bfe29f"
+                 x="77.286875"
+                 y="399.075694"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use10092" />
+            </g>
+          </g>
+          <g
+             id="text_14">
+            <!-- 6 -->
+            <g
+               transform="translate(53.906875 408.974131) scale(0.28 -0.28)"
+               id="g10102">
+              <defs
+                 id="defs10098">
+                <path
+                   id="Bender-36"
+                   d="M 384 659  L 384 3821  L 1037 4480  L 2842 4480  L 3469 4269  L 3328 3878  L 2758 4064  L 1203 4064  L 800 3654  L 800 2650  L 1011 2720  L 2829 2720  L 3488 2048  L 3488 653  L 2829 0  L 1043 0  L 384 659  z M 2656 2304  L 1011 2304  L 800 2234  L 800 832  L 1216 416  L 2656 416  L 3072 832  L 3072 1875  L 2656 2304  z "
+                   transform="scale(0.015625)" />
+              </defs>
+              <use
+                 xlink:href="#Bender-36"
+                 id="use10100" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="ytick_5">
+          <g
+             id="line2d_14">
+            <g
+               id="g10108">
+              <use
+                 xlink:href="#m3db5bfe29f"
+                 x="77.286875"
+                 y="270.975716"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use10106" />
+            </g>
+          </g>
+          <g
+             id="text_15">
+            <!-- 8 -->
+            <g
+               transform="translate(53.40375 280.874154) scale(0.28 -0.28)"
+               id="g10116">
+              <defs
+                 id="defs10112">
+                <path
+                   id="Bender-38"
+                   d="M 3059 1715  L 2650 2125  L 1216 2125  L 800 1709  L 800 826  L 1216 416  L 2637 416  L 3059 832  L 3059 1715  z M 2624 4064  L 1235 4064  L 832 3661  L 832 2925  L 1222 2541  L 2637 2541  L 3027 2925  L 3027 3642  L 2624 4064  z M 2816 0  L 1043 0  L 384 653  L 384 1888  L 832 2336  L 416 2746  L 416 3827  L 1069 4480  L 2816 4480  L 3443 3827  L 3443 2746  L 3027 2336  L 3475 1888  L 3475 653  L 2816 0  z "
+                   transform="scale(0.015625)" />
+              </defs>
+              <use
+                 xlink:href="#Bender-38"
+                 id="use10114" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="ytick_6">
+          <g
+             id="line2d_15">
+            <g
+               id="g10122">
+              <use
+                 xlink:href="#m3db5bfe29f"
+                 x="77.286875"
+                 y="142.875739"
+                 style="stroke: #000000; stroke-width: 0.8"
+                 id="use10120" />
+            </g>
+          </g>
+          <g
+             id="text_16">
+            <!-- 10 -->
+            <g
+               transform="translate(43.293125 152.774176) scale(0.28 -0.28)"
+               id="g10129">
+              <use
+                 xlink:href="#Bender-31"
+                 id="use10125" />
+              <use
+                 xlink:href="#Bender-30"
+                 x="35.999985"
+                 id="use10127" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="text_17">
+          <!-- Error (%) -->
+          <g
+             transform="translate(33.598125 497.633188) rotate(-90) scale(0.32 -0.32)"
+             id="g10158">
+            <defs
+               id="defs10138">
+              <path
+                 id="Bender-72"
+                 d="M 2144 2995  L 1344 2995  L 915 2566  L 915 0  L 499 0  L 499 2643  L 320 3366  L 717 3462  L 819 3053  L 1178 3411  L 2317 3411  L 2938 2803  L 2650 2502  L 2144 2995  z "
+                 transform="scale(0.015625)" />
+              <path
+                 id="Bender-20"
+                 transform="scale(0.015625)" />
+              <path
+                 id="Bender-28"
+                 d="M 672 3482  L 672 -51  L 973 -525  L 1600 -755  L 1459 -1139  L 710 -870  L 256 -141  L 256 3571  L 710 4301  L 1459 4570  L 1600 4186  L 973 3955  L 672 3482  z "
+                 transform="scale(0.015625)" />
+              <path
+                 id="Bender-25"
+                 d="M 390 179  L 3776 4563  L 4090 4320  L 710 -70  L 390 179  z M 2963 1856  L 3770 1856  L 4294 1331  L 4294 525  L 3770 0  L 2963 0  L 2438 525  L 2438 1331  L 2963 1856  z M 3597 1440  L 3136 1440  L 2854 1158  L 2854 698  L 3136 416  L 3597 416  L 3878 698  L 3878 1158  L 3597 1440  z M 717 4480  L 1523 4480  L 2048 3955  L 2048 3149  L 1523 2624  L 717 2624  L 192 3149  L 192 3955  L 717 4480  z M 1350 4064  L 890 4064  L 608 3782  L 608 3322  L 890 3040  L 1350 3040  L 1632 3322  L 1632 3782  L 1350 4064  z "
+                 transform="scale(0.015625)" />
+              <path
+                 id="Bender-29"
+                 d="M 928 -51  L 928 3482  L 627 3955  L 0 4186  L 141 4570  L 890 4301  L 1344 3571  L 1344 -141  L 890 -870  L 141 -1139  L 0 -755  L 627 -525  L 928 -51  z "
+                 transform="scale(0.015625)" />
+            </defs>
+            <use
+               xlink:href="#Bender-45"
+               id="use10140" />
+            <use
+               xlink:href="#Bender-72"
+               x="53.299988"
+               id="use10142" />
+            <use
+               xlink:href="#Bender-72"
+               x="99.199982"
+               id="use10144" />
+            <use
+               xlink:href="#Bender-6f"
+               x="145.099976"
+               id="use10146" />
+            <use
+               xlink:href="#Bender-72"
+               x="199.799973"
+               id="use10148" />
+            <use
+               xlink:href="#Bender-20"
+               x="245.699966"
+               id="use10150" />
+            <use
+               xlink:href="#Bender-28"
+               x="275.699951"
+               id="use10152" />
+            <use
+               xlink:href="#Bender-25"
+               x="300.699936"
+               id="use10154" />
+            <use
+               xlink:href="#Bender-29"
+               x="370.799927"
+               id="use10156" />
+          </g>
+        </g>
+      </g>
+      <g
+         id="line2d_16">
+        <path
+           d="M 119.823333 489.307735  L 162.359792 527.312779  L 204.89625 548.222052  L 247.432708 553.41927  L 289.969167 561.398477  L 332.505625 605.353228  L 375.042083 607.051903  L 417.578542 591.99804  L 460.115 617.234781  L 502.651458 612.285163  L 545.187917 619.644522  L 587.724375 639.041422  L 630.260833 635.460596  L 672.797292 645.267302  L 715.33375 643.929659  L 757.870208 630.303941  L 800.406667 663.471333  L 842.943125 660.351945  L 885.479583 640.883726  L 928.016042 598.312179  L 970.5525 650.146281  L 1009 663.851548  "
+           clip-path="url(#p0bf16247a5)"
+           style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #ff0000; stroke-width: 1.5"
+           id="path10162" />
+      </g>
+      <g
+         id="line2d_17">
+        <path
+           d="M 119.823333 587.68218  L 162.359792 608.107228  L 204.89625 637.132655  L 247.432708 666.04113  L 289.969167 666.933202  L 332.505625 670.373132  L 375.042083 673.042022  L 417.578542 664.382899  L 460.115 694.929193  L 502.651458 682.1172  L 545.187917 673.135328  L 587.724375 690.986165  L 630.260833 691.947301  L 672.797292 699.647382  L 715.33375 682.104865  L 757.870208 682.422078  L 800.406667 699.838272  L 842.943125 687.007961  L 885.479583 690.654993  L 928.016042 694.469699  L 970.5525 704.396685  L 1009 698.165866  "
+           clip-path="url(#p0bf16247a5)"
+           style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #ff0000; stroke-width: 1.5"
+           id="path10165" />
+      </g>
+      <g
+         id="line2d_18">
+        <path
+           d="M 119.823333 535.046798  L 162.359792 570.590388  L 204.89625 598.837209  L 247.432708 606.843332  L 289.969167 613.031363  L 332.505625 640.478656  L 375.042083 646.137865  L 417.578542 637.511364  L 460.115 656.614459  L 502.651458 650.394789  L 545.187917 654.031749  L 587.724375 667.717731  L 630.260833 662.374561  L 672.797292 668.280958  L 715.33375 668.437473  L 757.870208 661.135197  L 800.406667 676.918695  L 842.943125 671.906178  L 885.479583 669.12298  L 928.016042 655.258435  L 970.5525 671.562644  L 1009 678.747091  "
+           clip-path="url(#p0bf16247a5)"
+           style="fill: none; stroke: #0000ff; stroke-width: 1.5; stroke-linecap: square"
+           id="path10168" />
+      </g>
+      <g
+         id="patch_3">
+        <path
+           d="M 77.286875 789.780625  L 77.286875 78.82575  "
+           style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"
+           id="path10171" />
+      </g>
+      <g
+         id="patch_4">
+        <path
+           d="M 970.5525 789.780625  L 970.5525 78.82575  "
+           style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"
+           id="path10174" />
+      </g>
+      <g
+         id="patch_5">
+        <path
+           d="M 77.286875 789.780625  L 970.5525 789.780625  "
+           style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"
+           id="path10177" />
+      </g>
+      <g
+         id="patch_6">
+        <path
+           d="M 77.286875 78.82575  L 970.5525 78.82575  "
+           style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"
+           id="path10180" />
+      </g>
+      <g
+         id="legend_1">
+        <g
+           id="patch_7">
+          <path
+             d="M 604.2175 236.42575  L 948.1525 236.42575  Q 954.5525 236.42575 954.5525 230.02575  L 954.5525 101.22575  Q 954.5525 94.82575 948.1525 94.82575  L 604.2175 94.82575  Q 597.8175 94.82575 597.8175 101.22575  L 597.8175 230.02575  Q 597.8175 236.42575 604.2175 236.42575  z "
+             style="fill: #ffffff; opacity: 0.8; stroke: #cccccc; stroke-linejoin: miter"
+             id="path10360" />
+        </g>
+        <g
+           id="line2d_19">
+          <path
+             d="M 610.6175 119.05075  L 642.6175 119.05075  L 674.6175 119.05075  "
+             style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #ff0000; stroke-width: 1.5"
+             id="path10363" />
+        </g>
+        <g
+           id="text_19">
+          <!-- Max line -->
+          <g
+             transform="translate(700.2175 130.25075) scale(0.32 -0.32)"
+             id="g10385">
+            <defs
+               id="defs10367">
+              <path
+                 id="Bender-78"
+                 d="M 1446 2067  L 2490 3475  L 2829 3226  L 1702 1702  L 2822 186  L 2483 -64  L 1446 1338  L 410 -64  L 70 186  L 1190 1702  L 64 3226  L 403 3475  L 1446 2067  z "
+                 transform="scale(0.015625)" />
+            </defs>
+            <path
+               id="use10369"
+               d="M 44.40625,16.59375 H 38.796875 L 14.5,58.09375 V 0 H 8 v 70 h 7.203125 L 41.59375,24.90625 68,70 h 7.203125 V 0 h -6.5 v 58.09375 z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10371"
+               d="M 130.49686,45.09375 V 12 l 2.79687,-11.296875 -6.1875,-1.5 L 125.49686,5.59375 119.90311,0 H 96.496857 l -8.296875,8.203125 v 14.5 l 8.296875,8.203125 h 27.500003 v 11.5 l -4.5,4.390625 h -19.20313 l -8.687498,-3 -2.109375,6.109375 10.109375,3.390625 H 122.19998 Z M 117.29373,6.5 l 6.70313,6.703125 V 24.40625 H 99.199982 L 94.699982,20 v -9.09375 l 4.5,-4.40625 z"
+               style="stroke-width:0.015625" />
+            <use
+               xlink:href="#Bender-78"
+               x="138.299973"
+               id="use10373" />
+            <use
+               xlink:href="#Bender-20"
+               x="183.499969"
+               id="use10375" />
+            <path
+               id="use10377"
+               d="M 227.9062,60.59375 V 0 h -6.5 v 59.90625 l -2.90625,8.796875 6.09375,2 z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10379"
+               d="m 241.8062,43.296875 -2.90625,8.796875 6.09375,2 L 248.3062,44 V 0 h -6.5 z M 242.89995,60.5 240.4937,62.90625 v 4.1875 L 242.89995,69.5 h 4.20312 l 2.39063,-2.40625 v -4.1875 L 247.10307,60.5 Z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10381"
+               d="m 263.29681,0 v 41.296875 l -2.79687,11.296875 6.20312,1.5 1.59375,-6.390625 5.60938,5.59375 h 23.5 l 8.1875,-8.203125 V 0 h -6.5 v 42.296875 l -4.5,4.5 H 276.49994 L 269.79681,40.09375 V 0 Z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10383"
+               d="m 349.1937,6.5 8.8125,2.796875 2,-6.09375 L 349.80307,0 h -24 l -8.20312,8.203125 V 45.09375 l 8.20312,8.203125 h 25.79688 l 8.20312,-8.203125 v -14.6875 l -8.20312,-8.109375 h -27.5 V 10.90625 L 328.5062,6.5 Z M 328.5062,46.796875 324.09995,42.40625 V 28.796875 h 24.79687 l 4.40625,4.40625 v 9.203125 l -4.40625,4.390625 z"
+               style="stroke-width:0.015625" />
+          </g>
+        </g>
+        <g
+           id="line2d_20">
+          <path
+             d="M 610.6175 163.05075  L 642.6175 163.05075  L 674.6175 163.05075  "
+             style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #ff0000; stroke-width: 1.5"
+             id="path10388" />
+        </g>
+        <g
+           id="text_20">
+          <!-- Min line -->
+          <g
+             transform="translate(700.2175 174.25075) scale(0.32 -0.32)"
+             id="g10407">
+            <path
+               id="use10391"
+               d="M 44.40625,16.59375 H 38.796875 L 14.5,58.09375 V 0 H 8 v 70 h 7.203125 L 41.59375,24.90625 68,70 h 7.203125 V 0 h -6.5 v 58.09375 z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10393"
+               d="m 91.106232,43.296875 -2.90625,8.796875 6.09375,2 L 97.606232,44 V 0 h -6.5 z M 92.199982,60.5 l -2.40625,2.40625 v 4.1875 L 92.199982,69.5 h 4.203125 l 2.390625,-2.40625 v -4.1875 L 96.403107,60.5 Z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10395"
+               d="m 112.59685,0 v 41.296875 l -2.79688,11.296875 6.20313,1.5 1.59375,-6.390625 5.60937,5.59375 h 23.5 l 8.1875,-8.203125 V 0 h -6.5 v 42.296875 l -4.5,4.5 H 125.79997 L 119.09685,40.09375 V 0 Z"
+               style="stroke-width:0.015625" />
+            <use
+               xlink:href="#Bender-20"
+               x="160.899963"
+               id="use10397" />
+            <path
+               id="use10399"
+               d="M 205.3062,60.59375 V 0 h -6.5 v 59.90625 l -2.90625,8.796875 6.09375,2 z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10401"
+               d="m 219.20619,43.296875 -2.90625,8.796875 6.09375,2 L 225.70619,44 V 0 h -6.5 z M 220.29994,60.5 l -2.40625,2.40625 v 4.1875 L 220.29994,69.5 h 4.20313 l 2.39062,-2.40625 v -4.1875 L 224.50307,60.5 Z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10403"
+               d="m 240.69681,0 v 41.296875 l -2.79688,11.296875 6.20313,1.5 1.59375,-6.390625 5.60937,5.59375 h 23.5 l 8.1875,-8.203125 V 0 h -6.5 v 42.296875 l -4.5,4.5 H 253.89993 L 247.19681,40.09375 V 0 Z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10405"
+               d="m 326.59369,6.5 8.8125,2.796875 2,-6.09375 L 327.20306,0 h -24 l -8.20312,8.203125 V 45.09375 l 8.20312,8.203125 h 25.79688 l 8.20312,-8.203125 v -14.6875 l -8.20312,-8.109375 h -27.5 V 10.90625 L 305.90619,6.5 Z m -20.6875,40.296875 -4.40625,-4.390625 V 28.796875 h 24.79687 l 4.40625,4.40625 v 9.203125 l -4.40625,4.390625 z"
+               style="stroke-width:0.015625" />
+          </g>
+        </g>
+        <g
+           id="line2d_21">
+          <path
+             d="M 610.6175 207.05075  L 642.6175 207.05075  L 674.6175 207.05075  "
+             style="fill: none; stroke: #0000ff; stroke-width: 1.5; stroke-linecap: square"
+             id="path10410" />
+        </g>
+        <g
+           id="text_21">
+          <!-- Average learning -->
+          <g
+             transform="translate(700.2175 218.25075) scale(0.32 -0.32)"
+             id="g10445">
+            <path
+               id="use10413"
+               d="M 15.5,21.203125 8.296875,-1 2,1 24.296875,70 H 33.5 L 55.796875,1 49.5,-1 42.296875,21.203125 Z m 2.09375,6.5 h 22.609375 l -11.296875,35 z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10415"
+               d="m 86.096863,0 h -6.59375 l -20.703125,51.90625 6,2.390625 18,-45.296875 18.000002,45.296875 6,-2.390625 z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10417"
+               d="m 145.39372,6.5 8.8125,2.796875 2,-6.09375 L 146.0031,0 h -24 l -8.20313,8.203125 V 45.09375 l 8.20313,8.203125 h 25.79687 l 8.20313,-8.203125 v -14.6875 l -8.20313,-8.109375 h -27.5 V 10.90625 L 124.70622,6.5 Z m -20.6875,40.296875 -4.40625,-4.390625 V 28.796875 h 24.79688 l 4.40625,4.40625 v 9.203125 l -4.40625,4.390625 z"
+               style="stroke-width:0.015625" />
+            <use
+               xlink:href="#Bender-72"
+               x="160.199966"
+               id="use10419" />
+            <path
+               id="use10421"
+               d="M 253.39684,45.09375 V 12 l 2.79687,-11.296875 -6.1875,-1.5 L 248.39684,5.59375 242.80309,0 h -23.40625 l -8.29688,8.203125 v 14.5 l 8.29688,8.203125 h 27.5 v 11.5 l -4.5,4.390625 h -19.20313 l -8.6875,-3 -2.10937,6.109375 10.10937,3.390625 h 22.59375 z M 240.19371,6.5 l 6.70313,6.703125 V 24.40625 H 222.09996 L 217.59996,20 v -9.09375 l 4.5,-4.40625 z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10423"
+               d="m 276.69995,12.5 -2,1.90625 -1.59375,-1.609375 v -4.59375 l 2.29688,-2.296875 h 27.79687 l 6,-6 v -10.703125 l -6,-6 h -29.5 l -7.5,7.296875 4.40625,4.59375 5.59375,-5.390625 h 24.20313 L 302.69995,-8 v 5.09375 l -2.29687,2.3125 h -27.90625 l -6,6 v 10.1875 l 3.5,3.5 -3.5,3.5 v 22.5 l 8.20312,8.203125 h 22.5 l 11.29688,2.796875 1.5,-6.1875 -6.29688,-1.609375 5.5,-5.5 V 20.703125 L 300.99683,12.5 Z m 19.29688,34.296875 H 277.40308 L 272.99683,42.40625 V 25.296875 L 279.2937,19 h 19 l 4.40625,4.40625 v 16.6875 z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10425"
+               d="m 350.59369,6.5 8.8125,2.796875 2,-6.09375 L 351.20306,0 h -24 l -8.20312,8.203125 V 45.09375 l 8.20312,8.203125 h 25.79688 l 8.20312,-8.203125 v -14.6875 l -8.20312,-8.109375 h -27.5 V 10.90625 L 329.90619,6.5 Z m -20.6875,40.296875 -4.40625,-4.390625 V 28.796875 h 24.79687 l 4.40625,4.40625 v 9.203125 l -4.40625,4.390625 z"
+               style="stroke-width:0.015625" />
+            <use
+               xlink:href="#Bender-20"
+               x="365.399933"
+               id="use10427" />
+            <path
+               id="use10429"
+               d="M 409.80618,60.59375 V 0 h -6.5 v 59.90625 l -2.90625,8.796875 6.09375,2 z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10431"
+               d="m 453.39365,6.5 8.8125,2.796875 2,-6.09375 L 454.00302,0 h -24 L 421.7999,8.203125 V 45.09375 l 8.20312,8.203125 h 25.79688 l 8.20312,-8.203125 v -14.6875 l -8.20312,-8.109375 h -27.5 V 10.90625 L 432.70615,6.5 Z M 432.70615,46.796875 428.2999,42.40625 V 28.796875 h 24.79687 l 4.40625,4.40625 v 9.203125 l -4.40625,4.390625 z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10433"
+               d="M 515.49677,45.09375 V 12 l 2.79687,-11.296875 -6.1875,-1.5 L 510.49677,5.59375 504.90302,0 h -23.40625 l -8.29688,8.203125 v 14.5 l 8.29688,8.203125 h 27.5 v 11.5 l -4.5,4.390625 h -19.20313 l -8.6875,-3 -2.10937,6.109375 10.10937,3.390625 h 22.59375 z M 502.29364,6.5 l 6.70313,6.703125 V 24.40625 H 484.19989 L 479.69989,20 v -9.09375 l 4.5,-4.40625 z"
+               style="stroke-width:0.015625" />
+            <use
+               xlink:href="#Bender-72"
+               x="523.299896"
+               id="use10435" />
+            <path
+               id="use10437"
+               d="m 576.99677,0 v 41.296875 l -2.79688,11.296875 6.20313,1.5 1.59375,-6.390625 5.60937,5.59375 h 23.5 l 8.1875,-8.203125 V 0 h -6.5 v 42.296875 l -4.5,4.5 H 590.19989 L 583.49677,40.09375 V 0 Z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10439"
+               d="m 633.20612,43.296875 -2.90625,8.796875 6.09375,2 L 639.70612,44 V 0 h -6.5 z M 634.29987,60.5 l -2.40625,2.40625 v 4.1875 L 634.29987,69.5 h 4.20312 l 2.39063,-2.40625 v -4.1875 L 638.50299,60.5 Z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10441"
+               d="m 654.69678,0 v 41.296875 l -2.79688,11.296875 6.20313,1.5 1.59375,-6.390625 5.60937,5.59375 h 23.5 l 8.1875,-8.203125 V 0 h -6.5 v 42.296875 l -4.5,4.5 H 667.8999 L 661.19678,40.09375 V 0 Z"
+               style="stroke-width:0.015625" />
+            <path
+               id="use10443"
+               d="m 718.49988,12.5 -2,1.90625 -1.59375,-1.609375 V 8.203125 L 717.203,5.90625 h 27.79688 l 6,-6 v -10.703125 l -6,-6 h -29.5 l -7.5,7.296875 4.40625,4.59375 5.59375,-5.390625 H 742.203 L 744.49988,-8 v 5.09375 l -2.29688,2.3125 h -27.90625 l -6,6 v 10.1875 l 3.5,3.5 -3.5,3.5 v 22.5 l 8.20313,8.203125 h 22.5 l 11.29687,2.796875 1.5,-6.1875 -6.29687,-1.609375 5.5,-5.5 V 20.703125 L 742.79675,12.5 Z m 19.29687,34.296875 H 719.203 L 714.79675,42.40625 V 25.296875 L 721.09363,19 h 19 l 4.40625,4.40625 v 16.6875 z"
+               style="stroke-width:0.015625" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <defs
+     id="defs10454">
+    <clipPath
+       id="p0bf16247a5">
+      <rect
+         x="77.286875"
+         y="78.82575"
+         width="893.265625"
+         height="710.954875"
+         id="rect10451" />
+    </clipPath>
+  </defs>
+</svg>

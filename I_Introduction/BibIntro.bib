@@ -61,3 +61,111 @@
 	year = {2020},
 	file = {Snapshot:/mnt/WORK/Zotero/storage/XNQ34AAH/time_series.html:text/html},
 }
+
+@Article{sadykov_practical_2022,
+AUTHOR = {Sadykov, Marat and Haines, Sam and Broadmeadow, Mark and Walker, Geoff and Holmes, David William},
+TITLE = {Practical Evaluation of Lithium-Ion Battery State-of-Charge Estimation Using Time-Series Machine Learning for Electric Vehicles},
+JOURNAL = {Energies},
+VOLUME = {16},
+YEAR = {2023},
+NUMBER = {4},
+ARTICLE-NUMBER = {1628},
+URL = {https://www.mdpi.com/1996-1073/16/4/1628},
+ISSN = {1996-1073},
+ABSTRACT = {This paper presents a practical usability investigation of recurrent neural networks (RNNs) to determine the best-suited machine learning method for estimating electric vehicle (EV) batteries&rsquo; state of charge. Using models from multiple published sources and cross-validation testing with several driving scenarios to determine the state of charge of lithium-ion batteries, we assessed their accuracy and drawbacks. Five models were selected from various published state-of-charge estimation models, based on cell types with GRU or LSTM, and optimisers such as stochastic gradient descent, Adam, Nadam, AdaMax, and Robust Adam, with extensions via momentum calculus or an attention layer. Each method was examined by applying training techniques such as a learning rate scheduler or rollback recovery to speed up the fitting, highlighting the implementation specifics. All this was carried out using the TensorFlow framework, and the implementation was performed as closely to the published sources as possible on openly available battery data. The results highlighted an average percentage accuracy of 96.56% for the correct SoC estimation and several drawbacks of the overall implementation, and we propose potential solutions for further improvement. Every implemented model had a similar drawback, which was the poor capturing of the middle area of charge, applying a higher weight to the voltage than the current. The combination of these techniques into a single custom model could result in a better-suited model, further improving the accuracy.},
+DOI = {10.3390/en16041628}
+}
+@article{iea_global_2023,
+    title = {Global {EV} {Outlook} 2023: {Catching} up with climate ambitions},
+    url = {https://www.iea.org/reports/global-ev-outlook-2023},
+    language = {en},
+    author = {{IEA}},
+    year = {2023},
+    annote = {IEA (2023), Global EV Outlook 2023, IEA, Paris https://www.iea.org/reports/global-ev-outlook-2023, License: CC BY 4.0
+},
+    file = {2023 - Global EV Outlook 2023 Catching up with climate a.pdf:/home/user/Zotero-Research/storage/X9HWD38E/2023 - Global EV Outlook 2023 Catching up with climate a.pdf:application/pdf},
+}
+
+@misc{baik_making_2019,
+    title = {Making electric vehicles profitable},
+    url = {http://ceros.mckinsey.com/autocx-ex2-v1-online-2},
+    language = {en},
+    urldate = {2023-05-18},
+    author = {Baik, Yeon and Hensley, Russell and Hertzke, Patrick and Knupfer, Stefan},
+    month = mar,
+    year = {2019},
+    file = {Snapshot:/home/user/Zotero-Research/storage/LCJZU24N/1.html:text/html},
+}
+
+
+@inproceedings{johansson_neural_2018,
+    title = {A {Neural} {Network} {Approach} to {Absolute} {State}-of-{Health} {Estimation} in {Electric} {Vehicles} {Battery} {Degradation} {Study} {Based} on {Fleet} {Data}},
+    abstract = {Electrification is a trend within the automotive industry. Many car manufacturers
+are launching electric vehicles, which are believed to be more sustainable and environmentally
+friendly. A major component in these cars is the battery, and its performance
+is crucial to the success of the electric vehicle. Therefor, the degradation of
+battery properties is interesting, especially the capacity decline. To understand and
+counter this degradation it must be measured with high precision in the cars, and
+be connected to car use. This project approaches this challenge by: using real fleet
+data, the aggregation of the data into events, and a neural network to estimate the
+state of the battery. The result is a proof of concept that gives an improved measure
+of the battery state and how different usage affects the capacity degradation. The
+result is, however, not validated at this point, shows unexplained properties, and
+should be further developed.},
+    author = {Johansson, Halldor},
+    year = {2018},
+    keywords = {Artificial neural network, Automotive Occupations, Biological Neural Networks, Chimeric antigen receptor, Drug vehicle, Elegant degradation},
+    file = {Full Text PDF:/home/user/Zotero-Research/storage/2PTGXJDS/Johansson - 2018 - A Neural Network Approach to Absolute State-of-Hea.pdf:application/pdf},
+}
+
+@incollection{castillo_18_2015,
+    series = {Woodhead {Publishing} {Series} in {Energy}},
+    title = {18 - {Standards} for electric vehicle batteries and associated testing procedures},
+    isbn = {978-1-78242-377-5},
+    url = {https://www.sciencedirect.com/science/article/pii/B9781782423775000182},
+    abstract = {Standards are consensus documents that permit the homologation of a technology or practice. This chapter gives an overview of the standards in use in the electric vehicle (EV) battery industry and mentions which tests are performed to assess the normal operating conditions of the battery, its aging and lifetime, as well as cases of malfunction or abuse. The most used standards are proposed and developed by testing facilities, battery producers, device integrators, car manufacturers, and governmental bodies; the standards are constantly reviewed to make sure they maintain relevance with technology developments and applications. Tests commonly performed include thermal tests in the range of intended operation of the battery, charge and discharge capacity checks, pulse current tests, and dynamic current tests simulating EV consumption. For safety screening of batteries, the most common tests include short-circuit, overvoltage, controlled crush, indentation, or nail penetration, and simulated fire exposure.},
+    language = {en},
+    urldate = {2023-05-18},
+    booktitle = {Advances in {Battery} {Technologies} for {Electric} {Vehicles}},
+    publisher = {Woodhead Publishing},
+    author = {Castillo, E. Cabrera},
+    editor = {Scrosati, Bruno and Garche, JÃ¼rgen and Tillmetz, Werner},
+    month = jan,
+    year = {2015},
+    doi = {10.1016/B978-1-78242-377-5.00018-2},
+    keywords = {Battery abuse testing, Battery electric vehicle, Battery overcharge., Battery performance test, Electric vehicle standard},
+    pages = {469--494},
+    file = {ScienceDirect Full Text PDF:/home/user/Zotero-Research/storage/N2XDLRJD/Castillo - 2015 - 18 - Standards for electric vehicle batteries and .pdf:application/pdf;ScienceDirect Snapshot:/home/user/Zotero-Research/storage/VJRY44CA/B9781782423775000182.html:text/html},
+}
+
+@misc{brownlee_what_2017,
+	title = {What is {Teacher} {Forcing} for {Recurrent} {Neural} {Networks}?},
+	url = {https://machinelearningmastery.com/teacher-forcing-for-recurrent-neural-networks/},
+	abstract = {Teacher forcing is a method for quickly and efficiently training recurrent neural network models that use the ground truth from a prior time step as input. It is a network training method critical to the development of deep learning language models used in machine translation, text summarization, and image captioning, among many other applications. In [â€¦]},
+	language = {en-US},
+	urldate = {2023-07-17},
+	journal = {MachineLearningMastery.com},
+	author = {Brownlee, Jason},
+	month = dec,
+	year = {2017},
+	annote = {Forward Teaching reference which actually code teacher forcing. Second explanation I stored.
+
+},
+	file = {Snapshot:/home/user/Zotero-Research/storage/UXUSIJPW/teacher-forcing-for-recurrent-neural-networks.html:text/html},
+}
+@misc{orac_lstm_2024,
+	title = {{LSTM} for time series prediction},
+	url = {https://www.kdnuggets.com/lstm-for-time-series-prediction.html},
+	abstract = {Learn how to develop a LSTM neural network with PyTorch on trading data to predict future prices by mimicking actual values of the time series data.},
+	language = {en-US},
+	urldate = {2023-07-17},
+	journal = {KDnuggets},
+	author = {Orac, Roman},
+	month = apr,
+	year = {2024},
+	note = {Section: 2020 Apr Tutorials, Overviews},
+	annote = {Forward Teaching reference which actually code teacher forcing. Original source.
+
+},
+	file = {Snapshot:/home/user/Zotero-Research/storage/EXQUB9DJ/lstm-time-series-prediction.html:text/html},
+}

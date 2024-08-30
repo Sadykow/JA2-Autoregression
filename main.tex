@@ -1,193 +1,254 @@
-% \documentclass[journal, onecolumn, draftclsnofoot]{IEEEtranTIE}
-\documentclass[journal]{IEEEtranTIE}
-\usepackage{graphicx}
-\usepackage{cite}
-\usepackage{picinpar}
-\usepackage{amsmath}
-\usepackage{url}
-\usepackage{flushend}
-\usepackage[latin1]{inputenc}
-\usepackage{colortbl}
-\usepackage{soul}
-\usepackage{multirow}
-\usepackage{pifont}
-\usepackage{color}
-\usepackage{alltt}
-\usepackage[hidelinks]{hyperref}
-\usepackage{enumerate}
-\usepackage{siunitx}
-\usepackage{breakurl}
-\usepackage{epstopdf}
-\usepackage{pbox}
-
+\documentclass[a4paper,fleqn]{cas-dc}
+% *** GRAPHICS RELATED PACKAGES ***
+%
+% \usepackage[pdftex]{graphicx}
 % Adds SVG Support out of cls file
-\usepackage{svg}
-
-% Double line spacing
-% \usepackage{setspace}
-% \doublespace
-%\linespread{2pc}
-
-% Fancy table related trick
-\usepackage{tikz}
-\usepackage{makecell}
-\def\chk{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
-
-% Python code
-\usepackage{listings}
-
-% Algorithmic
+\usepackage[inkscapearea=page]{svg}
+% *** SPECIALIZED LIST PACKAGES ***
+%
 \usepackage{algorithm, algorithmic}
+% *** SUBFIGURE PACKAGES ***
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% \usepackage{stfloats}
+% \usepackage{dblfloatfix}
 
-% Subfigures
-\usepackage{caption}
-\usepackage{subcaption}
-
-%Code listing style named "mystyle"
-\lstdefinestyle{mystyle}{
-  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
-  keywordstyle=\color{magenta},
-  numberstyle=\tiny\color{codegray},
-  stringstyle=\color{codepurple},
-  basicstyle=\ttfamily\footnotesize,
-  breakatwhitespace=false,         
-  breaklines=true,                 
-  captionpos=b,                    
-  keepspaces=true,                 
-  numbers=left,                    
-  numbersep=5pt,                  
-  showspaces=false,                
-  showstringspaces=false,
-  showtabs=false,                  
-  tabsize=2
-}
-
-%"mystyle" code listing set
-\lstset{style=mystyle}
-
-% lscape.sty Produce landscape pages in a (mainly) portrait document.
-\usepackage{pdflscape}
-
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
 % Adding if execution to define between thesis and article
 \usepackage{ifthen}
 \newboolean{thesis}
 \setboolean{thesis}{false}
+% lscape.sty Produce landscape pages in a (mainly) portrait document.
+\usepackage{pdflscape}
+% Fancy table related trick
+% \usepackage{multirow}
+% correct bad hyphenation here
+% \hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+% updated with editorial comments 8/9/2021
+% \usepackage[hidelinks]{hyperref}
+% \usepackage{orcidlink}
+
+% \usepackage[authoryear,longnamesfirst]{natbib}
+\usepackage[numbers,square]{natbib}
+% \let\cite\citep
+%! Produced numbered lines. TO BE removed
+\usepackage[left,switch,pagewise]{lineno}
+\linenumbers
+\renewcommand\linenumberfont{\normalfont\bfseries\small}
+
+
+%%%Author macros
+\def\tsc#1{\csdef{#1}{\textsc{\lowercase{#1}}\xspace}}
+\tsc{WGM}
+\tsc{QE}
 
 \begin{document}
-%\title{Lithium-Ion battery Feed-Forward State of Charge estimation using Time-Series Machine Learning prediction with Autoregressive models}
-\title{Feed-Forward State of Charge estimation using Time-Series Machine Learning prediction with Autoregressive models on Lithium-Ion batteries}
-\author{
-	\vskip 1em
-	
-	Marat Sadykov, % \emph{Student Membership},
-	Sam Haines,% \emph{Student Membership},
-  \\ Dr Mark Broadmeadow, %\emph{Techinical Supervisor}
-  \\ A/Prof Geoff Walker, %\emph{Associate Research Supervisor} and
-	\\ A/Prof David Holmes, %\emph{Principal Research Supervisor},
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
 
-	\thanks{
-	
-		Manuscript received Month xx, 2xxx; revised Month xx, XXXX; accepted Month x, XXXX.
-		This work was supported in part by the Government of Australia under Automotive Engineering Graduate Program (AEGP) Grant.
-		
-		Marat Sadykov, Sam Haines and A/Prof David Holmes are with the School of Mech., Medical \& Process Engineering,  Queensland University of Technology (QUT), Brisbane, QLD, 4000, Australia. (e-mail: d.holmes@qut.edu.au). 
-		
-		Dr Mark Broadmeadow and A/Prof Geoff Walker are with the School of Electrical Engineering \& Robotics,  Queensland University of Technology (QUT), Brisbane, QLD, 4000, Australia. %(e-mail: mark.broadmeadow@qut.edu.au, geoffrey.walker@qut.edu.au)
-	}
-}
+% Short title
+\shorttitle{Feed-Forward State of Charge Estimation \textcolor{blue}{of LiFePO$_4$ Batteries} Using Time-Series Machine Learning Prediction with Autoregressive Models}
 
-\maketitle
+% Short author
+\shortauthors{Marat Sadykov, Sam Haines, Geoffrey Walker and David William Holmes}
 
-\begin{abstract}
-  \textbf{
-  \input{I_Introduction/Abstract}
-  }
+% Main title of the paper
+\title[mode=title]{Feed-Forward State of Charge Estimation \textcolor{blue}{of LiFePO$_4$ Batteries} Using Time-Series Machine Learning Prediction with Autoregressive Models}
+
+% Title footnote mark
+% eg: \tnotemark[1]
+% \tnotemark[1,2] 
+
+% Title footnote 1.
+% eg: \tnotetext[1]{Title footnote text}
+% \tnotetext[1]{<tnote text>} 
+
+% \thanks{Manuscript received March 19, 2023; revised April ??, 2023.}
+
+% The paper headers
+% \markboth{IEEE Transactions on Intelligent Vehicles,~Vol.~8, No.~10, November~2023}%
+% {Sadykov \MakeLowercase{\textit{et al.}}: Feed-Forward State of Charge Estimation Ising Time-Series Machine Learning Prediction With Autoregressive Models on Lithium-Ion Batteries}
+
+% First author
+%
+% Options: Use if required
+% \author[1,3]{Author Name}[type=editor,
+%       style=chinese,
+%       auid=000,
+%       bioid=1,
+%       prefix=Sir,
+%       orcid=0000-0000-0000-0000,
+%       facebook=<facebook id>,
+%       twitter=<twitter id>,
+%       linkedin=<linkedin id>,
+%       gplus=<gplus id>]
+%* Author 1
+\author[1]{M. Sadykov}[type=editor,
+      auid=000,
+      bioid=1,
+      prefix=Sir,
+      role=Researcher,
+      orcid=0000-0002-6436-7069]
+
+% Corresponding author indication
+% \cormark[1]
+
+% Footnote of the first author
+\fnmark[1]
+
+% Email id of the first author
+% \ead{sadykovmarat@pm.me}
+
+% URL of the first author
+% \ead[url]{www.qut.edu.au/1}
+
+% Credit authorship
+% eg: \credit{Conceptualization of this study, Methodology, Software}
+\credit{Conceptualisation, Methodology, Software, Validation, Formal analysis, Investigation, Resources, Data curation, Writing---original draft preparation, Visualisation}
+
+% Address/affiliation
+\affiliation[1]{
+            organization={School of Mechanical, Medical and Process Engineering (MMPE)},
+            addressline={Queensland University of Technology~(QUT)}, 
+            city={Brisbane},
+            postcode={4000}, 
+            state={QLD},
+            country={Australia}}
+
+\author[1]{Sam Haines}[
+      style=chinese]
+\credit{Conceptualisation, Resources}
+\author[2]{Geoffrey Walker}[
+      style=chinese,
+      orcid=0000-0001-8137-9507]
+\credit{Validation, Writing---review and editing, Supervision}
+\author[1]{David William Holmes}[
+      style=chinese,
+      orcid=0000-0002-2970-9158]
+
+% Corresponding author indication
+\cormark[1]
+
+% Footnote of the second author
+\fnmark[1]
+
+% Email id of the second author
+\ead{d.holmes@qut.edu.au}
+
+% URL of the second author
+% \ead[url]{www.qut.edu.au/1}
+
+% Credit authorship
+\credit{Conceptualisation, Methodology, Validation, Formal analysis, Writing---review and editing, Supervision, Project administration, Funding acquisition}
+
+% Address/affiliation
+\affiliation[2]{
+            organization={School of Electrical Engineering \& Robotics},
+            addressline={Queensland University of Technology~(QUT)}, 
+            city={Brisbane},
+            postcode={4000}, 
+            state={QLD},
+            country={Australia}}
+
+% Corresponding author text
+\cortext[1]{Corresponding author.}
+
+% Footnote text
+\fntext[1]{These authors contributed equally to this work.}
+
+% For a title note without a number/mark
+%\nonumnote{}
+
+\begin{abstract}[S U M M A R Y]
+  This paper presents a Recurrent Neural Network (RNN) model for the State of Charge (SoC) estimation for an Electric Vehicle's Lithium-Ion battery.
+  A new Autoregressive modification is proposed to improve upon earlier published Machine Learning models to enhance the prediction accuracy and make results less sensitive to varying usage conditions.
+  By building upon earlier published findings, assessing several models' ability to estimate \textcolor{blue}{charge} using a history window of sensory data, this work proposes, implements, and reports its methods of improving accuracy by introducing the State of Charge as part of sensory inputs in a Feed-Forward manner.
+  The method is based on the Autoregressive implementation of neural network model training, where successively calculated \textcolor{blue}{charge values} are used as input in the subsequent predictions, but the potential inaccuracies with those predictions that might otherwise cause significant and rapid divergence are accounted for within a modified recursive training procedure.
+  As a result, with a slight increase in training time, the accuracy of the output prediction for three different realistic charge-discharge driving profiles doubled compared to the two best previously published models.
+  Overall, the test results have demonstrated the usability of the current model in actual driving scenarios, making such models a viable replacement to estimation approaches used in electric vehicle battery management systems.
 \end{abstract}
 
-% IF
-\ifthenelse {\boolean{thesis}}
-%
-% THEN
-{
-\begin{IEEEkeywords}
-  Autoregressive models,
-  Lithium-Ion battery (Li-Ion),
-  Long Short-Term Memory Recurrent Neural Networks (LSTM-RNNs),
-  State of Charge (SOC) estimation,
-  TensorFlow (TF),
-\end{IEEEkeywords}
-}
-%
-% ELSE
-{
-\begin{IEEEkeywords}
-  Autoregressive models,
-  Recurrent Neural Networks (RNNs),
-  Long Short-Term Memory (LSTM),
-  State of Charge (SOC) estimation,
+% Research highlights
+% \begin{highlights}
+%   \item 1
+%   \item 2
+%   \item 3
+% \end{highlights}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{keywords}
+  Autoregressive models \sep
+  % Lithium iron phosphate battery ($LiFePO_{4}$),
+  Lithium-Ion Battery (Li-Ion) \sep
+  Long Short-Term Memory Recurrent Neural Networks (LSTM-RNNs) \sep
+  State of Charge (SOC) estimation \sep
   TensorFlow (TF)
-\end{IEEEkeywords}
-}
+\end{keywords}
 
-\markboth{IEEE TRANSACTIONS ON INDUSTRIAL ELECTRONICS}%
-{}
+% make the title area
+\maketitle
 
-%New colors defined below
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\definecolor{limegreen}{rgb}{0.2, 0.8, 0.2}
-\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
-\definecolor{greenhtml}{rgb}{0.0, 0.5, 0.0}
+\section{Introduction}\label{sec:introduction}
+\input{./I_Introduction/Intro2}
+% \hfill mds 
+% \hfill August 26, 2015
 
-%%% Introduction
-\section{Introduction} \label{sec:Introduction}
-\input{./I_Introduction/Intro}
-%%% Body
 \section{Method Development} \label{sec:layer}
-\subsection{LSTM estimation}
-\input{./II_Body/layer}
-\begin{landscape}
-  \begin{figure}[ht]
-      \centering
-      \includegraphics[width=\linewidth]{II_Body/images/Windowing4f-A3.jpg}
-      \caption{Data Windowing scheme at 1Hz sampling rate. For visualisation purposes, the $s$-step has been used as 250 seconds, which is different from the actual implementation. The initial index $i$ was kept as a value close to the beginning of the data, around zero.}
-      \label{fig:Windowing}
-  \end{figure}
-\end{landscape}
+Before the development of the new approach is detailed, we need to outline how the methods and the data will be assessed against the testing methodology.
+% \pdfcomment{
+%   ALTERNATIVELY:
+%   The following subsection/part will describe battery data and performance metrics used in similar methods, structure and modifications of the researched Time-series model, and summaries a newly proposed method to improve the overall accuracy.
+% }
+Subsection~\ref{subsec:testing} outlines what and how battery data is used and reported for performance metrics against other methods.
+Subsection~\ref{subsec:lstm} presents the type, structure and method of the time-series machine learning models which will be utilised throughout the research, along with input and output data management and optimisation strategy.
+Subsection~\ref{sec:feed} provides the full summary of how the new method is implemented from the procedural perspective and why it is considered viable to improve the overall accuracy.
+\subsection{Testing methodology}~\label{subsec:testing}
+  \input{./II_Body/method}
+\subsection{LSTM estimation}~\label{subsec:lstm}
+  \input{./II_Body/layer}  
 \subsection{Development of Feed-Forward Autoregressive model} \label{sec:feed}
-\input{./II_Body/feed-forward}
-\subsection{Testing methodology}
-\input{./II_Body/method}
-%%% Conclusion
+  \input{./II_Body/feed-forward}
+% \newpage
+
 \section{Results} \label{sec:results}
 \input{./III_Conclussion/results}
+
 \section{Conclusion} \label{sec:conclussion}
 \input{./III_Conclussion/conclussion}
+
+\printcredits
+
+\section*{Declaration of competing interest}
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this article.
+
+\section*{Data availability}
+The lithium-ion battery cycling data presented in this study are openly available at the Battery Research Group of the Center for Advanced Life Cycle Engineering (CALCE) Group official repository website, which can be accessed using the following link: \url{https://web.calce.umd.edu/batteries/data.htm}, in the section on A123 batteries~\cite{noauthor_calce_2017} (accessed on 20 March~2020).
+Produced results data will be made available on request.
+
+\section*{Acknowledgments}
+% The authors would like to thank...
 \input{./III_Conclussion/acknowledgements}
 
-\bibliographystyle{IEEEtranTIE}
+%% Loading bibliography style file
+%\bibliographystyle{model1-num-names}
+% \bibliographystyle{cas-model2-names}
+\bibliographystyle{unsrtnat}
+
+% Loading bibliography database
 \bibliography{
+  I_Introduction/BibIntro,
+  ../Z-References/References,
   ../Ch3Analysis/I_Introduction/BibIntro,
   ../Ch3Analysis/II_Body/BibRNN,
   ../Ch3Analysis/II_Body/GRU/BibGRU,
-  ../Ch3Analysis/II_Body/LSTM/BibLSTM,
-  I_Introduction/BibIntro
+  ../Ch3Analysis/II_Body/LSTM/BibLSTM
 }
-%
-% IF
-\ifthenelse {\boolean{thesis}}
-%
-% THEN
-{
-\clearpage
-\appendices
-\section{Appendix A: Feed-Forward prediction}  \label{app:Feed-Forward}
-\input{../X-Appendix/AppendixE}
-\clearpage
-\section{Appendix B: Autoregression implementation}  \label{app:AutoFeedback}
-\input{../X-Appendix/AppendixF}
-}
-{}
+
 \end{document}
+
+

@@ -1,27 +1,29 @@
-\ifthenelse{\boolean{thesis}}{ The objective of this chapter was to improve the state of charge prediction inside an Electric Vehicle.}
-{The objective of this work was to improve the state of charge prediction inside an Electric Vehicle.}
+\ifthenelse{\boolean{thesis}}{The objective of this chapter was to improve the State of Charge prediction inside an Electric Vehicle.}
+{The objective of this work was to improve the \textcolor{blue}{charge percentage} prediction inside an Electric Vehicle.}
 % The idea is to rely only on the sensory data and a single Neural Network-based battery model.
-The experiment has proven that State of Charge prediction models tends to put significant weight into the Voltage to describe the charging process during the model training process, making DST the best model to train on early.
+The experiment has shown that SoC prediction models tend to put significant weight into the voltage to describe the charging process during the model training process, making DST the best model to train on early.
 Adding the charge as a feature has proven that the history of the SoC had a higher weight on a system than sensory data.
 As a result, it decreases error since the model is anticipated to have a perfect charge history from tabled data.
-Every next prediction, which had a small percentage of miss accuracy, only accumulated errors in every following charge estimation, leading to worse results than pure sensory data usage.
+Every next prediction, which had a small percentage of mis-accuracy, only accumulated errors in every following charge estimation, leading to worse results than pure sensory data usage.
 
 %
 %
-Instead of manually adjusting each input feature's weight, the best approach to minimising the charge's effect on an overall system is to use the Autoregression training technique. 
+Instead of manually adjusting each input feature's weight, the best approach to minimising the charge's effect on an overall system is to use the autoregression training technique. 
 Since the sigmoid function restrained the output, the first results from the model at the start of the training were random values within 50\% of the expected charge.
 Instead of always having perfect values, the auto-regression technique allowed model weights adjustments based on their initial error.
 As a result, the optimiser performed the model fit based on the array of model outputs over evenly-spaced time samples.
-Despite the modification introducing an $n_{th}^{2}$ degree computation based on the number of outputting steps, the actual prediction was performed only on the latest sample, meaning that the autoregressive model added no performance losses during actual utilisation.
+Despite the modification introducing an $n_{th}^{2}$ degree computation based on the number of outputting steps, the actual prediction was performed only on the latest sample, meaning that the autoregressive model training added no performance losses during actual utilisation.
 Therefore, the accuracy of capturing non-trained driving profiles has tripled, from 2.77\% to 0.81\% percentage error.
-In addition, a capture of complex driving behaviour, like FUDS, also improved by factor 3-4, from 1.82\% to 0.50\% error, in general producing a far closer charge prediction line to actual SoC.
-Unlike early researched models, even with increased complexity by dealing with both change and discharge cycles, the new methods have a better learning curve degradation, as well as equally good capture throughout the entire cycle, especially in the middle point of the charge, at 3.3V of Lithium-Ion batteries, which was the main improvement goal.
+In addition, a capture of complex driving behaviour, like FUDS, also improved by a factor of 3-4, from 1.82\% to 0.50\% error, in general producing a far closer charge prediction line to actual SoC.
+Unlike early researched models, even with increased complexity by dealing with both change and discharge cycles, the new methods have a better learning curve degradation, as well as equally good capture throughout the entire cycle, especially in the middle point of the charge, at 3.3V of Lithium iron phosphate batteries, which was the main improvement goal.
 
 %
 %
-Although the method has proven effective on three different driving profiles, it still requires experiments to validate against actual driving behaviour.
-The intention is to test the model during actual driving activity.
+\textcolor{blue}{
+The single-layer implementation implied further improvement of the method with enhanced network structure via multilayers or a higher number of neurons, which can be considered future work.
+Besides, while} the method has proven effective on three different driving profiles, it still requires experiments to validate against driving behaviour.
+The intention is to test the model during actual Electric Vehicle driving.
 On top of that, the effect of the initial start of the charge is still debatable.
 So far, few experiments with different starting points have shown accurate results, but the best way to validate the model is to observe active convergence over unseen data.
-Even if the model still will not correctly determine the middle area of the battery as with 3-feature-based methods, the general trend of battery charge and discharge has to be followed without spikes or falls.
-If confirmed, the model can replace any other model-based State of Charge estimation technique.
+% Even if the model still will not correctly determine the middle area of the battery as with 3-feature-based methods, the general trend of battery charge and discharge has to be followed without spikes or falls.
+If confirmed, the model can replace any other model-based \textcolor{blue}{SoC} estimation technique.
